@@ -31,37 +31,37 @@ export const seasons: Season[] = [
       { name: "Tuncis", top8: 49, stoses: 1, top8avg: 6.1, punktiKopa: 49, avg: 9.8, tournaments: 5, position: 9 },
       { name: "Osīc", top8: 49, stoses: 1, top8avg: 6.1, punktiKopa: 49, avg: 7.0, tournaments: 6, position: 10 },
     ],
-    comment: `Rēpelis ar 30 štosēm beigās pārspējis Dzinti, kuram bija 29 štoses un štošu ieskaitē un kļuvis par absolūto GOAT! Pirms decembra turnīra abiem bija pa 26 štosēm. Ļoti spēcīgs sniegums arī šajā sezonā!
+    comment: `Repča ar 30 štosēm beigās pārspējis Dzinču, kuram bija 29 štoses un štošu ieskaitē un kļuvis par absolūto GOAT! Pirms decembra turnīra abiem bija pa 26 štosēm. Ļoti spēcīgs sniegums arī šajā sezonā!
 
-Pūgulim izdevās pārspēt 2:0 Repču pēdējā turnīrā uzvarētāju zarā, bet pēcāk zaudētāju zarā piedzīvot tomēr sakāvi. Kā arī Pūgulis no Kārļa un 3.vietas kopvērtējumā beigās šķīra TIKAI 1 punkts!
+Pūgulim izdevās pārspēt 2:0 Repču pēdējā turnīrā uzvarētāju zarā, bet pēcāk zaudētāju zarā piedzīvot tomēr sakāvi. Kā arī Pūgulis no Orļika un 3.vietas kopvērtējumā beigās šķīra TIKAI 1 punkts!
 
-Bija ļoti sīva cīņa par trešo vietu starp Pūguli, Kārli, Arčiju un Ziemi, kur Arčijs tikko kā vēl bija 3. ar 108 punktiem, taču pēdējos 2 turnīros nespēja uzlaboties paliekot 10. un 7. vietās, kamēr Pūgulim ar Kārli bija labi turnīri - Kārlis (3. un 4. vieta) un Pūgulis (5. un 3. vieta). Taču Arčijs ir trešais labākais šosētājs šosezon ar 12 štosēm, kamēr Ziemīc ar mani dala 4.vietu ar 10 štosēm!
+Bija ļoti sīva cīņa par trešo vietu starp Pūguli, Orļiku, Artchy un Ziemi, kur Artchy tikko kā vēl bija 3. ar 108 punktiem, taču pēdējos 2 turnīros nespēja uzlaboties paliekot 10. un 7. vietās, kamēr Pūgulim ar Orļiku bija labi turnīri - Orļiks (3. un 4. vieta) un Pūgulis (5. un 3. vieta). Taču Artchy ir trešais labākais šosētājs šosezon ar 12 štosēm, kamēr Ziemis ar mani dala 4.vietu ar 10 štosēm!
 
 Paldies par sezonu, bija daudz interesantas cīņas un labi pavadīts laiks novusa vakaros!`,
   },
   {
     year: 2024,
     players: [
-      { name: "Kārlis Rēpelis", top8: 195, stoses: 26, top8avg: 24.4, punktiKopa: 256, avg: 21.3, tournaments: 12, position: 1 },
-      { name: "Kārlis Orleans", top8: 149, stoses: 18, top8avg: 18.6, punktiKopa: 180, avg: 15.0, tournaments: 12, position: 2 },
-      { name: "Dzintis Aļeksejevs", top8: 146, stoses: 20, top8avg: 18.3, punktiKopa: 175, avg: 14.6, tournaments: 12, position: 3 },
+      { name: "Repča", top8: 195, stoses: 26, top8avg: 24.4, punktiKopa: 256, avg: 21.3, tournaments: 12, position: 1 },
+      { name: "Orļiks", top8: 149, stoses: 18, top8avg: 18.6, punktiKopa: 180, avg: 15.0, tournaments: 12, position: 2 },
+      { name: "Dzinča", top8: 146, stoses: 20, top8avg: 18.3, punktiKopa: 175, avg: 14.6, tournaments: 12, position: 3 },
       { name: "TomyG", top8: 120, stoses: 14, top8avg: 15.0, punktiKopa: 145, avg: 12.1, tournaments: 12, position: 4 },
       { name: "Pūgulis", top8: 105, stoses: 8, top8avg: 13.1, punktiKopa: 130, avg: 10.8, tournaments: 12, position: 5 },
-      { name: "Arčijs", top8: 98, stoses: 10, top8avg: 12.3, punktiKopa: 120, avg: 10.0, tournaments: 12, position: 6 },
+      { name: "Artchy", top8: 98, stoses: 10, top8avg: 12.3, punktiKopa: 120, avg: 10.0, tournaments: 12, position: 6 },
       { name: "Ziemis", top8: 92, stoses: 9, top8avg: 11.5, punktiKopa: 110, avg: 9.2, tournaments: 12, position: 7 },
       { name: "Edgars", top8: 85, stoses: 7, top8avg: 10.6, punktiKopa: 100, avg: 8.3, tournaments: 12, position: 8 },
       { name: "Marija Ābola", top8: 75, stoses: 5, top8avg: 9.4, punktiKopa: 90, avg: 7.5, tournaments: 12, position: 9 },
       { name: "Toms Germanis", top8: 70, stoses: 12, top8avg: 8.8, punktiKopa: 85, avg: 7.1, tournaments: 12, position: 10 },
     ],
-    comment: `Šoreiz prasmīgākais Toms Germanis!
+    comment: `Šoreiz prasmīgākais TomyG!
 
 Dāmu miniturnīrā dominēja Marija Ābola! 
 
-Kopvērtējumā ar 100% apmeklējumu, 256 punktiem kopā, uzvarot 7 no 12 turnīriem un savācot 195 punktus pa TOP8 labākajiem turnīriem, pārliecinoši uzvar Kārlis Rēpelis!
+Kopvērtējumā ar 100% apmeklējumu, 256 punktiem kopā, uzvarot 7 no 12 turnīriem un savācot 195 punktus pa TOP8 labākajiem turnīriem, pārliecinoši uzvar Repča!
 
-Viņam seko namatēvs Karlis Orleans ar 149 TOP8 punktiem nosargājot otro vietu no Dzintis Aļeksejevs, kurš ar 146 TOP8 punktiem strauji tuvojās pēdējos divos turnīros iegūstot otrās vietas. Tomy ar savu uzvaru pār Dzinti decembra posma finālā ir nosargājis Kārļa otro vietu, bet diemžēl 1 punkts par īsu, lai kopvērtējumā ielauztos TOP4.
+Viņam seko namatēvs Orļiks ar 149 TOP8 punktiem nosargājot otro vietu no Dzinča, kurš ar 146 TOP8 punktiem strauji tuvojās pēdējos divos turnīros iegūstot otrās vietas. TomyG ar savu uzvaru pār Dzinču decembra posma finālā ir nosargājis Orļika otro vietu, bet diemžēl 1 punkts par īsu, lai kopvērtējumā ielauztos TOP4.
 
-Paldies visiem par ierašanos, Krista Rozenberga-Rudzīte par eglītes aktivitātes novadīšanu, Toms Ziemelis par novusa punktu sistēmas uzturēšanu visa gada garumā un, protams, namatēvam Kārlim par kārtējās sezonas virsvadību!
+Paldies visiem par ierašanos, Krista Rozenberga-Rudzīte par eglītes aktivitātes novadīšanu, Ziemis par novusa punktu sistēmas uzturēšanu visa gada garumā un, protams, namatēvam Orļikam par kārtējās sezonas virsvadību!
 
 Tiekamies jau drīz Retro auto muzejs viesmīlīgajās telpās uz jaunā gada sagaidīšanas pasākumu!
 
@@ -74,11 +74,11 @@ Priekā!`,
 ];
 
 export const allTimeBest = [
-  { name: "Repča / Rēpelis", totalPoints: 500, totalStoses: 56, seasons: 2, wins: 2 },
-  { name: "Dzinča / Dzintis", totalPoints: 376, totalStoses: 49, seasons: 2, wins: 0 },
-  { name: "Orļiks / Orleans", totalPoints: 261, totalStoses: 25, seasons: 2, wins: 0 },
+  { name: "Repča", totalPoints: 500, totalStoses: 56, seasons: 2, wins: 2 },
+  { name: "Dzinča", totalPoints: 376, totalStoses: 49, seasons: 2, wins: 0 },
+  { name: "Orļiks", totalPoints: 261, totalStoses: 25, seasons: 2, wins: 0 },
   { name: "Pūgulis", totalPoints: 216, totalStoses: 18, seasons: 2, wins: 0 },
-  { name: "Artchy / Arčijs", totalPoints: 206, totalStoses: 22, seasons: 2, wins: 0 },
+  { name: "Artchy", totalPoints: 206, totalStoses: 22, seasons: 2, wins: 0 },
 ];
 
 export const galleryImages = [
