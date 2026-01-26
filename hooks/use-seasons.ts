@@ -17,6 +17,12 @@ const NAME_MAP: Record<string, string> = {
   "Toms Ģērmanis": "TomyG",
   "Edgars Staškevičs": "Tuncis",
   "Oskars Kasņikovskis": "Osīc",
+  "Pēteris Birkants": "Birkants",
+  "Oskars Grizāns": "OG",
+  "Dāvis Dreika": "Dāvīc",
+  "Reinis Līviņš": "ROBO",
+  "Madara Saukāne": "Madara",
+  "Madara Saukāna": "Madara",
 };
 
 let cachedSeasons: Season[] | null = null;
@@ -124,8 +130,11 @@ function buildSeason(rows: string[][]): Season | null {
   return {
     year: SEASON_YEAR,
     players,
-    comment:
-      "2026. gada sezona tiek automātiski atjaunota no Google Sheets kopvērtējuma tabulas.",
+    comment: `2026.gada sezona iesākās ar turnīru, kurā nav seeded spēlētāji un vairākām interesantām izspēlēm, interesantiem pavērsieniem. THE G.O.A.T. aka Repča palika 7.vietā un Dzinča nebija ieradies, tāpēc TOPS šoreiz mazāk ierasts. TomyG rādīja spēcīgu sniegumu fināla pārliecinoši sakaujot Rūdi, Ziemim arī izdevās iegūt 2 štoses šajā turnīrā un 4. vietu un Birkants arī ierindojās uz pjedestāla 3.pakāpiena! No iepriekšējo sezonu TOP spēlētājiem Pūgulis nebija ieradies un Artchy aizvadīja pagalam neveiksmīgu sezonas sākumu.`,
+    images: [
+      { src: "/images/2026-tablo.jpg", caption: "2026. gada tablo - izslēgšanas spēles" },
+      { src: "/images/2026-top3.jpg", caption: "2026. gada pirmā turnīra TOP3" },
+    ],
   };
 }
 

@@ -31,7 +31,7 @@ export const seasons: Season[] = [
       { name: "Tuncis", top8: 49, stoses: 1, top8avg: 6.1, punktiKopa: 49, avg: 9.8, tournaments: 5, position: 9 },
       { name: "Osīc", top8: 49, stoses: 1, top8avg: 6.1, punktiKopa: 49, avg: 7.0, tournaments: 6, position: 10 },
     ],
-    comment: `Repča ar 30 štosēm beigās pārspējis Dzinču, kuram bija 29 štoses un štošu ieskaitē un kļuvis par absolūto GOAT! Pirms decembra turnīra abiem bija pa 26 štosēm. Ļoti spēcīgs sniegums arī šajā sezonā!
+    comment: `NEAPTURAMS GOAT Repča atkal dominē - 30 štoses un sīvā finišā pārspēts Dzinča ar 29 štosēm, cementējot savu leģendāro statusu! Pirms decembra turnīra abiem bija pa 26 štosēm. Ļoti spēcīgs sniegums arī šajā sezonā!
 
 Pūgulim izdevās pārspēt 2:0 Repču pēdējā turnīrā uzvarētāju zarā, bet pēcāk zaudētāju zarā piedzīvot tomēr sakāvi. Kā arī Pūgulis no Orļika un 3.vietas kopvērtējumā beigās šķīra TIKAI 1 punkts!
 
@@ -42,18 +42,20 @@ Paldies par sezonu, bija daudz interesantas cīņas un labi pavadīts laiks novu
   {
     year: 2024,
     players: [
-      { name: "Repča", top8: 195, stoses: 26, top8avg: 24.4, punktiKopa: 256, avg: 21.3, tournaments: 12, position: 1 },
-      { name: "Orļiks", top8: 149, stoses: 18, top8avg: 18.6, punktiKopa: 180, avg: 15.0, tournaments: 12, position: 2 },
-      { name: "Dzinča", top8: 146, stoses: 20, top8avg: 18.3, punktiKopa: 175, avg: 14.6, tournaments: 12, position: 3 },
-      { name: "TomyG", top8: 120, stoses: 14, top8avg: 15.0, punktiKopa: 145, avg: 12.1, tournaments: 12, position: 4 },
-      { name: "Pūgulis", top8: 105, stoses: 8, top8avg: 13.1, punktiKopa: 130, avg: 10.8, tournaments: 12, position: 5 },
-      { name: "Artchy", top8: 98, stoses: 10, top8avg: 12.3, punktiKopa: 120, avg: 10.0, tournaments: 12, position: 6 },
-      { name: "Ziemis", top8: 92, stoses: 9, top8avg: 11.5, punktiKopa: 110, avg: 9.2, tournaments: 12, position: 7 },
-      { name: "Edgars", top8: 85, stoses: 7, top8avg: 10.6, punktiKopa: 100, avg: 8.3, tournaments: 12, position: 8 },
-      { name: "Marija Ābola", top8: 75, stoses: 5, top8avg: 9.4, punktiKopa: 90, avg: 7.5, tournaments: 12, position: 9 },
-      { name: "Toms Germanis", top8: 70, stoses: 12, top8avg: 8.8, punktiKopa: 85, avg: 7.1, tournaments: 12, position: 10 },
+      { name: "Repča", top8: 195, stoses: 0, top8avg: 17.7, punktiKopa: 256, avg: 21.33, tournaments: 11, position: 1 },
+      { name: "Orļiks", top8: 149, stoses: 0, top8avg: 13.5, punktiKopa: 190, avg: 15.83, tournaments: 11, position: 2 },
+      { name: "Dzinča", top8: 146, stoses: 0, top8avg: 14.6, punktiKopa: 174, avg: 15.81, tournaments: 10, position: 3 },
+      { name: "Pūgulis", top8: 106, stoses: 0, top8avg: 10.6, punktiKopa: 118, avg: 10.72, tournaments: 10, position: 4 },
+      { name: "TomyG", top8: 105, stoses: 0, top8avg: 10.5, punktiKopa: 122, avg: 11.09, tournaments: 10, position: 5 },
+      { name: "Artchy", top8: 94, stoses: 0, top8avg: 8.5, punktiKopa: 118, avg: 9.83, tournaments: 11, position: 6 },
+      { name: "ROBO", top8: 84, stoses: 0, top8avg: 12.0, punktiKopa: 84, avg: 10.5, tournaments: 7, position: 7 },
+      { name: "Madara", top8: 69, stoses: 0, top8avg: 6.3, punktiKopa: 84, avg: 7.63, tournaments: 11, position: 8 },
+      { name: "Ziemis", top8: 62, stoses: 0, top8avg: 7.8, punktiKopa: 65, avg: 7.22, tournaments: 8, position: 9 },
+      { name: "Osīc", top8: 52, stoses: 0, top8avg: 6.5, punktiKopa: 55, avg: 6.11, tournaments: 8, position: 10 },
     ],
-    comment: `Šoreiz prasmīgākais TomyG!
+    comment: `GOAT Repča ar 7 uzvarām un perfekto apmeklējumu 2024. gadā parāda, kā izskatās absolūts meistarības standarts - leģenda bez diskusijām!
+
+Šoreiz prasmīgākais TomyG!
 
 Dāmu miniturnīrā dominēja Marija Ābola! 
 

@@ -18,7 +18,7 @@ export function Footer() {
           </div>
           
           <p className="text-muted-foreground mb-6 max-w-md mx-auto">
-            Leģendārā novusa līga, kur draudzība satiekas ar konkurenci un štoses lido pa gaisu!
+            Leģendārā novusa līga, kur draudzība satiekas ar konkurenci un visi štosē uz nebēdu!
           </p>
 
           <div className="flex items-center justify-center gap-1 text-sm text-muted-foreground">
@@ -28,7 +28,7 @@ export function Footer() {
           </div>
 
           <p className="text-xs text-muted-foreground mt-4">
-            © 2023-{new Date().getFullYear()} Rajona Novusa Turnīrs. Visas tiesības aizsargātas (bet ne tik nopietni).
+            © 2023-{new Date().getFullYear()} Rajona Novusa Turnīrs. Visas tiesības aizsargātas.
           </p>
         </motion.div>
       </div>

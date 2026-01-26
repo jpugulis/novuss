@@ -18,6 +18,8 @@ export function Leaderboard() {
   const seasons = useSeasons();
   const [selectedYear, setSelectedYear] = useState(() => seasons[0]?.year ?? 2025);
   const [hasUserSelected, setHasUserSelected] = useState(false);
+  const isGoatSeason = selectedYear !== 2026;
+  const isActiveSeason = selectedYear === 2026;
 
   useEffect(() => {
     if (hasUserSelected || seasons.length === 0) return;
@@ -115,7 +117,9 @@ export function Leaderboard() {
                       isTopFour && style ? style.color : "text-muted-foreground bg-secondary"
                     )}
                   >
-                    {style?.emoji ? (
+                    {isActiveSeason && pos === 1 ? (
+                      <Trophy className="w-5 h-5 md:w-6 md:h-6 text-yellow-400" />
+                    ) : isGoatSeason && style?.emoji ? (
                       <span className="text-2xl md:text-3xl">{style.emoji}</span>
                     ) : style?.icon ? (
                       <style.icon className="w-5 h-5 md:w-6 md:h-6" />
@@ -133,18 +137,27 @@ export function Leaderboard() {
                       )}>
                         {player.name}
                       </h3>
-                      {pos === 1 && (
+                      {player.name === "Repča" && (
+                        <span className="text-xs bg-yellow-400/20 text-yellow-400 px-2 py-0.5 rounded-full">
+                          🐐 GOAT
+                        </span>
+                      )}
+                      {pos === 1 && isGoatSeason && player.name !== "Repča" && (
                         <span className="text-xs bg-yellow-400/20 text-yellow-400 px-2 py-0.5 rounded-full">
                           GOAT
                         </span>
                       )}
                     </div>
                     <div className="flex items-center gap-3 text-sm text-muted-foreground flex-wrap">
-                      <span className="flex items-center gap-1">
-                        <Flame className="w-3 h-3 text-orange-400" />
-                        {player.stoses} štoses
-                      </span>
-                      <span className="hidden md:inline">|</span>
+                      {player.stoses > 0 && (
+                        <>
+                          <span className="flex items-center gap-1">
+                            <Flame className="w-3 h-3 text-orange-400" />
+                            {player.stoses} štoses
+                          </span>
+                          <span className="hidden md:inline">|</span>
+                        </>
+                      )}
                       <span>AVG: {player.avg.toFixed(1)}</span>
                       <span className="hidden md:inline">|</span>
                       <span>{player.tournaments} turnīri</span>
@@ -182,37 +195,6 @@ export function Leaderboard() {
             );
           })}
         </div>
-
-        {/* Stats Summary */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4"
-        >
-          <div className="bg-card rounded-xl border border-border p-4 text-center">
-            <div className="text-2xl font-bold text-primary">{currentSeason.players.length}</div>
-            <div className="text-sm text-muted-foreground">Dalībnieki</div>
-          </div>
-          <div className="bg-card rounded-xl border border-border p-4 text-center">
-            <div className="text-2xl font-bold text-primary">
-              {Math.max(...currentSeason.players.map(p => p.tournaments))}
-            </div>
-            <div className="text-sm text-muted-foreground">Turnīri</div>
-          </div>
-          <div className="bg-card rounded-xl border border-border p-4 text-center">
-            <div className="text-2xl font-bold text-primary">
-              {currentSeason.players.reduce((acc, p) => acc + p.stoses, 0)}
-            </div>
-            <div className="text-sm text-muted-foreground">Kopā štoses</div>
-          </div>
-          <div className="bg-card rounded-xl border border-border p-4 text-center">
-            <div className="text-2xl font-bold text-primary">
-              {currentSeason.players.reduce((acc, p) => acc + p.punktiKopa, 0)}
-            </div>
-            <div className="text-sm text-muted-foreground">Kopā punkti</div>
-          </div>
-        </motion.div>
 
         {/* Data notice */}
         <motion.div

@@ -49,7 +49,7 @@ export function HeroSection() {
         >
           <div className="inline-flex items-center gap-2 bg-primary/20 border border-primary/30 rounded-full px-4 py-2 mb-6">
             <Trophy className="w-4 h-4 text-primary" />
-            <span className="text-sm font-medium text-primary">Sezona 2025</span>
+            <span className="text-sm font-medium text-primary">Sezona 2026</span>
           </div>
         </motion.div>
 
@@ -109,7 +109,7 @@ export function HeroSection() {
             <div className="text-xs md:text-sm text-muted-foreground">Sezonas</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold text-primary">63</div>
+            <div className="text-3xl md:text-4xl font-bold text-primary">109</div>
             <div className="text-xs md:text-sm text-muted-foreground">Turnīri</div>
           </div>
           <div className="text-center">

@@ -1,31 +1,35 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Flame, Zap } from "lucide-react";
+import { Flame } from "lucide-react";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { useSeasons } from "@/hooks/use-seasons";
 
 export function StoseCounter() {
   const seasons = useSeasons();
-  const [selectedYear, setSelectedYear] = useState(() => seasons[0]?.year ?? 2025);
+  const seasonsWithStoses = seasons.filter((season) =>
+    season.players.some((player) => player.stoses > 0)
+  );
+  const [selectedYear, setSelectedYear] = useState(() => seasonsWithStoses[0]?.year ?? 2025);
   const [hasUserSelected, setHasUserSelected] = useState(false);
 
   useEffect(() => {
-    if (hasUserSelected || seasons.length === 0) return;
-    if (selectedYear !== seasons[0].year) {
-      setSelectedYear(seasons[0].year);
+    if (hasUserSelected || seasonsWithStoses.length === 0) return;
+    if (selectedYear !== seasonsWithStoses[0].year) {
+      setSelectedYear(seasonsWithStoses[0].year);
     }
-  }, [hasUserSelected, seasons, selectedYear]);
+  }, [hasUserSelected, seasonsWithStoses, selectedYear]);
 
-  const currentSeason = seasons.find((s) => s.year === selectedYear);
+  const currentSeason = seasonsWithStoses.find((s) => s.year === selectedYear);
   
   if (!currentSeason) return null;
 
   const topShooters = [...currentSeason.players]
     .sort((a, b) => b.stoses - a.stoses)
+    .filter((player) => player.stoses > 0)
     .slice(0, 5);
-  const leader = topShooters[0];
+  const maxStoses = topShooters[0]?.stoses ?? 0;
 
   return (
     <section className="py-16 px-4">
@@ -51,7 +55,7 @@ export function StoseCounter() {
               
               {/* Year selector */}
               <div className="flex gap-2">
-                {seasons.map((season) => (
+                {seasonsWithStoses.map((season) => (
                   <button
                     key={season.year}
                     onClick={() => {
@@ -74,51 +78,43 @@ export function StoseCounter() {
 
           {/* Leaders */}
           <div className="p-6 space-y-4">
-            {topShooters.map((player, index) => (
-              <motion.div
-                key={player.name}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="flex items-center gap-4"
-              >
-                <div className="w-8 text-center font-bold text-muted-foreground">
-                  {index + 1}.
-                </div>
-                <div className="flex-1">
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="font-semibold text-foreground">{player.name}</span>
-                    <span className="font-bold text-orange-400">{player.stoses}</span>
+            {topShooters.length === 0 ? (
+              <p className="text-sm text-muted-foreground text-center">
+                Šosezon nav reģistrētu štošu.
+              </p>
+            ) : (
+              topShooters.map((player, index) => (
+                <motion.div
+                  key={player.name}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="flex items-center gap-4"
+                >
+                  <div className="w-8 text-center font-bold text-muted-foreground">
+                    {index + 1}.
                   </div>
-                  <div className="h-2 bg-secondary rounded-full overflow-hidden">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      whileInView={{ width: `${(player.stoses / topShooters[0].stoses) * 100}%` }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.3 + index * 0.1, duration: 0.5 }}
-                      className="h-full bg-gradient-to-r from-orange-500 to-yellow-400 rounded-full"
-                    />
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="font-semibold text-foreground">{player.name}</span>
+                      <span className="font-bold text-orange-400">{player.stoses}</span>
+                    </div>
+                    <div className="h-2 bg-secondary rounded-full overflow-hidden">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        whileInView={{ width: `${maxStoses ? (player.stoses / maxStoses) * 100 : 0}%` }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.3 + index * 0.1, duration: 0.5 }}
+                        className="h-full bg-gradient-to-r from-orange-500 to-yellow-400 rounded-full"
+                      />
+                    </div>
                   </div>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              ))
+            )}
           </div>
 
-          {/* Fun fact */}
-          <div className="p-6 bg-secondary/30 border-t border-border">
-            <div className="flex items-start gap-3">
-              <Zap className="w-5 h-5 text-yellow-400 flex-shrink-0 mt-0.5" />
-              <div>
-                {leader ? (
-                  <p className="text-sm text-foreground">
-                    <span className="font-semibold text-yellow-400">Fun fact:</span> {leader.name} ar{" "}
-                    {leader.stoses} štosēm šobrīd ir līderis {selectedYear}. gada sezonā!
-                  </p>
-                ) : null}
-              </div>
-            </div>
-          </div>
         </motion.div>
       </div>
     </section>
