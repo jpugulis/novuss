@@ -2,10 +2,10 @@
 
 import { motion } from "framer-motion";
 import { MessageSquare, Quote, ChevronDown, MessageCircle, Send } from "lucide-react";
-import { seasons } from "@/lib/tournament-data";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { useSeasons } from "@/hooks/use-seasons";
 
 interface Comment {
   id: number;
@@ -15,10 +15,19 @@ interface Comment {
 }
 
 export function CommentarySection() {
-  const [expandedYear, setExpandedYear] = useState<number | null>(2025);
+  const seasons = useSeasons();
+  const [expandedYear, setExpandedYear] = useState<number | null>(seasons[0]?.year ?? 2025);
+  const [hasUserSelected, setHasUserSelected] = useState(false);
   const [comments, setComments] = useState<Record<number, Comment[]>>({});
   const [newComment, setNewComment] = useState("");
   const [commentAuthor, setCommentAuthor] = useState("");
+
+  useEffect(() => {
+    if (hasUserSelected || seasons.length === 0) return;
+    if (expandedYear !== seasons[0].year) {
+      setExpandedYear(seasons[0].year);
+    }
+  }, [expandedYear, hasUserSelected, seasons]);
 
   const addComment = (year: number) => {
     if (!newComment.trim() || !commentAuthor.trim()) return;
@@ -68,7 +77,10 @@ export function CommentarySection() {
               className="bg-card rounded-xl border border-border overflow-hidden"
             >
               <button
-                onClick={() => setExpandedYear(expandedYear === season.year ? null : season.year)}
+                onClick={() => {
+                  setExpandedYear(expandedYear === season.year ? null : season.year);
+                  setHasUserSelected(true);
+                }}
                 className="w-full p-5 flex items-center justify-between hover:bg-secondary/50 transition-colors"
               >
                 <div className="flex items-center gap-4">

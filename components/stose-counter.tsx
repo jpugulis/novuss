@@ -2,12 +2,22 @@
 
 import { motion } from "framer-motion";
 import { Flame, Zap } from "lucide-react";
-import { seasons } from "@/lib/tournament-data";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
+import { useSeasons } from "@/hooks/use-seasons";
 
 export function StoseCounter() {
-  const [selectedYear, setSelectedYear] = useState(2025);
+  const seasons = useSeasons();
+  const [selectedYear, setSelectedYear] = useState(() => seasons[0]?.year ?? 2025);
+  const [hasUserSelected, setHasUserSelected] = useState(false);
+
+  useEffect(() => {
+    if (hasUserSelected || seasons.length === 0) return;
+    if (selectedYear !== seasons[0].year) {
+      setSelectedYear(seasons[0].year);
+    }
+  }, [hasUserSelected, seasons, selectedYear]);
+
   const currentSeason = seasons.find((s) => s.year === selectedYear);
   
   if (!currentSeason) return null;
@@ -15,6 +25,7 @@ export function StoseCounter() {
   const topShooters = [...currentSeason.players]
     .sort((a, b) => b.stoses - a.stoses)
     .slice(0, 5);
+  const leader = topShooters[0];
 
   return (
     <section className="py-16 px-4">
@@ -43,7 +54,10 @@ export function StoseCounter() {
                 {seasons.map((season) => (
                   <button
                     key={season.year}
-                    onClick={() => setSelectedYear(season.year)}
+                    onClick={() => {
+                      setSelectedYear(season.year);
+                      setHasUserSelected(true);
+                    }}
                     className={cn(
                       "px-4 py-2 rounded-full text-sm font-medium transition-all",
                       selectedYear === season.year
@@ -96,17 +110,12 @@ export function StoseCounter() {
             <div className="flex items-start gap-3">
               <Zap className="w-5 h-5 text-yellow-400 flex-shrink-0 mt-0.5" />
               <div>
-                {selectedYear === 2025 ? (
+                {leader ? (
                   <p className="text-sm text-foreground">
-                    <span className="font-semibold text-yellow-400">Fun fact:</span> Repča ar 30 štosēm ir absolūtais
-                    sezonas štošu līderis! Tas nozīmē vidēji 2.7 štoses katrā turnīrā!
+                    <span className="font-semibold text-yellow-400">Fun fact:</span> {leader.name} ar{" "}
+                    {leader.stoses} štosēm šobrīd ir līderis {selectedYear}. gada sezonā!
                   </p>
-                ) : (
-                  <p className="text-sm text-foreground">
-                    <span className="font-semibold text-yellow-400">Fun fact:</span> Kārlis Rēpelis ar 26 štosēm 
-                    dominēja 2024. gada sezonā ar 100% apmeklējumu!
-                  </p>
-                )}
+                ) : null}
               </div>
             </div>
           </div>

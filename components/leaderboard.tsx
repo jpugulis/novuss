@@ -1,10 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Trophy, Crown, Medal, Flame, ExternalLink } from "lucide-react";
-import { seasons, rulebookUrl } from "@/lib/tournament-data";
-import { useState } from "react";
+import { Trophy, Medal, Flame, ExternalLink } from "lucide-react";
+import { rulebookUrl } from "@/lib/tournament-data";
+import { useEffect, useMemo, useState } from "react";
 import { cn } from "@/lib/utils";
+import { useSeasons } from "@/hooks/use-seasons";
 
 const positionStyles: Record<number, { icon: typeof Trophy | null; emoji: string | null; color: string; bg: string }> = {
   1: { icon: null, emoji: "🐐", color: "text-yellow-400", bg: "bg-yellow-400/10 border-yellow-400/30" },
@@ -14,8 +15,22 @@ const positionStyles: Record<number, { icon: typeof Trophy | null; emoji: string
 };
 
 export function Leaderboard() {
-  const [selectedYear, setSelectedYear] = useState(2025);
+  const seasons = useSeasons();
+  const [selectedYear, setSelectedYear] = useState(() => seasons[0]?.year ?? 2025);
+  const [hasUserSelected, setHasUserSelected] = useState(false);
+
+  useEffect(() => {
+    if (hasUserSelected || seasons.length === 0) return;
+    if (selectedYear !== seasons[0].year) {
+      setSelectedYear(seasons[0].year);
+    }
+  }, [hasUserSelected, seasons, selectedYear]);
+
   const currentSeason = seasons.find((s) => s.year === selectedYear);
+  const maxTop8 = useMemo(
+    () => (currentSeason ? Math.max(...currentSeason.players.map((player) => player.top8)) : 0),
+    [currentSeason]
+  );
 
   if (!currentSeason) return null;
 
@@ -55,7 +70,10 @@ export function Leaderboard() {
           {seasons.map((season) => (
             <button
               key={season.year}
-              onClick={() => setSelectedYear(season.year)}
+              onClick={() => {
+                setSelectedYear(season.year);
+                setHasUserSelected(true);
+              }}
               className={cn(
                 "px-6 py-3 rounded-full font-semibold transition-all duration-300",
                 selectedYear === season.year
@@ -149,7 +167,9 @@ export function Leaderboard() {
                 <div className="mt-3 h-1 bg-secondary rounded-full overflow-hidden">
                   <motion.div
                     initial={{ width: 0 }}
-                    whileInView={{ width: `${(player.top8 / currentSeason.players[0].top8) * 100}%` }}
+                    whileInView={{
+                      width: `${maxTop8 ? (player.top8 / maxTop8) * 100 : 0}%`,
+                    }}
                     viewport={{ once: true }}
                     transition={{ delay: 0.3 + index * 0.05, duration: 0.5 }}
                     className={cn(
@@ -202,7 +222,7 @@ export function Leaderboard() {
           className="mt-8 text-center"
         >
           <p className="text-sm text-muted-foreground">
-            Informācija atjaunota un pieejama sākot no 2024. gada.
+            2026. gada dati tiek sinhronizēti no Google Sheets kopvērtējuma tabulas.
           </p>
           <p className="text-xs text-muted-foreground/70 mt-1">
             Vecākie gadi jāmeklē vēstures anālēs feisbuka eventos...
