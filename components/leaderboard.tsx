@@ -1,11 +1,18 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Trophy, Medal, Flame, ExternalLink } from "lucide-react";
+import { Trophy, Medal, Flame, ExternalLink, CalendarDays } from "lucide-react";
 import { rulebookUrl } from "@/lib/tournament-data";
 import { useEffect, useMemo, useState } from "react";
 import { cn } from "@/lib/utils";
 import { useSeasons } from "@/hooks/use-seasons";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 const positionStyles: Record<number, { icon: typeof Trophy | null; emoji: string | null; color: string; bg: string }> = {
   1: { icon: null, emoji: "🐐", color: "text-yellow-400", bg: "bg-yellow-400/10 border-yellow-400/30" },
@@ -18,6 +25,12 @@ export function Leaderboard() {
   const seasons = useSeasons();
   const [selectedYear, setSelectedYear] = useState(() => seasons[0]?.year ?? 2025);
   const [hasUserSelected, setHasUserSelected] = useState(false);
+  const [showAllPlayers, setShowAllPlayers] = useState(false);
+  const [selectedMonth, setSelectedMonth] = useState<string | null>(null);
+  const [selectedPlayerName, setSelectedPlayerName] = useState<string | null>(null);
+  const [pendingMonthParam, setPendingMonthParam] = useState<string | null>(null);
+  const [pendingPlayerParam, setPendingPlayerParam] = useState<string | null>(null);
+  const [sortPlayerMonthsByPoints, setSortPlayerMonthsByPoints] = useState(false);
   const isGoatSeason = selectedYear !== 2026;
   const isActiveSeason = selectedYear === 2026;
 
@@ -29,10 +42,135 @@ export function Leaderboard() {
   }, [hasUserSelected, seasons, selectedYear]);
 
   const currentSeason = seasons.find((s) => s.year === selectedYear);
+  const months = useMemo(() => currentSeason?.months ?? [], [currentSeason]);
+  const hasMonthlyData = months.length > 0;
   const maxTop8 = useMemo(
     () => (currentSeason ? Math.max(...currentSeason.players.map((player) => player.top8)) : 0),
     [currentSeason]
   );
+
+  useEffect(() => {
+    setShowAllPlayers(false);
+    setSelectedPlayerName(null);
+    setSortPlayerMonthsByPoints(false);
+  }, [selectedYear]);
+
+  useEffect(() => {
+    setSortPlayerMonthsByPoints(false);
+  }, [selectedPlayerName]);
+
+  useEffect(() => {
+    if (!hasMonthlyData) {
+      setSelectedMonth(null);
+      return;
+    }
+    if (!selectedMonth || !months.some((month) => month.month === selectedMonth)) {
+      setSelectedMonth(months[0].month);
+    }
+  }, [hasMonthlyData, months, selectedMonth]);
+
+  useEffect(() => {
+    if (typeof window === "undefined" || seasons.length === 0) return;
+
+    const params = new URLSearchParams(window.location.search);
+    const yearParamRaw = params.get("year");
+    const yearParam = yearParamRaw ? Number(yearParamRaw) : NaN;
+    const monthParam = params.get("month");
+    const playerParam = params.get("player");
+
+    if (!Number.isNaN(yearParam) && seasons.some((season) => season.year === yearParam)) {
+      setSelectedYear(yearParam);
+      setHasUserSelected(true);
+    }
+
+    setPendingMonthParam(monthParam);
+    setPendingPlayerParam(playerParam);
+  }, [seasons]);
+
+  useEffect(() => {
+    if (!pendingMonthParam || !hasMonthlyData) return;
+    if (!months.some((month) => month.month === pendingMonthParam)) return;
+    setSelectedMonth(pendingMonthParam);
+    setPendingMonthParam(null);
+  }, [hasMonthlyData, months, pendingMonthParam]);
+
+  useEffect(() => {
+    if (!pendingPlayerParam || !currentSeason) return;
+    if (!currentSeason.players.some((player) => player.name === pendingPlayerParam)) return;
+    setSelectedPlayerName(pendingPlayerParam);
+    setPendingPlayerParam(null);
+  }, [currentSeason, pendingPlayerParam]);
+
+  useEffect(() => {
+    if (typeof window === "undefined" || !currentSeason) return;
+
+    const params = new URLSearchParams(window.location.search);
+    params.set("year", String(selectedYear));
+
+    if (selectedMonth) {
+      params.set("month", selectedMonth);
+    } else {
+      params.delete("month");
+    }
+
+    if (selectedPlayerName) {
+      params.set("player", selectedPlayerName);
+    } else {
+      params.delete("player");
+    }
+
+    const query = params.toString();
+    const nextUrl = `${window.location.pathname}${query ? `?${query}` : ""}#results`;
+    window.history.replaceState(null, "", nextUrl);
+  }, [currentSeason, selectedMonth, selectedPlayerName, selectedYear]);
+
+  const playersWithPoints = useMemo(() => {
+    if (!currentSeason) return [];
+    return currentSeason.players.filter((player) => player.top8 > 0 || player.punktiKopa > 0);
+  }, [currentSeason]);
+  const playersForAll = useMemo(() => {
+    if (!currentSeason) return [];
+    return playersWithPoints.length > 0 ? playersWithPoints : currentSeason.players;
+  }, [currentSeason, playersWithPoints]);
+  const topTenPlayers = useMemo(
+    () => (currentSeason ? currentSeason.players.slice(0, 10) : []),
+    [currentSeason]
+  );
+  const shouldShowToggle = playersForAll.length > 10;
+  const playersToShow = showAllPlayers && shouldShowToggle ? playersForAll : topTenPlayers;
+  const visibleTopLabel = useMemo(() => {
+    if (!currentSeason) return 10;
+    return showAllPlayers ? playersForAll.length : Math.min(10, currentSeason.players.length);
+  }, [currentSeason, playersForAll.length, showAllPlayers]);
+
+  const activeMonth = useMemo(() => {
+    if (!hasMonthlyData) return null;
+    return months.find((month) => month.month === selectedMonth) ?? months[0];
+  }, [hasMonthlyData, months, selectedMonth]);
+  const selectedPlayer = useMemo(() => {
+    if (!currentSeason || !selectedPlayerName) return null;
+    return currentSeason.players.find((player) => player.name === selectedPlayerName) ?? null;
+  }, [currentSeason, selectedPlayerName]);
+  const playerMonthlyResults = useMemo(() => {
+    if (!selectedPlayer) return [];
+    return months
+      .map((month) => ({
+        month: month.month,
+        result: month.results.find((result) => result.name === selectedPlayer.name) ?? null,
+      }))
+      .filter((entry) => entry.result);
+  }, [months, selectedPlayer]);
+  const playerMonthlyResultsSorted = useMemo(() => {
+    if (!sortPlayerMonthsByPoints) return playerMonthlyResults;
+    return [...playerMonthlyResults].sort((a, b) => {
+      const aPoints = a.result?.points ?? 0;
+      const bPoints = b.result?.points ?? 0;
+      if (bPoints !== aPoints) return bPoints - aPoints;
+      const aPos = a.result?.position ?? Number.POSITIVE_INFINITY;
+      const bPos = b.result?.position ?? Number.POSITIVE_INFINITY;
+      return aPos - bPos;
+    });
+  }, [playerMonthlyResults, sortPlayerMonthsByPoints]);
 
   if (!currentSeason) return null;
 
@@ -48,7 +186,7 @@ export function Leaderboard() {
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             <span className="text-foreground">TOP </span>
-            <span className="text-primary">10</span>
+            <span className="text-primary">{visibleTopLabel}</span>
           </h2>
           <p className="text-muted-foreground mb-4">Sezonas kopvērtējums</p>
           <a
@@ -90,10 +228,11 @@ export function Leaderboard() {
 
         {/* Leaderboard */}
         <div className="space-y-3">
-          {currentSeason.players.map((player, index) => {
+          {playersToShow.map((player, index) => {
             const pos = player.position;
             const style = positionStyles[pos];
             const isTopFour = pos <= 4;
+            const isSelectedPlayer = selectedPlayerName === player.name;
 
             return (
               <motion.div
@@ -103,11 +242,21 @@ export function Leaderboard() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05 }}
                 className={cn(
-                  "relative rounded-xl border p-4 md:p-5 transition-all duration-300",
+                  "relative rounded-xl border p-4 md:p-5 transition-all duration-300 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/60",
                   isTopFour && style
                     ? style.bg
-                    : "bg-card border-border hover:border-primary/30"
+                    : "bg-card border-border hover:border-primary/30",
+                  isSelectedPlayer && "ring-2 ring-primary/60 border-primary/40"
                 )}
+                onClick={() => setSelectedPlayerName(player.name)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(event) => {
+                  if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    setSelectedPlayerName(player.name);
+                  }
+                }}
               >
                 <div className="flex items-center gap-4">
                   {/* Position */}
@@ -195,6 +344,194 @@ export function Leaderboard() {
             );
           })}
         </div>
+
+        {shouldShowToggle && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-6 flex justify-center"
+          >
+            <button
+              onClick={() => setShowAllPlayers((prev) => !prev)}
+              className="px-5 py-2.5 rounded-full border border-border bg-card text-sm font-semibold hover:border-primary/40 hover:text-primary transition-colors"
+            >
+              {showAllPlayers
+                ? "Rādīt tikai TOP 10"
+                : `Rādīt visus spēlētājus ar punktiem (${playersForAll.length})`}
+            </button>
+          </motion.div>
+        )}
+
+        {/* Monthly results */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-12"
+        >
+          <div className="flex items-center justify-center gap-2 mb-4 text-center">
+            <CalendarDays className="w-5 h-5 text-primary" />
+            <h3 className="text-2xl md:text-3xl font-bold">Mēnešu rezultāti</h3>
+          </div>
+
+          {!hasMonthlyData && (
+            <p className="text-center text-sm text-muted-foreground">
+              Šim gadam mēnešu griezuma dati šobrīd nav pieejami.
+            </p>
+          )}
+
+          {hasMonthlyData && activeMonth && (
+            <>
+              <div className="flex flex-wrap justify-center gap-2 mb-6">
+                {months.map((month) => (
+                  <button
+                    key={month.month}
+                    onClick={() => setSelectedMonth(month.month)}
+                    className={cn(
+                      "px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200",
+                      activeMonth.month === month.month
+                        ? "bg-primary text-primary-foreground"
+                        : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                    )}
+                  >
+                    {month.month}
+                  </button>
+                ))}
+              </div>
+
+              <div className="rounded-2xl border border-border bg-card overflow-hidden">
+                <div className="grid grid-cols-[80px_minmax(0,1fr)_120px] px-4 py-3 text-xs font-semibold uppercase tracking-wide text-muted-foreground bg-secondary/40">
+                  <div>Vieta</div>
+                  <div>Spēlētājs</div>
+                  <div className="text-right">Punkti</div>
+                </div>
+                <div className="divide-y divide-border">
+                  {activeMonth.results.map((result) => (
+                    <div
+                      key={`${activeMonth.month}-${result.name}`}
+                      className={cn(
+                        "grid grid-cols-[80px_minmax(0,1fr)_120px] px-4 py-3 items-center cursor-pointer transition-colors hover:bg-secondary/30",
+                        selectedPlayerName === result.name && "bg-primary/10"
+                      )}
+                      onClick={() => setSelectedPlayerName(result.name)}
+                      role="button"
+                      tabIndex={0}
+                      onKeyDown={(event) => {
+                        if (event.key === "Enter" || event.key === " ") {
+                          event.preventDefault();
+                          setSelectedPlayerName(result.name);
+                        }
+                      }}
+                    >
+                      <div className="text-sm font-bold text-primary">{result.position}</div>
+                      <div className="text-sm font-semibold truncate">{result.name}</div>
+                      <div className="text-right text-sm font-bold">{result.points}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </>
+          )}
+        </motion.div>
+
+        <Dialog open={Boolean(selectedPlayer)} onOpenChange={(open) => !open && setSelectedPlayerName(null)}>
+          {selectedPlayer && (
+            <DialogContent className="sm:max-w-2xl">
+              <DialogHeader>
+                <DialogTitle className="flex items-center gap-2">
+                  <span>{selectedPlayer.name}</span>
+                  <span className="text-sm font-semibold text-muted-foreground">
+                    {selectedYear}. gada sezona
+                  </span>
+                </DialogTitle>
+                <DialogDescription>
+                  Detalizēta statistika un mēnešu griezuma rezultāti.
+                </DialogDescription>
+              </DialogHeader>
+
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-2">
+                <div className="rounded-lg border border-border bg-secondary/30 p-3">
+                  <div className="text-xs text-muted-foreground">Vieta</div>
+                  <div className="text-2xl font-bold text-primary">{selectedPlayer.position}</div>
+                </div>
+                <div className="rounded-lg border border-border bg-secondary/30 p-3">
+                  <div className="text-xs text-muted-foreground">TOP8 punkti</div>
+                  <div className="text-2xl font-bold">{selectedPlayer.top8}</div>
+                </div>
+                <div className="rounded-lg border border-border bg-secondary/30 p-3">
+                  <div className="text-xs text-muted-foreground">Punkti kopā</div>
+                  <div className="text-2xl font-bold">{selectedPlayer.punktiKopa}</div>
+                </div>
+                <div className="rounded-lg border border-border bg-secondary/30 p-3">
+                  <div className="text-xs text-muted-foreground">Štoses</div>
+                  <div className="text-2xl font-bold">{selectedPlayer.stoses}</div>
+                </div>
+                <div className="rounded-lg border border-border bg-secondary/30 p-3">
+                  <div className="text-xs text-muted-foreground">AVG</div>
+                  <div className="text-xl font-bold">{selectedPlayer.avg.toFixed(1)}</div>
+                </div>
+                <div className="rounded-lg border border-border bg-secondary/30 p-3">
+                  <div className="text-xs text-muted-foreground">TOP8 AVG</div>
+                  <div className="text-xl font-bold">{selectedPlayer.top8avg.toFixed(1)}</div>
+                </div>
+                <div className="rounded-lg border border-border bg-secondary/30 p-3">
+                  <div className="text-xs text-muted-foreground">Turnīri</div>
+                  <div className="text-xl font-bold">{selectedPlayer.tournaments}</div>
+                </div>
+              </div>
+
+              <div className="mt-4">
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+                  <h4 className="text-sm font-semibold uppercase tracking-wide text-muted-foreground">
+                    Mēnešu rezultāti
+                  </h4>
+                  {playerMonthlyResults.length > 1 && (
+                    <button
+                      onClick={() => setSortPlayerMonthsByPoints((prev) => !prev)}
+                      className={cn(
+                        "px-3 py-1.5 rounded-full border text-xs font-semibold transition-colors",
+                        sortPlayerMonthsByPoints
+                          ? "border-primary/40 text-primary bg-primary/10"
+                          : "border-border hover:border-primary/40 hover:text-primary"
+                      )}
+                    >
+                      {sortPlayerMonthsByPoints ? "Kārtot pēc mēneša" : "Kārtot pēc punktiem ↓"}
+                    </button>
+                  )}
+                </div>
+
+                {playerMonthlyResults.length === 0 && (
+                  <p className="text-sm text-muted-foreground">
+                    Šim spēlētājam mēnešu griezuma dati šobrīd nav pieejami.
+                  </p>
+                )}
+
+                {playerMonthlyResults.length > 0 && (
+                  <div className="rounded-xl border border-border overflow-hidden">
+                    <div className="grid grid-cols-[minmax(0,1fr)_100px_120px] px-4 py-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground bg-secondary/40">
+                      <div>Mēnesis</div>
+                      <div>Vieta</div>
+                      <div className="text-right">Punkti</div>
+                    </div>
+                    <div className="divide-y divide-border">
+                      {playerMonthlyResultsSorted.map(({ month, result }) => (
+                        <div
+                          key={`${selectedPlayer.name}-${month}`}
+                          className="grid grid-cols-[minmax(0,1fr)_100px_120px] px-4 py-2.5 items-center"
+                        >
+                          <div className="text-sm font-semibold">{month}</div>
+                          <div className="text-sm font-bold text-primary">{result?.position}</div>
+                          <div className="text-right text-sm font-bold">{result?.points}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </DialogContent>
+          )}
+        </Dialog>
 
         {/* Data notice */}
         <motion.div
