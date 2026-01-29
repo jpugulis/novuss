@@ -1,7 +1,17 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Trophy, Medal, Flame, ExternalLink, CalendarDays } from "lucide-react";
+import {
+  Trophy,
+  Medal,
+  Flame,
+  ExternalLink,
+  CalendarDays,
+  ArrowUp,
+  ArrowDown,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 import { rulebookUrl } from "@/lib/tournament-data";
 import { useEffect, useMemo, useState } from "react";
 import { cn } from "@/lib/utils";
@@ -28,6 +38,7 @@ export function Leaderboard() {
   const [showAllPlayers, setShowAllPlayers] = useState(false);
   const [selectedMonth, setSelectedMonth] = useState<string | null>(null);
   const [selectedPlayerName, setSelectedPlayerName] = useState<string | null>(null);
+  const [playerSeasonYear, setPlayerSeasonYear] = useState<number | null>(null);
   const [pendingMonthParam, setPendingMonthParam] = useState<string | null>(null);
   const [pendingPlayerParam, setPendingPlayerParam] = useState<string | null>(null);
   const [sortPlayerMonthsByPoints, setSortPlayerMonthsByPoints] = useState(false);
@@ -48,6 +59,14 @@ export function Leaderboard() {
     () => (currentSeason ? Math.max(...currentSeason.players.map((player) => player.top8)) : 0),
     [currentSeason]
   );
+  const playerSeasons = useMemo(() => {
+    if (!selectedPlayerName) return [];
+    return seasons.filter((season) =>
+      season.players.some((player) => player.name === selectedPlayerName)
+    );
+  }, [seasons, selectedPlayerName]);
+  const playerSeasonYears = useMemo(() => playerSeasons.map((season) => season.year), [playerSeasons]);
+  const playerSeasonIndex = playerSeasonYear ? playerSeasonYears.indexOf(playerSeasonYear) : -1;
 
   useEffect(() => {
     setShowAllPlayers(false);
@@ -56,8 +75,25 @@ export function Leaderboard() {
   }, [selectedYear]);
 
   useEffect(() => {
+    if (!selectedPlayerName || playerSeasons.length === 0) {
+      setPlayerSeasonYear(null);
+      return;
+    }
+    const preferredYear =
+      playerSeasons.find((season) => season.year === selectedYear)?.year ?? playerSeasons[0].year;
+    setPlayerSeasonYear((prev) => {
+      if (prev && playerSeasons.some((season) => season.year === prev)) return prev;
+      return preferredYear;
+    });
+  }, [playerSeasons, selectedPlayerName, selectedYear]);
+
+  useEffect(() => {
     setSortPlayerMonthsByPoints(false);
   }, [selectedPlayerName]);
+
+  useEffect(() => {
+    setSortPlayerMonthsByPoints(false);
+  }, [playerSeasonYear]);
 
   useEffect(() => {
     if (!hasMonthlyData) {
@@ -98,6 +134,7 @@ export function Leaderboard() {
     if (!pendingPlayerParam || !currentSeason) return;
     if (!currentSeason.players.some((player) => player.name === pendingPlayerParam)) return;
     setSelectedPlayerName(pendingPlayerParam);
+    setPlayerSeasonYear(currentSeason.year);
     setPendingPlayerParam(null);
   }, [currentSeason, pendingPlayerParam]);
 
@@ -147,19 +184,24 @@ export function Leaderboard() {
     if (!hasMonthlyData) return null;
     return months.find((month) => month.month === selectedMonth) ?? months[0];
   }, [hasMonthlyData, months, selectedMonth]);
+  const playerSeason = useMemo(() => {
+    if (!playerSeasonYear) return null;
+    return playerSeasons.find((season) => season.year === playerSeasonYear) ?? null;
+  }, [playerSeasons, playerSeasonYear]);
+  const playerSeasonMonths = useMemo(() => playerSeason?.months ?? [], [playerSeason]);
   const selectedPlayer = useMemo(() => {
-    if (!currentSeason || !selectedPlayerName) return null;
-    return currentSeason.players.find((player) => player.name === selectedPlayerName) ?? null;
-  }, [currentSeason, selectedPlayerName]);
+    if (!playerSeason || !selectedPlayerName) return null;
+    return playerSeason.players.find((player) => player.name === selectedPlayerName) ?? null;
+  }, [playerSeason, selectedPlayerName]);
   const playerMonthlyResults = useMemo(() => {
     if (!selectedPlayer) return [];
-    return months
+    return playerSeasonMonths
       .map((month) => ({
         month: month.month,
         result: month.results.find((result) => result.name === selectedPlayer.name) ?? null,
       }))
       .filter((entry) => entry.result);
-  }, [months, selectedPlayer]);
+  }, [playerSeasonMonths, selectedPlayer]);
   const playerMonthlyResultsSorted = useMemo(() => {
     if (!sortPlayerMonthsByPoints) return playerMonthlyResults;
     return [...playerMonthlyResults].sort((a, b) => {
@@ -171,6 +213,66 @@ export function Leaderboard() {
       return aPos - bPos;
     });
   }, [playerMonthlyResults, sortPlayerMonthsByPoints]);
+  const positionChanges = useMemo(() => {
+    if (!currentSeason || months.length < 2) return new Map<string, number>();
+
+    const playerNames = currentSeason.players.map((player) => player.name);
+    const basePositions = new Map(currentSeason.players.map((player) => [player.name, player.position]));
+
+    const buildRanking = (monthIndex: number) => {
+      const pointsByPlayer = new Map<string, number[]>();
+      playerNames.forEach((name) => pointsByPlayer.set(name, []));
+
+      for (let i = 0; i <= monthIndex; i += 1) {
+        const month = months[i];
+        if (!month) continue;
+        month.results.forEach((result) => {
+          if (!pointsByPlayer.has(result.name)) return;
+          pointsByPlayer.get(result.name)?.push(result.points ?? 0);
+        });
+      }
+
+      const totals = playerNames.map((name) => {
+        const points = pointsByPlayer.get(name) ?? [];
+        const top8Total = [...points]
+          .sort((a, b) => b - a)
+          .slice(0, 8)
+          .reduce((sum, value) => sum + value, 0);
+        return {
+          name,
+          total: top8Total,
+          basePosition: basePositions.get(name) ?? Number.MAX_SAFE_INTEGER,
+        };
+      });
+
+      totals.sort((a, b) => {
+        if (b.total !== a.total) return b.total - a.total;
+        if (a.basePosition !== b.basePosition) return a.basePosition - b.basePosition;
+        return a.name.localeCompare(b.name);
+      });
+
+      const ranking = new Map<string, number>();
+      totals.forEach((entry, index) => {
+        ranking.set(entry.name, index + 1);
+      });
+
+      return ranking;
+    };
+
+    const previousRanking = buildRanking(months.length - 2);
+    const latestRanking = buildRanking(months.length - 1);
+    const deltas = new Map<string, number>();
+
+    playerNames.forEach((name) => {
+      const prev = previousRanking.get(name);
+      const current = latestRanking.get(name);
+      if (!prev || !current) return;
+      const delta = prev - current;
+      if (delta !== 0) deltas.set(name, delta);
+    });
+
+    return deltas;
+  }, [currentSeason, months]);
 
   if (!currentSeason) return null;
 
@@ -189,6 +291,11 @@ export function Leaderboard() {
             <span className="text-primary">{visibleTopLabel}</span>
           </h2>
           <p className="text-muted-foreground mb-4">Sezonas kopvērtējums</p>
+          {months.length > 1 && (
+            <p className="text-xs text-muted-foreground/70 mb-4">
+              ↑/↓ Vietas izmaiņa kopš iepriekšējā turnīra.
+            </p>
+          )}
           <a
             href={rulebookUrl}
             target="_blank"
@@ -233,6 +340,7 @@ export function Leaderboard() {
             const style = positionStyles[pos];
             const isTopFour = pos <= 4;
             const isSelectedPlayer = selectedPlayerName === player.name;
+            const positionChange = positionChanges.get(player.name);
 
             return (
               <motion.div
@@ -248,32 +356,55 @@ export function Leaderboard() {
                     : "bg-card border-border hover:border-primary/30",
                   isSelectedPlayer && "ring-2 ring-primary/60 border-primary/40"
                 )}
-                onClick={() => setSelectedPlayerName(player.name)}
+                onClick={() => {
+                  setSelectedPlayerName(player.name);
+                  setPlayerSeasonYear(selectedYear);
+                }}
                 role="button"
                 tabIndex={0}
                 onKeyDown={(event) => {
                   if (event.key === "Enter" || event.key === " ") {
                     event.preventDefault();
                     setSelectedPlayerName(player.name);
+                    setPlayerSeasonYear(selectedYear);
                   }
                 }}
               >
                 <div className="flex items-center gap-4">
                   {/* Position */}
-                  <div
-                    className={cn(
-                      "w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center font-bold text-lg",
-                      isTopFour && style ? style.color : "text-muted-foreground bg-secondary"
-                    )}
-                  >
-                    {isActiveSeason && pos === 1 ? (
-                      <Trophy className="w-5 h-5 md:w-6 md:h-6 text-yellow-400" />
-                    ) : isGoatSeason && style?.emoji ? (
-                      <span className="text-2xl md:text-3xl">{style.emoji}</span>
-                    ) : style?.icon ? (
-                      <style.icon className="w-5 h-5 md:w-6 md:h-6" />
-                    ) : (
-                      pos
+                  <div className="flex items-center gap-2">
+                    <div
+                      className={cn(
+                        "w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center font-bold text-lg",
+                        isTopFour && style ? style.color : "text-muted-foreground bg-secondary"
+                      )}
+                    >
+                      {isActiveSeason && pos === 1 ? (
+                        <Trophy className="w-5 h-5 md:w-6 md:h-6 text-yellow-400" />
+                      ) : isGoatSeason && style?.emoji ? (
+                        <span className="text-2xl md:text-3xl">{style.emoji}</span>
+                      ) : style?.icon ? (
+                        <style.icon className="w-5 h-5 md:w-6 md:h-6" />
+                      ) : (
+                        pos
+                      )}
+                    </div>
+                    {positionChange !== undefined && positionChange !== 0 && (
+                      <span
+                        className={cn(
+                          "inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-semibold",
+                          positionChange > 0
+                            ? "bg-emerald-500/15 text-emerald-500"
+                            : "bg-rose-500/15 text-rose-500"
+                        )}
+                      >
+                        {positionChange > 0 ? (
+                          <ArrowUp className="w-3 h-3" />
+                        ) : (
+                          <ArrowDown className="w-3 h-3" />
+                        )}
+                        {Math.abs(positionChange)}
+                      </span>
                     )}
                   </div>
 
@@ -414,13 +545,17 @@ export function Leaderboard() {
                         "grid grid-cols-[80px_minmax(0,1fr)_120px] px-4 py-3 items-center cursor-pointer transition-colors hover:bg-secondary/30",
                         selectedPlayerName === result.name && "bg-primary/10"
                       )}
-                      onClick={() => setSelectedPlayerName(result.name)}
+                      onClick={() => {
+                        setSelectedPlayerName(result.name);
+                        setPlayerSeasonYear(selectedYear);
+                      }}
                       role="button"
                       tabIndex={0}
                       onKeyDown={(event) => {
                         if (event.key === "Enter" || event.key === " ") {
                           event.preventDefault();
                           setSelectedPlayerName(result.name);
+                          setPlayerSeasonYear(selectedYear);
                         }
                       }}
                     >
@@ -435,20 +570,69 @@ export function Leaderboard() {
           )}
         </motion.div>
 
-        <Dialog open={Boolean(selectedPlayer)} onOpenChange={(open) => !open && setSelectedPlayerName(null)}>
+        <Dialog
+          open={Boolean(selectedPlayer)}
+          onOpenChange={(open) => {
+            if (!open) {
+              setSelectedPlayerName(null);
+              setPlayerSeasonYear(null);
+            }
+          }}
+        >
           {selectedPlayer && (
             <DialogContent className="sm:max-w-2xl">
               <DialogHeader>
                 <DialogTitle className="flex items-center gap-2">
                   <span>{selectedPlayer.name}</span>
                   <span className="text-sm font-semibold text-muted-foreground">
-                    {selectedYear}. gada sezona
+                    {(playerSeasonYear ?? selectedYear)}. gada sezona
                   </span>
                 </DialogTitle>
                 <DialogDescription>
                   Detalizēta statistika un mēnešu griezuma rezultāti.
                 </DialogDescription>
               </DialogHeader>
+
+              {playerSeasonYears.length > 1 && playerSeasonYear && (
+                <div className="flex flex-wrap items-center justify-between gap-2 rounded-lg border border-border bg-secondary/30 px-3 py-2">
+                  <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                    Sezona
+                  </span>
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setPlayerSeasonYear(
+                          playerSeasonIndex < playerSeasonYears.length - 1
+                            ? playerSeasonYears[playerSeasonIndex + 1]
+                            : playerSeasonYear
+                        )
+                      }
+                      disabled={playerSeasonIndex >= playerSeasonYears.length - 1}
+                      className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary disabled:opacity-40 disabled:cursor-not-allowed"
+                      aria-label="Iepriekšējā sezona"
+                    >
+                      <ChevronLeft className="w-4 h-4" />
+                    </button>
+                    <span className="text-sm font-semibold">{playerSeasonYear}</span>
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setPlayerSeasonYear(
+                          playerSeasonIndex > 0
+                            ? playerSeasonYears[playerSeasonIndex - 1]
+                            : playerSeasonYear
+                        )
+                      }
+                      disabled={playerSeasonIndex <= 0}
+                      className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-primary/40 hover:text-primary disabled:opacity-40 disabled:cursor-not-allowed"
+                      aria-label="Nākamā sezona"
+                    >
+                      <ChevronRight className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
+              )}
 
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-2">
                 <div className="rounded-lg border border-border bg-secondary/30 p-3">
