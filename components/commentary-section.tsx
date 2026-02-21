@@ -90,7 +90,9 @@ export function CommentarySection() {
                   <div className="text-left">
                     <h3 className="font-bold text-lg text-foreground">{season.year}. gada sezona</h3>
                     <p className="text-sm text-muted-foreground">
-                      Čempions: {season.players[0].name} ({season.players[0].top8} TOP8 punkti)
+                      {season.players.length > 0
+                        ? `Čempions: ${season.players[0].name} (${season.players[0].top8} TOP8 punkti)`
+                        : "Čempions: nav datu"}
                     </p>
                   </div>
                 </div>

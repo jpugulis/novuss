@@ -55,10 +55,10 @@ export function Leaderboard() {
   const currentSeason = seasons.find((s) => s.year === selectedYear);
   const months = useMemo(() => currentSeason?.months ?? [], [currentSeason]);
   const hasMonthlyData = months.length > 0;
-  const maxTop8 = useMemo(
-    () => (currentSeason ? Math.max(...currentSeason.players.map((player) => player.top8)) : 0),
-    [currentSeason]
-  );
+  const maxTop8 = useMemo(() => {
+    if (!currentSeason || currentSeason.players.length === 0) return 0;
+    return Math.max(...currentSeason.players.map((player) => player.top8));
+  }, [currentSeason]);
   const playerSeasons = useMemo(() => {
     if (!selectedPlayerName) return [];
     return seasons.filter((season) =>
@@ -335,6 +335,11 @@ export function Leaderboard() {
 
         {/* Leaderboard */}
         <div className="space-y-3">
+          {playersToShow.length === 0 && (
+            <div className="text-center text-sm text-muted-foreground">
+              Šai sezonai nav saglabātu rezultātu.
+            </div>
+          )}
           {playersToShow.map((player, index) => {
             const pos = player.position;
             const style = positionStyles[pos];

@@ -1,3 +1,5 @@
+import rawSeasons from "./seasons.generated.json";
+
 export interface Player {
   name: string;
   top8: number;
@@ -28,67 +30,13 @@ export interface Season {
   months?: MonthlyStandings[];
 }
 
-const MONTH_NAMES = [
-  "Janvāris",
-  "Februāris",
-  "Marts",
-  "Aprīlis",
-  "Maijs",
-  "Jūnijs",
-  "Jūlijs",
-  "Augusts",
-  "Septembris",
-  "Oktobris",
-  "Novembris",
-  "Decembris",
-] as const;
-
-function buildMonthsFromSeason(players: Player[]): MonthlyStandings[] {
-  const seasonResults = players
-    .map((player) => ({
-      name: player.name,
-      position: player.position,
-      points: player.top8,
-    }))
-    .sort((a, b) => a.position - b.position);
-
-  return MONTH_NAMES.map((month) => ({
-    month,
-    results: seasonResults,
-  }));
+interface SeasonMeta {
+  comment: string;
+  images?: { src: string; caption: string }[];
 }
 
-const players2025: Player[] = [
-  { name: "Repča", top8: 190, stoses: 30, top8avg: 23.8, punktiKopa: 244, avg: 20.3, tournaments: 11, position: 1 },
-  { name: "Dzinča", top8: 185, stoses: 29, top8avg: 23.1, punktiKopa: 201, avg: 20.1, tournaments: 9, position: 2 },
-  { name: "Orļiks", top8: 112, stoses: 7, top8avg: 14.0, punktiKopa: 143, avg: 11.9, tournaments: 11, position: 3 },
-  { name: "Pūgulis", top8: 111, stoses: 10, top8avg: 13.9, punktiKopa: 126, avg: 12.6, tournaments: 9, position: 4 },
-  { name: "Artchy", top8: 108, stoses: 12, top8avg: 13.5, punktiKopa: 129, avg: 11.7, tournaments: 10, position: 5 },
-  { name: "Ziemis", top8: 102, stoses: 10, top8avg: 12.8, punktiKopa: 117, avg: 11.7, tournaments: 9, position: 6 },
-  { name: "Rūdža", top8: 85, stoses: 8, top8avg: 10.6, punktiKopa: 91, avg: 10.1, tournaments: 8, position: 7 },
-  { name: "TomyG", top8: 80, stoses: 7, top8avg: 10.0, punktiKopa: 86, avg: 9.6, tournaments: 8, position: 8 },
-  { name: "Tuncis", top8: 49, stoses: 1, top8avg: 6.1, punktiKopa: 49, avg: 9.8, tournaments: 5, position: 9 },
-  { name: "Osīc", top8: 49, stoses: 1, top8avg: 6.1, punktiKopa: 49, avg: 7.0, tournaments: 6, position: 10 },
-];
-
-const players2024: Player[] = [
-  { name: "Repča", top8: 195, stoses: 0, top8avg: 17.7, punktiKopa: 256, avg: 21.33, tournaments: 11, position: 1 },
-  { name: "Orļiks", top8: 149, stoses: 0, top8avg: 13.5, punktiKopa: 190, avg: 15.83, tournaments: 11, position: 2 },
-  { name: "Dzinča", top8: 146, stoses: 0, top8avg: 14.6, punktiKopa: 174, avg: 15.81, tournaments: 10, position: 3 },
-  { name: "Pūgulis", top8: 106, stoses: 0, top8avg: 10.6, punktiKopa: 118, avg: 10.72, tournaments: 10, position: 4 },
-  { name: "TomyG", top8: 105, stoses: 0, top8avg: 10.5, punktiKopa: 122, avg: 11.09, tournaments: 10, position: 5 },
-  { name: "Artchy", top8: 94, stoses: 0, top8avg: 8.5, punktiKopa: 118, avg: 9.83, tournaments: 11, position: 6 },
-  { name: "ROBO", top8: 84, stoses: 0, top8avg: 12.0, punktiKopa: 84, avg: 10.5, tournaments: 7, position: 7 },
-  { name: "Madara", top8: 69, stoses: 0, top8avg: 6.3, punktiKopa: 84, avg: 7.63, tournaments: 11, position: 8 },
-  { name: "Ziemis", top8: 62, stoses: 0, top8avg: 7.8, punktiKopa: 65, avg: 7.22, tournaments: 8, position: 9 },
-  { name: "Osīc", top8: 52, stoses: 0, top8avg: 6.5, punktiKopa: 55, avg: 6.11, tournaments: 8, position: 10 },
-];
-
-export const seasons: Season[] = [
-  {
-    year: 2025,
-    players: players2025,
-    months: buildMonthsFromSeason(players2025),
+const SEASON_META: Record<number, SeasonMeta> = {
+  2025: {
     comment: `NEAPTURAMS GOAT Repča atkal dominē - 30 štoses un sīvā finišā pārspēts Dzinča ar 29 štosēm, cementējot savu leģendāro statusu! Pirms decembra turnīra abiem bija pa 26 štosēm. Ļoti spēcīgs sniegums arī šajā sezonā!
 
 Pūgulim izdevās pārspēt 2:0 Repču pēdējā turnīrā uzvarētāju zarā, bet pēcāk zaudētāju zarā piedzīvot tomēr sakāvi. Kā arī Pūgulis no Orļika un 3.vietas kopvērtējumā beigās šķīra TIKAI 1 punkts!
@@ -97,15 +45,12 @@ Bija ļoti sīva cīņa par trešo vietu starp Pūguli, Orļiku, Artchy un Ziemi
 
 Paldies par sezonu, bija daudz interesantas cīņas un labi pavadīts laiks novusa vakaros!`,
   },
-  {
-    year: 2024,
-    players: players2024,
-    months: buildMonthsFromSeason(players2024),
+  2024: {
     comment: `GOAT Repča ar 7 uzvarām un perfekto apmeklējumu 2024. gadā parāda, kā izskatās absolūts meistarības standarts - leģenda bez diskusijām!
 
 Šoreiz prasmīgākais TomyG!
 
-Dāmu miniturnīrā dominēja Marija Ābola! 
+Dāmu miniturnīrā dominēja Marija Ābola!
 
 Kopvērtējumā ar 100% apmeklējumu, 256 punktiem kopā, uzvarot 7 no 12 turnīriem un savācot 195 punktus pa TOP8 labākajiem turnīriem, pārliecinoši uzvar Repča!
 
@@ -121,15 +66,73 @@ Priekā!`,
       { src: "/images/2024-final-bracket.png", caption: "Turnīra zars - TomyG čempions!" },
     ],
   },
-];
+  2026: {
+    comment: `2026.gada sezona iesākās ar turnīru, kurā nav seeded spēlētāji un vairākām interesantām izspēlēm, interesantiem pavērsieniem. THE G.O.A.T. aka Repča palika 7.vietā un Dzinča nebija ieradies, tāpēc TOPS šoreiz mazāk ierasts. TomyG rādīja spēcīgu sniegumu fināla pārliecinoši sakaujot Rūdi, Ziemim arī izdevās iegūt 2 štoses šajā turnīrā un 4. vietu un Birkants arī ierindojās uz pjedestāla 3.pakāpiena! No iepriekšējo sezonu TOP spēlētājiem Pūgulis nebija ieradies un Artchy aizvadīja pagalam neveiksmīgu sezonas sākumu.`,
+  },
+};
 
-export const allTimeBest = [
-  { name: "Repča", totalPoints: 500, totalStoses: 56, seasons: 2, wins: 2 },
-  { name: "Dzinča", totalPoints: 376, totalStoses: 49, seasons: 2, wins: 0 },
-  { name: "Orļiks", totalPoints: 261, totalStoses: 25, seasons: 2, wins: 0 },
-  { name: "Pūgulis", totalPoints: 216, totalStoses: 18, seasons: 2, wins: 0 },
-  { name: "Artchy", totalPoints: 206, totalStoses: 22, seasons: 2, wins: 0 },
-];
+const COVID_COMMENTS: Record<number, string> = {
+  2020: "COVID-19 pandēmijas dēļ no marta līdz maijam un no oktobra līdz decembrim turnīri nenotika.",
+  2021: "COVID-19 pandēmijas dēļ 2021. gada sezona nenotika; rezultātu nav.",
+  2022: "Sezona atsākās pēc COVID-19 pārtraukuma; janvāris–marts bija lokauts.",
+};
+
+function buildDefaultComment(year: number): string {
+  return COVID_COMMENTS[year] ?? "Dati importēti no novuss_all_data_formatted.xlsx.";
+}
+
+type RawSeason = Omit<Season, "comment" | "images">;
+
+export const seasons: Season[] = (rawSeasons as RawSeason[])
+  .map((season) => ({
+    ...season,
+    comment: SEASON_META[season.year]?.comment ?? buildDefaultComment(season.year),
+    images: SEASON_META[season.year]?.images,
+  }))
+  .sort((a, b) => b.year - a.year);
+
+function buildAllTimeBest(seasonsData: Season[]) {
+  const totals = new Map<string, { totalPoints: number; totalStoses: number; seasons: number; wins: number }>();
+
+  seasonsData.forEach((season) => {
+    if (season.players.length === 0) return;
+
+    season.players.forEach((player) => {
+      const entry = totals.get(player.name) ?? {
+        totalPoints: 0,
+        totalStoses: 0,
+        seasons: 0,
+        wins: 0,
+      };
+      entry.totalPoints += player.punktiKopa;
+      entry.totalStoses += player.stoses;
+      entry.seasons += 1;
+      totals.set(player.name, entry);
+    });
+
+    const winner = season.players[0];
+    const winnerEntry = totals.get(winner.name);
+    if (winnerEntry) winnerEntry.wins += 1;
+  });
+
+  return Array.from(totals.entries())
+    .map(([name, stats]) => ({
+      name,
+      totalPoints: Math.round(stats.totalPoints * 10) / 10,
+      totalStoses: Math.round(stats.totalStoses),
+      seasons: stats.seasons,
+      wins: stats.wins,
+    }))
+    .sort((a, b) => {
+      if (b.totalPoints !== a.totalPoints) return b.totalPoints - a.totalPoints;
+      if (b.wins !== a.wins) return b.wins - a.wins;
+      if (b.totalStoses !== a.totalStoses) return b.totalStoses - a.totalStoses;
+      return a.name.localeCompare(b.name, "lv");
+    })
+    .slice(0, 5);
+}
+
+export const allTimeBest = buildAllTimeBest(seasons);
 
 export const galleryImages = [
   {
@@ -159,4 +162,5 @@ export const galleryImages = [
   },
 ];
 
-export const rulebookUrl = "https://novuss-lnf.lv/wp-content/uploads/2025/03/Novusa-noteikumi-papildinajums-9.03.2025.pdf";
+export const rulebookUrl =
+  "https://novuss-lnf.lv/wp-content/uploads/2025/03/Novusa-noteikumi-papildinajums-9.03.2025.pdf";
