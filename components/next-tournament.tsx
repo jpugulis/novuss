@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { CalendarDays, Clock, MapPin } from "lucide-react";
 
 const GOOGLE_CALENDAR_URL =
-  "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Novusa%20turn%C4%ABrs%20-%20marts&dates=20260320T190000/20260321T010000&ctz=Europe/Riga&details=Iera%C5%A1an%C4%81s%2019%3A00%2C%20s%C4%81kam%2020%3A00.";
+  "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Novusa%20turn%C4%ABrs%20-%20marts&dates=20260320T190000/20260321T010000&ctz=Europe%2FRiga&details=No%2019%20iera%C5%A1an%C4%81s%2C%20ap%2020%20s%C4%81kam%20sp%C4%93l%C4%93t!&location=Retro%20Auto%20muzejs";
 
 export function NextTournament() {
   return (
@@ -23,7 +23,7 @@ export function NextTournament() {
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">20. marts, piektdiena</h2>
             <p className="text-sm text-muted-foreground mt-2">
-              19:00 ierašanās, 20:00 sākam. Turnīra laiks: 19:00 – 01:00.
+              Nākamais novusa vakars.
             </p>
           </div>
 
@@ -31,11 +31,11 @@ export function NextTournament() {
             <div className="space-y-3">
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <Clock className="w-4 h-4 text-primary" />
-                <span>19:00 – 01:00</span>
+                <span>No 19 ierašanās, ap 20 sākam spēlēt!</span>
               </div>
               <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 <MapPin className="w-4 h-4 text-primary" />
-                <span>Retro auto muzejs (ja mainās vieta, informēsim)</span>
+                <span>Vieta: Kur parasti</span>
               </div>
             </div>
 

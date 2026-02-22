@@ -28,7 +28,7 @@ export function Footer() {
           </div>
 
           <p className="text-xs text-muted-foreground mt-4">
-            © 2023-{new Date().getFullYear()} Rajona Novusa Turnīrs. Visas tiesības aizsargātas.
+            © 2016-2026 Rajona Novusa Turnīrs.
           </p>
         </motion.div>
       </div>

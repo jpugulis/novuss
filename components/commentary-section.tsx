@@ -1,26 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MessageSquare, Quote, ChevronDown, MessageCircle, Send } from "lucide-react";
+import { MessageSquare, Quote, ChevronDown } from "lucide-react";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { useSeasons } from "@/hooks/use-seasons";
 
-interface Comment {
-  id: number;
-  author: string;
-  text: string;
-  timestamp: string;
-}
-
 export function CommentarySection() {
   const seasons = useSeasons();
   const [expandedYear, setExpandedYear] = useState<number | null>(seasons[0]?.year ?? 2025);
   const [hasUserSelected, setHasUserSelected] = useState(false);
-  const [comments, setComments] = useState<Record<number, Comment[]>>({});
-  const [newComment, setNewComment] = useState("");
-  const [commentAuthor, setCommentAuthor] = useState("");
 
   useEffect(() => {
     if (hasUserSelected || seasons.length === 0) return;
@@ -28,23 +18,6 @@ export function CommentarySection() {
       setExpandedYear(seasons[0].year);
     }
   }, [expandedYear, hasUserSelected, seasons]);
-
-  const addComment = (year: number) => {
-    if (!newComment.trim() || !commentAuthor.trim()) return;
-    
-    const comment: Comment = {
-      id: Date.now(),
-      author: commentAuthor,
-      text: newComment,
-      timestamp: new Date().toLocaleDateString('lv-LV'),
-    };
-    
-    setComments(prev => ({
-      ...prev,
-      [year]: [...(prev[year] || []), comment],
-    }));
-    setNewComment("");
-  };
 
   return (
     <section id="commentary" className="py-20 px-4 bg-secondary/30">
@@ -64,6 +37,9 @@ export function CommentarySection() {
             <br />
             <span className="text-primary">KOMENTĀRS</span>
           </h2>
+          <p className="text-sm text-muted-foreground mt-3">
+            Katram mēnesim ir komentārs. Pēdējais ar bildēm - Februāris.
+          </p>
         </motion.div>
 
         <div className="space-y-4">
@@ -90,7 +66,9 @@ export function CommentarySection() {
                   <div className="text-left">
                     <h3 className="font-bold text-lg text-foreground">{season.year}. gada sezona</h3>
                     <p className="text-sm text-muted-foreground">
-                      {season.players.length > 0
+                      {season.year === 2026
+                        ? "Sezona turpinās"
+                        : season.players.length > 0
                         ? `Čempions: ${season.players[0].name} (${season.players[0].top8} TOP8 punkti)`
                         : "Čempions: nav datu"}
                     </p>
@@ -138,61 +116,6 @@ export function CommentarySection() {
                       </p>
                     </div>
                     <Quote className="absolute bottom-4 right-4 w-8 h-8 text-primary/20 rotate-180" />
-                  </div>
-
-                  {/* Comments section */}
-                  <div className="mt-6 border-t border-border pt-4">
-                    <div className="flex items-center gap-2 mb-4">
-                      <MessageCircle className="w-4 h-4 text-primary" />
-                      <span className="text-sm font-medium text-foreground">
-                        Komentāri par sezonu ({comments[season.year]?.length || 0})
-                      </span>
-                    </div>
-                    
-                    {/* Existing comments */}
-                    <div className="space-y-3 mb-4 max-h-64 overflow-y-auto">
-                      {(comments[season.year] || []).map((comment) => (
-                        <div key={comment.id} className="bg-secondary/50 rounded-lg p-3">
-                          <div className="flex items-center justify-between mb-1">
-                            <span className="font-medium text-sm text-foreground">{comment.author}</span>
-                            <span className="text-xs text-muted-foreground">{comment.timestamp}</span>
-                          </div>
-                          <p className="text-sm text-muted-foreground">{comment.text}</p>
-                        </div>
-                      ))}
-                      {(!comments[season.year] || comments[season.year].length === 0) && (
-                        <p className="text-sm text-muted-foreground text-center py-2">
-                          Nav komentāru. Pievieno pirmo!
-                        </p>
-                      )}
-                    </div>
-                    
-                    {/* Add comment form */}
-                    <div className="space-y-2">
-                      <input
-                        type="text"
-                        placeholder="Tavs vārds..."
-                        value={commentAuthor}
-                        onChange={(e) => setCommentAuthor(e.target.value)}
-                        className="w-full px-3 py-2 bg-secondary rounded-lg text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
-                      />
-                      <div className="flex gap-2">
-                        <input
-                          type="text"
-                          placeholder="Raksti savu viedokli par sezonu..."
-                          value={newComment}
-                          onChange={(e) => setNewComment(e.target.value)}
-                          onKeyDown={(e) => e.key === 'Enter' && addComment(season.year)}
-                          className="flex-1 px-3 py-2 bg-secondary rounded-lg text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
-                        />
-                        <button
-                          onClick={() => addComment(season.year)}
-                          className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
-                        >
-                          <Send className="w-4 h-4" />
-                        </button>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>

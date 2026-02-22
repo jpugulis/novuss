@@ -1,48 +1,21 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Camera, Upload, X, Play, ImageIcon, MessageCircle, Send } from "lucide-react";
+import { Camera, X, Play, ImageIcon } from "lucide-react";
 import { galleryImages } from "@/lib/tournament-data";
 import { useState } from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
-interface Comment {
-  id: number;
-  author: string;
-  text: string;
-  timestamp: string;
-}
-
 export function GallerySection() {
   const [selectedImage, setSelectedImage] = useState<{ src: string; caption: string } | null>(null);
   const [activeTab, setActiveTab] = useState<"photos" | "memes" | "videos">("photos");
-  const [comments, setComments] = useState<Record<string, Comment[]>>({});
-  const [newComment, setNewComment] = useState("");
-  const [commentAuthor, setCommentAuthor] = useState("");
 
   const memes = [
     { id: 1, title: "Kad Rēpelis atkal uzvar", placeholder: true },
     { id: 2, title: "Dzintis reakcija", placeholder: true },
     { id: 3, title: "Novusa vakars 3am", placeholder: true },
   ];
-
-  const addComment = (imageKey: string) => {
-    if (!newComment.trim() || !commentAuthor.trim()) return;
-    
-    const comment: Comment = {
-      id: Date.now(),
-      author: commentAuthor,
-      text: newComment,
-      timestamp: new Date().toLocaleDateString('lv-LV'),
-    };
-    
-    setComments(prev => ({
-      ...prev,
-      [imageKey]: [...(prev[imageKey] || []), comment],
-    }));
-    setNewComment("");
-  };
 
   return (
     <section id="gallery" className="py-20 px-4 bg-secondary/30">
@@ -113,30 +86,9 @@ export function GallerySection() {
                 <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
                   <p className="text-foreground font-medium text-sm">{image.caption}</p>
                   <p className="text-muted-foreground text-xs">{image.year}</p>
-                  {comments[image.src]?.length > 0 && (
-                    <div className="flex items-center gap-1 mt-1 text-xs text-primary">
-                      <MessageCircle className="w-3 h-3" />
-                      {comments[image.src].length} komentāri
-                    </div>
-                  )}
                 </div>
               </motion.div>
             ))}
-
-            {/* Upload placeholder */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              className="aspect-[4/3] rounded-xl border-2 border-dashed border-border hover:border-primary/50 transition-colors flex flex-col items-center justify-center gap-3 cursor-pointer group"
-            >
-              <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                <Upload className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
-              </div>
-              <p className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">
-                Pievieno foto
-              </p>
-            </motion.div>
           </div>
         )}
 
@@ -160,20 +112,6 @@ export function GallerySection() {
               </motion.div>
             ))}
 
-            {/* Upload meme */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              className="aspect-square rounded-xl border-2 border-dashed border-border hover:border-primary/50 transition-colors flex flex-col items-center justify-center gap-3 cursor-pointer group"
-            >
-              <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                <Upload className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
-              </div>
-              <p className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">
-                Augšupielādē MEME
-              </p>
-            </motion.div>
           </div>
         )}
 
@@ -192,24 +130,10 @@ export function GallerySection() {
               <p className="text-muted-foreground">Video drīzumā...</p>
             </motion.div>
 
-            {/* Upload video */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              className="aspect-video rounded-xl border-2 border-dashed border-border hover:border-primary/50 transition-colors flex flex-col items-center justify-center gap-3 cursor-pointer group"
-            >
-              <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                <Upload className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
-              </div>
-              <p className="text-sm text-muted-foreground group-hover:text-foreground transition-colors">
-                Augšupielādē video
-              </p>
-            </motion.div>
           </div>
         )}
 
-        {/* Lightbox with comments */}
+        {/* Lightbox */}
         {selectedImage && (
           <motion.div
             initial={{ opacity: 0 }}
@@ -236,59 +160,6 @@ export function GallerySection() {
               
               <div className="mt-4 p-4 bg-card rounded-xl border border-border">
                 <h4 className="font-bold text-foreground mb-2">{selectedImage.caption}</h4>
-                
-                {/* Comments section */}
-                <div className="mt-4 border-t border-border pt-4">
-                  <div className="flex items-center gap-2 mb-3">
-                    <MessageCircle className="w-4 h-4 text-primary" />
-                    <span className="text-sm font-medium text-foreground">Komentāri</span>
-                  </div>
-                  
-                  {/* Existing comments */}
-                  <div className="space-y-3 mb-4 max-h-48 overflow-y-auto">
-                    {(comments[selectedImage.src] || []).map((comment) => (
-                      <div key={comment.id} className="bg-secondary/50 rounded-lg p-3">
-                        <div className="flex items-center justify-between mb-1">
-                          <span className="font-medium text-sm text-foreground">{comment.author}</span>
-                          <span className="text-xs text-muted-foreground">{comment.timestamp}</span>
-                        </div>
-                        <p className="text-sm text-muted-foreground">{comment.text}</p>
-                      </div>
-                    ))}
-                    {(!comments[selectedImage.src] || comments[selectedImage.src].length === 0) && (
-                      <p className="text-sm text-muted-foreground text-center py-2">
-                        Nav komentāru. Pievieno pirmo!
-                      </p>
-                    )}
-                  </div>
-                  
-                  {/* Add comment form */}
-                  <div className="space-y-2">
-                    <input
-                      type="text"
-                      placeholder="Tavs vārds..."
-                      value={commentAuthor}
-                      onChange={(e) => setCommentAuthor(e.target.value)}
-                      className="w-full px-3 py-2 bg-secondary rounded-lg text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
-                    />
-                    <div className="flex gap-2">
-                      <input
-                        type="text"
-                        placeholder="Raksti komentāru..."
-                        value={newComment}
-                        onChange={(e) => setNewComment(e.target.value)}
-                        onKeyDown={(e) => e.key === 'Enter' && addComment(selectedImage.src)}
-                        className="flex-1 px-3 py-2 bg-secondary rounded-lg text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
-                      />
-                      <button
-                        onClick={() => addComment(selectedImage.src)}
-                        className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
-                      >
-                        <Send className="w-4 h-4" />
-                      </button>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
           </motion.div>

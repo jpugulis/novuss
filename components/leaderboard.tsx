@@ -52,7 +52,10 @@ export function Leaderboard() {
   }, [hasUserSelected, seasons, selectedYear]);
 
   const currentSeason = seasons.find((s) => s.year === selectedYear);
-  const months = useMemo(() => currentSeason?.months ?? [], [currentSeason]);
+  const months = useMemo(
+    () => (currentSeason?.months ?? []).filter((month) => month.month !== "Turnīri"),
+    [currentSeason]
+  );
   const hasMonthlyData = months.length > 0;
   const maxTop8 = useMemo(() => {
     if (!currentSeason || currentSeason.players.length === 0) return 0;
@@ -187,7 +190,10 @@ export function Leaderboard() {
     if (!playerSeasonYear) return null;
     return playerSeasons.find((season) => season.year === playerSeasonYear) ?? null;
   }, [playerSeasons, playerSeasonYear]);
-  const playerSeasonMonths = useMemo(() => playerSeason?.months ?? [], [playerSeason]);
+  const playerSeasonMonths = useMemo(
+    () => (playerSeason?.months ?? []).filter((month) => month.month !== "Turnīri"),
+    [playerSeason]
+  );
   const selectedPlayer = useMemo(() => {
     if (!playerSeason || !selectedPlayerName) return null;
     return playerSeason.players.find((player) => player.name === selectedPlayerName) ?? null;
@@ -273,6 +279,28 @@ export function Leaderboard() {
     return deltas;
   }, [currentSeason, months]);
 
+  const positionChangeSummary = useMemo(() => {
+    if (months.length < 2 || !currentSeason) return null;
+    const changes = currentSeason.players
+      .map((player) => {
+        const delta = positionChanges.get(player.name);
+        if (!delta) return null;
+        return { name: player.name, delta };
+      })
+      .filter((entry): entry is { name: string; delta: number } => Boolean(entry));
+
+    if (changes.length === 0) {
+      return "Nav vietu izmaiņu kopš pēdējā turnīra.";
+    }
+
+    const preview = changes.slice(0, 6).map((entry) => {
+      const sign = entry.delta > 0 ? "+" : "";
+      return `${entry.name} ${sign}${entry.delta}`;
+    });
+    const extra = changes.length - preview.length;
+    return `Izmaiņas kopš pēdējā turnīra: ${preview.join(", ")}${extra > 0 ? ` +${extra} vēl` : ""}.`;
+  }, [currentSeason, months.length, positionChanges]);
+
   if (!currentSeason) return null;
 
   return (
@@ -290,10 +318,8 @@ export function Leaderboard() {
             <span className="text-primary">{visibleTopLabel}</span>
           </h2>
           <p className="text-muted-foreground mb-4">Sezonas kopvērtējums</p>
-          {months.length > 1 && (
-            <p className="text-xs text-muted-foreground/70 mb-4">
-              ↑/↓ Vietas izmaiņa kopš iepriekšējā turnīra.
-            </p>
+          {positionChangeSummary && (
+            <p className="text-xs text-muted-foreground/70 mb-4">{positionChangeSummary}</p>
           )}
           <a
             href={rulebookUrl}
@@ -311,11 +337,11 @@ export function Leaderboard() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-8"
+          className="mb-8 space-y-4"
         >
-          <div className="flex justify-center md:hidden">
-            <label className="sr-only" htmlFor="year-select">
-              Izvēlies sezonu
+          <div className="flex flex-col items-center gap-3 md:hidden">
+            <label className="text-xs font-semibold uppercase tracking-wide text-muted-foreground" htmlFor="year-select">
+              Sezona
             </label>
             <select
               id="year-select"
@@ -332,6 +358,25 @@ export function Leaderboard() {
                 </option>
               ))}
             </select>
+            <div className="flex w-full max-w-xs gap-2 overflow-x-auto pb-1">
+              {seasons.map((season) => (
+                <button
+                  key={`mobile-${season.year}`}
+                  onClick={() => {
+                    setSelectedYear(season.year);
+                    setHasUserSelected(true);
+                  }}
+                  className={cn(
+                    "flex-shrink-0 px-4 py-2 rounded-full text-xs font-semibold transition-all duration-200",
+                    selectedYear === season.year
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-secondary text-secondary-foreground"
+                  )}
+                >
+                  {season.year}
+                </button>
+              ))}
+            </div>
           </div>
           <div className="hidden md:flex justify-center gap-2">
             {seasons.map((season) => (
@@ -535,6 +580,26 @@ export function Leaderboard() {
 
           {hasMonthlyData && activeMonth && (
             <>
+              <div className="flex flex-col items-center gap-3 mb-4">
+                <label className="text-xs font-semibold uppercase tracking-wide text-muted-foreground" htmlFor="month-year-select">
+                  Sezona
+                </label>
+                <select
+                  id="month-year-select"
+                  value={selectedYear}
+                  onChange={(event) => {
+                    setSelectedYear(Number(event.target.value));
+                    setHasUserSelected(true);
+                  }}
+                  className="w-full max-w-xs rounded-full border border-border bg-secondary px-4 py-2.5 text-sm font-semibold text-foreground shadow-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
+                >
+                  {seasons.map((season) => (
+                    <option key={`month-${season.year}`} value={season.year}>
+                      {season.year}
+                    </option>
+                  ))}
+                </select>
+              </div>
               <div className="flex flex-wrap justify-center gap-2 mb-6">
                 {months.map((month) => (
                   <button
@@ -635,7 +700,17 @@ export function Leaderboard() {
                     >
                       <ChevronLeft className="w-4 h-4" />
                     </button>
-                    <span className="text-sm font-semibold">{playerSeasonYear}</span>
+                    <select
+                      value={playerSeasonYear}
+                      onChange={(event) => setPlayerSeasonYear(Number(event.target.value))}
+                      className="rounded-full border border-border bg-background px-3 py-1 text-sm font-semibold text-foreground"
+                    >
+                      {playerSeasonYears.map((year) => (
+                        <option key={`player-${year}`} value={year}>
+                          {year}
+                        </option>
+                      ))}
+                    </select>
                     <button
                       type="button"
                       onClick={() =>
@@ -680,10 +755,6 @@ export function Leaderboard() {
                   <div className="text-xs text-muted-foreground">TOP8 AVG</div>
                   <div className="text-xl font-bold">{selectedPlayer.top8avg.toFixed(1)}</div>
                 </div>
-                <div className="rounded-lg border border-border bg-secondary/30 p-3">
-                  <div className="text-xs text-muted-foreground">Turnīri</div>
-                  <div className="text-xl font-bold">{selectedPlayer.tournaments}</div>
-                </div>
               </div>
 
               <div className="mt-4">
@@ -714,20 +785,20 @@ export function Leaderboard() {
 
                 {playerMonthlyResults.length > 0 && (
                   <div className="rounded-xl border border-border overflow-hidden">
-                    <div className="grid grid-cols-[minmax(0,1fr)_100px_120px] px-4 py-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground bg-secondary/40">
+                    <div className="grid grid-cols-[minmax(0,1fr)_120px_90px] px-4 py-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground bg-secondary/40">
                       <div>Mēnesis</div>
-                      <div>Vieta</div>
                       <div className="text-right">Punkti</div>
+                      <div className="text-right">Vieta</div>
                     </div>
                     <div className="divide-y divide-border">
                       {playerMonthlyResultsSorted.map(({ month, result }) => (
                         <div
                           key={`${selectedPlayer.name}-${month}`}
-                          className="grid grid-cols-[minmax(0,1fr)_100px_120px] px-4 py-2.5 items-center"
+                          className="grid grid-cols-[minmax(0,1fr)_120px_90px] px-4 py-2.5 items-center"
                         >
                           <div className="text-sm font-semibold">{month}</div>
-                          <div className="text-sm font-bold text-primary">{result?.position}</div>
                           <div className="text-right text-sm font-bold">{result?.points}</div>
+                          <div className="text-right text-sm font-bold text-primary">{result?.position}</div>
                         </div>
                       ))}
                     </div>
@@ -747,9 +818,6 @@ export function Leaderboard() {
         >
           <p className="text-sm text-muted-foreground">
             2026. gada dati tiek sinhronizēti no Google Sheets kopvērtējuma tabulas.
-          </p>
-          <p className="text-xs text-muted-foreground/70 mt-1">
-            Vecākie gadi jāmeklē vēstures anālēs feisbuka eventos...
           </p>
         </motion.div>
       </div>

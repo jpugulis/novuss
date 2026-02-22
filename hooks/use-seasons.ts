@@ -259,6 +259,7 @@ function buildModernSeason(rows: string[][], year: number, baseSeason: Season | 
   const avgIndex = header.indexOf("AVG");
   const stosesIndex = header.indexOf("Štoses");
   const tournamentsIndex = header.indexOf("Apmeklēto turnīru skaits");
+  const tournamentsAltIndex = header.indexOf("Turnīri");
 
   const excluded = new Set([
     "Vieta",
@@ -269,6 +270,7 @@ function buildModernSeason(rows: string[][], year: number, baseSeason: Season | 
     "AVG",
     "Štoses",
     "Apmeklēto turnīru skaits",
+    "Turnīri",
   ]);
 
   const monthDefs: { month: string; positionIndex: number; pointsIndex: number }[] = [];
@@ -295,7 +297,8 @@ function buildModernSeason(rows: string[][], year: number, baseSeason: Season | 
         parseOptionalNumber(row[posIdx]) ?? 0
       );
 
-      const tournaments = parseOptionalNumber(row[tournamentsIndex]) ??
+      const tournamentsValueIndex = tournamentsIndex !== -1 ? tournamentsIndex : tournamentsAltIndex;
+      const tournaments = parseOptionalNumber(row[tournamentsValueIndex]) ??
         monthPoints.filter((value) => value > 0).length;
       const top8 = parseOptionalNumber(row[top8Index]) ?? 0;
       const top8avg = parseOptionalNumber(row[top8AvgIndex]) ??

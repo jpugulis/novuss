@@ -109,7 +109,7 @@ export function HeroSection() {
             <div className="text-xs md:text-sm text-muted-foreground">Sezonas</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl md:text-4xl font-bold text-primary">109</div>
+            <div className="text-3xl md:text-4xl font-bold text-primary">100+</div>
             <div className="text-xs md:text-sm text-muted-foreground">Turnīri</div>
           </div>
           <div className="text-center">
