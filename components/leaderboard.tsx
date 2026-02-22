@@ -265,41 +265,17 @@ export function Leaderboard() {
     };
 
     const previousRanking = buildRanking(months.length - 2);
-    const latestRanking = buildRanking(months.length - 1);
     const deltas = new Map<string, number>();
 
-    playerNames.forEach((name) => {
-      const prev = previousRanking.get(name);
-      const current = latestRanking.get(name);
-      if (!prev || !current) return;
-      const delta = prev - current;
-      if (delta !== 0) deltas.set(name, delta);
+    currentSeason.players.forEach((player) => {
+      const prev = previousRanking.get(player.name);
+      if (!prev) return;
+      const delta = prev - player.position;
+      if (delta !== 0) deltas.set(player.name, delta);
     });
 
     return deltas;
   }, [currentSeason, months]);
-
-  const positionChangeSummary = useMemo(() => {
-    if (months.length < 2 || !currentSeason) return null;
-    const changes = currentSeason.players
-      .map((player) => {
-        const delta = positionChanges.get(player.name);
-        if (!delta) return null;
-        return { name: player.name, delta };
-      })
-      .filter((entry): entry is { name: string; delta: number } => Boolean(entry));
-
-    if (changes.length === 0) {
-      return "Nav vietu izmaiņu kopš pēdējā turnīra.";
-    }
-
-    const preview = changes.slice(0, 6).map((entry) => {
-      const sign = entry.delta > 0 ? "+" : "";
-      return `${entry.name} ${sign}${entry.delta}`;
-    });
-    const extra = changes.length - preview.length;
-    return `Izmaiņas kopš pēdējā turnīra: ${preview.join(", ")}${extra > 0 ? ` +${extra} vēl` : ""}.`;
-  }, [currentSeason, months.length, positionChanges]);
 
   if (!currentSeason) return null;
 
@@ -318,9 +294,6 @@ export function Leaderboard() {
             <span className="text-primary">{visibleTopLabel}</span>
           </h2>
           <p className="text-muted-foreground mb-4">Sezonas kopvērtējums</p>
-          {positionChangeSummary && (
-            <p className="text-xs text-muted-foreground/70 mb-4">{positionChangeSummary}</p>
-          )}
           <a
             href={rulebookUrl}
             target="_blank"
