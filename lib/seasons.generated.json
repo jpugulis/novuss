@@ -10254,7 +10254,7 @@
       {
         "name": "Repča",
         "top8": 190.0,
-        "stoses": 0.0,
+        "stoses": 30.0,
         "top8avg": 24.0,
         "punktiKopa": 244.0,
         "avg": 20.3,
@@ -10264,7 +10264,7 @@
       {
         "name": "Dzinča",
         "top8": 185.0,
-        "stoses": 0.0,
+        "stoses": 29.0,
         "top8avg": 23.0,
         "punktiKopa": 201.0,
         "avg": 20.1,
@@ -10274,7 +10274,7 @@
       {
         "name": "Orļiks",
         "top8": 112.0,
-        "stoses": 0.0,
+        "stoses": 7.0,
         "top8avg": 14.0,
         "punktiKopa": 143.0,
         "avg": 11.9,
@@ -10284,7 +10284,7 @@
       {
         "name": "Pūgulis",
         "top8": 111.0,
-        "stoses": 0.0,
+        "stoses": 10.0,
         "top8avg": 14.0,
         "punktiKopa": 126.0,
         "avg": 12.6,
@@ -10294,7 +10294,7 @@
       {
         "name": "Artchy",
         "top8": 108.0,
-        "stoses": 0.0,
+        "stoses": 12.0,
         "top8avg": 14.0,
         "punktiKopa": 129.0,
         "avg": 11.7,
@@ -10304,7 +10304,7 @@
       {
         "name": "Ziemis",
         "top8": 102.0,
-        "stoses": 0.0,
+        "stoses": 10.0,
         "top8avg": 13.0,
         "punktiKopa": 117.0,
         "avg": 11.7,
@@ -10314,7 +10314,7 @@
       {
         "name": "Rūdis",
         "top8": 85.0,
-        "stoses": 0.0,
+        "stoses": 8.0,
         "top8avg": 11.0,
         "punktiKopa": 91.0,
         "avg": 10.1,
@@ -10324,7 +10324,7 @@
       {
         "name": "TomyG",
         "top8": 80.0,
-        "stoses": 0.0,
+        "stoses": 7.0,
         "top8avg": 10.0,
         "punktiKopa": 86.0,
         "avg": 9.6,
@@ -10334,7 +10334,7 @@
       {
         "name": "Tuncis",
         "top8": 49.0,
-        "stoses": 0.0,
+        "stoses": 1.0,
         "top8avg": 6.0,
         "punktiKopa": 49.0,
         "avg": 9.8,
@@ -10344,7 +10344,7 @@
       {
         "name": "Osīc",
         "top8": 49.0,
-        "stoses": 0.0,
+        "stoses": 1.0,
         "top8avg": 6.0,
         "punktiKopa": 49.0,
         "avg": 7.0,
@@ -10404,7 +10404,7 @@
       {
         "name": "Aivars Puika",
         "top8": 25.0,
-        "stoses": 0.0,
+        "stoses": 8.0,
         "top8avg": 3.0,
         "punktiKopa": 25.0,
         "avg": 25.0,
@@ -10414,7 +10414,7 @@
       {
         "name": "Madara",
         "top8": 24.0,
-        "stoses": 0.0,
+        "stoses": 1.0,
         "top8avg": 3.0,
         "punktiKopa": 24.0,
         "avg": 8.0,
@@ -10434,7 +10434,7 @@
       {
         "name": "Raimonds Skumbiņš",
         "top8": 21.0,
-        "stoses": 0.0,
+        "stoses": 3.0,
         "top8avg": 3.0,
         "punktiKopa": 21.0,
         "avg": 10.5,
@@ -10452,9 +10452,9 @@
         "position": 20
       },
       {
-        "name": "ROBO",
+        "name": "Robo",
         "top8": 20.0,
-        "stoses": 0.0,
+        "stoses": 2.0,
         "top8avg": 3.0,
         "punktiKopa": 20.0,
         "avg": 10.0,
@@ -10474,7 +10474,7 @@
       {
         "name": "Jānis Baķis",
         "top8": 16.0,
-        "stoses": 0.0,
+        "stoses": 1.0,
         "top8avg": 2.0,
         "punktiKopa": 16.0,
         "avg": 16.0,
@@ -10827,7 +10827,7 @@
             "points": 10.0
           },
           {
-            "name": "ROBO",
+            "name": "Robo",
             "position": 6,
             "points": 10.0
           },
@@ -11077,7 +11077,7 @@
             "points": 10.0
           },
           {
-            "name": "ROBO",
+            "name": "Robo",
             "position": 6,
             "points": 10.0
           },
@@ -11652,12 +11652,12 @@
             "points": 0.0
           },
           {
-            "name": "ROBO",
+            "name": "Raimonds Skumbiņš",
             "position": 2,
             "points": 0.0
           },
           {
-            "name": "Raimonds Skumbiņš",
+            "name": "Robo",
             "position": 2,
             "points": 0.0
           },

@@ -70,6 +70,10 @@ Priekā!`,
     comment: `2026.gada sezona iesākās ar turnīru, kurā nav seeded spēlētāji un vairākām interesantām izspēlēm, interesantiem pavērsieniem. THE G.O.A.T. aka Repča palika 7.vietā un Dzinča nebija ieradies, tāpēc TOPS šoreiz mazāk ierasts. TomyG rādīja spēcīgu sniegumu fināla pārliecinoši sakaujot Rūdi, Ziemim arī izdevās iegūt 2 štoses šajā turnīrā un 4. vietu un Birkants arī ierindojās uz pjedestāla 3.pakāpiena! No iepriekšējo sezonu TOP spēlētājiem Pūgulis nebija ieradies un Artchy aizvadīja pagalam neveiksmīgu sezonas sākumu.
 
 Februāra Turnīrs bija sapulcējis 15 rubakus. Vietas tika izlozētas un The G.O.A.T Repča pirmajā spēlē tikās ar Artchy, kur Artchy uzvarēja ar 2:1 un iegūstot Štosi. Vēlviena pieminēšanas vērta spēle uzvarētāju zarā bija Pūgulis vs TomyG, kura beidzās 3 sitienos - 3 štosēs - 1. Pūgulim, 2. Tomy un 3.spēli atkal iesāka un pabeidza Pūgulis ar Štosi aizsūtot Tomy uz zaudētāju zaru, kur tas tikās pret Ziemīti pārliecinoši to uzvarot ar štosi un tālāk jau 2 sīvākas cīņas - pirmā pret Kārli 2:1, kur tikko Kārlis ar 1 štosi bija izslēdzis Repču no zaudētāja zara 2:1 atstājot 5.-6.vietā un otrā pret Artchy pusfinālā, kur tika svinēta 2:1 uzvara. Fināla cīņā TomyG nākot no zaudētāju zara bija nepieciešamas 3 uzvaras pret Pūguli un iesāka ar ļoti jaudīgu štoses partiju, pēc kuras sekoja vēl 2 uzvaru turpinājums un pilnīga dominance - 3:0 uzvara un jau otrais mēneša čempiona tituls šogad ar pārliecinoši dominanci arī štosēs - 6! Tālāk seko Rūdža un tad 4 spēlētāji dala 3.vietu - Birkants, Ziemīc, Kārlis un Artchy!`,
+    images: [
+      { src: "/images/2026-feb-games.jpg", caption: "Februāra spēles" },
+      { src: "/images/2026-feb-final.jpg", caption: "Februāra fināla cīņa - Pūgulis vs TomyG" },
+    ],
   },
 };
 
@@ -137,6 +141,16 @@ function buildAllTimeBest(seasonsData: Season[]) {
 export const allTimeBest = buildAllTimeBest(seasons);
 
 export const galleryImages = [
+  {
+    src: "/images/2026-feb-games.jpg",
+    caption: "Februāra spēles",
+    year: 2026,
+  },
+  {
+    src: "/images/2026-feb-final.jpg",
+    caption: "Februāra fināla cīņa - Pūgulis vs TomyG",
+    year: 2026,
+  },
   {
     src: "/images/gallery-1.png",
     caption: "Pēc turnīra - čempioni atpūšas!",

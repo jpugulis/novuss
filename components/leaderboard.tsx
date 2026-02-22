@@ -311,25 +311,47 @@ export function Leaderboard() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="flex justify-center gap-2 mb-8"
+          className="mb-8"
         >
-          {seasons.map((season) => (
-            <button
-              key={season.year}
-              onClick={() => {
-                setSelectedYear(season.year);
+          <div className="flex justify-center md:hidden">
+            <label className="sr-only" htmlFor="year-select">
+              Izvēlies sezonu
+            </label>
+            <select
+              id="year-select"
+              value={selectedYear}
+              onChange={(event) => {
+                setSelectedYear(Number(event.target.value));
                 setHasUserSelected(true);
               }}
-              className={cn(
-                "px-6 py-3 rounded-full font-semibold transition-all duration-300",
-                selectedYear === season.year
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
-              )}
+              className="w-full max-w-xs rounded-full border border-border bg-secondary px-4 py-3 text-sm font-semibold text-foreground shadow-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
             >
-              {season.year}
-            </button>
-          ))}
+              {seasons.map((season) => (
+                <option key={season.year} value={season.year}>
+                  {season.year}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="hidden md:flex justify-center gap-2">
+            {seasons.map((season) => (
+              <button
+                key={season.year}
+                onClick={() => {
+                  setSelectedYear(season.year);
+                  setHasUserSelected(true);
+                }}
+                className={cn(
+                  "px-6 py-3 rounded-full font-semibold transition-all duration-300",
+                  selectedYear === season.year
+                    ? "bg-primary text-primary-foreground"
+                    : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                )}
+              >
+                {season.year}
+              </button>
+            ))}
+          </div>
         </motion.div>
 
         {/* Leaderboard */}

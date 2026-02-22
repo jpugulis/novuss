@@ -7,6 +7,7 @@ import { CommentarySection } from "@/components/commentary-section";
 import { StoseCounter } from "@/components/stose-counter";
 import { GallerySection } from "@/components/gallery-section";
 import { SpreadsheetEmbed } from "@/components/spreadsheet-embed";
+import { NextTournament } from "@/components/next-tournament";
 import { Footer } from "@/components/footer";
 
 export default function Home() {
@@ -14,6 +15,7 @@ export default function Home() {
     <main className="min-h-screen bg-background text-foreground">
       <Navigation />
       <HeroSection />
+      <NextTournament />
       <Leaderboard />
       <SpreadsheetEmbed />
       <StoseCounter />
