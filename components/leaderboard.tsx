@@ -25,7 +25,7 @@ import {
 } from "@/components/ui/dialog";
 
 const positionStyles: Record<number, { icon: typeof Trophy | null; emoji: string | null; color: string; bg: string }> = {
-  1: { icon: null, emoji: "🐐", color: "text-yellow-400", bg: "bg-yellow-400/10 border-yellow-400/30" },
+  1: { icon: Trophy, emoji: null, color: "text-yellow-400", bg: "bg-yellow-400/10 border-yellow-400/30" },
   2: { icon: Medal, emoji: null, color: "text-gray-300", bg: "bg-gray-300/10 border-gray-300/30" },
   3: { icon: Medal, emoji: null, color: "text-orange-400", bg: "bg-orange-400/10 border-orange-400/30" },
   4: { icon: null, emoji: "🪵", color: "text-amber-700", bg: "bg-amber-700/10 border-amber-700/30" },
@@ -42,7 +42,6 @@ export function Leaderboard() {
   const [pendingMonthParam, setPendingMonthParam] = useState<string | null>(null);
   const [pendingPlayerParam, setPendingPlayerParam] = useState<string | null>(null);
   const [sortPlayerMonthsByPoints, setSortPlayerMonthsByPoints] = useState(false);
-  const isGoatSeason = selectedYear !== 2026;
   const isActiveSeason = selectedYear === 2026;
 
   useEffect(() => {
@@ -384,10 +383,10 @@ export function Leaderboard() {
                         isTopFour && style ? style.color : "text-muted-foreground bg-secondary"
                       )}
                     >
-                      {isActiveSeason && pos === 1 ? (
+                      {pos === 1 && player.name === "Repča" ? (
+                        <span className="text-2xl md:text-3xl">🐐</span>
+                      ) : isActiveSeason && pos === 1 ? (
                         <Trophy className="w-5 h-5 md:w-6 md:h-6 text-yellow-400" />
-                      ) : isGoatSeason && style?.emoji ? (
-                        <span className="text-2xl md:text-3xl">{style.emoji}</span>
                       ) : style?.icon ? (
                         <style.icon className="w-5 h-5 md:w-6 md:h-6" />
                       ) : (
@@ -425,11 +424,6 @@ export function Leaderboard() {
                       {player.name === "Repča" && (
                         <span className="text-xs bg-yellow-400/20 text-yellow-400 px-2 py-0.5 rounded-full">
                           🐐 GOAT
-                        </span>
-                      )}
-                      {pos === 1 && isGoatSeason && player.name !== "Repča" && (
-                        <span className="text-xs bg-yellow-400/20 text-yellow-400 px-2 py-0.5 rounded-full">
-                          GOAT
                         </span>
                       )}
                     </div>

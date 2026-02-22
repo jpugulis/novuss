@@ -2,10 +2,56 @@
 
 import { motion } from "framer-motion";
 import { User, Trophy, Flame, TrendingUp, Star } from "lucide-react";
-import { allTimeBest } from "@/lib/tournament-data";
 import { cn } from "@/lib/utils";
+import { useSeasons } from "@/hooks/use-seasons";
+import { useMemo } from "react";
 
 export function PlayerProfiles() {
+  const seasons = useSeasons();
+  const allTimeBest = useMemo(() => {
+    const totals = new Map<
+      string,
+      { totalPoints: number; totalStoses: number; seasons: number; wins: number }
+    >();
+
+    seasons.forEach((season) => {
+      if (season.players.length === 0) return;
+
+      season.players.forEach((player) => {
+        const entry = totals.get(player.name) ?? {
+          totalPoints: 0,
+          totalStoses: 0,
+          seasons: 0,
+          wins: 0,
+        };
+        entry.totalPoints += player.punktiKopa;
+        entry.totalStoses += player.stoses;
+        entry.seasons += 1;
+        totals.set(player.name, entry);
+      });
+
+      const winner = season.players[0];
+      const winnerEntry = totals.get(winner.name);
+      if (winnerEntry) winnerEntry.wins += 1;
+    });
+
+    return Array.from(totals.entries())
+      .map(([name, stats]) => ({
+        name,
+        totalPoints: Math.round(stats.totalPoints * 10) / 10,
+        totalStoses: Math.round(stats.totalStoses),
+        seasons: stats.seasons,
+        wins: stats.wins,
+      }))
+      .sort((a, b) => {
+        if (b.totalPoints !== a.totalPoints) return b.totalPoints - a.totalPoints;
+        if (b.wins !== a.wins) return b.wins - a.wins;
+        if (b.totalStoses !== a.totalStoses) return b.totalStoses - a.totalStoses;
+        return a.name.localeCompare(b.name, "lv");
+      })
+      .slice(0, 5);
+  }, [seasons]);
+
   return (
     <section className="py-20 px-4">
       <div className="max-w-6xl mx-auto">
@@ -50,7 +96,7 @@ export function PlayerProfiles() {
                     : "bg-gradient-to-br from-secondary to-card"
                 )}
               >
-                {index === 0 && (
+                {player.name === "Repča" && (
                   <div className="absolute top-4 right-4 bg-yellow-400/20 text-yellow-400 px-3 py-1 rounded-full text-xs font-bold">
                     THE GOAT
                   </div>

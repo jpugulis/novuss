@@ -6,6 +6,7 @@ import { Leaderboard } from "@/components/leaderboard";
 import { CommentarySection } from "@/components/commentary-section";
 import { StoseCounter } from "@/components/stose-counter";
 import { GallerySection } from "@/components/gallery-section";
+import { SpreadsheetEmbed } from "@/components/spreadsheet-embed";
 import { Footer } from "@/components/footer";
 
 export default function Home() {
@@ -14,6 +15,7 @@ export default function Home() {
       <Navigation />
       <HeroSection />
       <Leaderboard />
+      <SpreadsheetEmbed />
       <StoseCounter />
       <CommentarySection />
       <GallerySection />
