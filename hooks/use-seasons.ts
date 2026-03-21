@@ -132,6 +132,7 @@ function buildOldSeason(rows: string[][], year: number, baseSeason: Season | und
       months: [],
       comment: baseSeason?.comment ?? "Dati importēti no Google Sheets.",
       images: baseSeason?.images,
+      monthlyComments: baseSeason?.monthlyComments,
     };
   }
 
@@ -242,6 +243,7 @@ function buildOldSeason(rows: string[][], year: number, baseSeason: Season | und
     months,
     comment: baseSeason?.comment ?? "Dati importēti no Google Sheets.",
     images: baseSeason?.images,
+    monthlyComments: baseSeason?.monthlyComments,
   };
 }
 
@@ -349,6 +351,7 @@ function buildModernSeason(rows: string[][], year: number, baseSeason: Season | 
     months,
     comment: baseSeason?.comment ?? "Dati importēti no Google Sheets.",
     images: baseSeason?.images,
+    monthlyComments: baseSeason?.monthlyComments,
   };
 }
 

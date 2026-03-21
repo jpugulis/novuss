@@ -75,6 +75,11 @@ Priekā!`,
   },
   2026: {
     comment: `2026. gada sezona iesākusies jaudīgi un ar katru mēnesi dod jaunu materiālu apskatnieka komentāriem.`,
+    images: [
+      { src: "/images/2026-mar-top3.jpeg", caption: "Marta TOP3 ar coach" },
+      { src: "/images/2026-mar-bracket.jpeg", caption: "Marta turnīra zars" },
+      { src: "/images/2026-mar-dzinca.jpeg", caption: "Guess who is back?" },
+    ],
     monthlyComments: [
       {
         month: "Janvāris",
@@ -163,6 +168,21 @@ function buildAllTimeBest(seasonsData: Season[]) {
 export const allTimeBest = buildAllTimeBest(seasons);
 
 export const galleryImages = [
+  {
+    src: "/images/2026-mar-top3.jpeg",
+    caption: "Marta TOP3 ar coach",
+    year: 2026,
+  },
+  {
+    src: "/images/2026-mar-bracket.jpeg",
+    caption: "Marta turnīra zars",
+    year: 2026,
+  },
+  {
+    src: "/images/2026-mar-dzinca.jpeg",
+    caption: "Guess who is back?",
+    year: 2026,
+  },
   {
     src: "/images/2026-feb-games.jpg",
     caption: "Februāra spēles",

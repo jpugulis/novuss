@@ -38,7 +38,7 @@ export function CommentarySection() {
             <span className="text-primary">KOMENTĀRS</span>
           </h2>
           <p className="text-sm text-muted-foreground mt-3">
-            Katram mēnesim ir komentārs. Pēdējais komentārs - Marts.
+            Katram mēnesim ir komentārs. Pēdējais ar bildēm - Marts.
           </p>
         </motion.div>
 
@@ -85,7 +85,7 @@ export function CommentarySection() {
               <div
                 className={cn(
                   "overflow-hidden transition-all duration-300",
-                  expandedYear === season.year ? "max-h-[3600px]" : "max-h-0"
+                  expandedYear === season.year ? "max-h-[5200px]" : "max-h-0"
                 )}
               >
                 <div className="p-5 pt-0 border-t border-border">
