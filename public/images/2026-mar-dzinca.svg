@@ -1,0 +1,27 @@
+<svg width="1600" height="1200" viewBox="0 0 1600 1200" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="1600" height="1200" fill="#0F141A"/>
+<rect x="70" y="70" width="1460" height="1060" rx="48" fill="url(#paint0_linear)"/>
+<circle cx="1160" cy="280" r="120" fill="#E5B089"/>
+<path d="M1040 390C1040 329.249 1089.25 280 1150 280H1170C1230.75 280 1280 329.249 1280 390V440H1040V390Z" fill="#202B35"/>
+<path d="M990 450H1310L1360 930H940L990 450Z" fill="#D9C0A0"/>
+<path d="M310 210H860V850H310V210Z" fill="#F7F2EA" fill-opacity="0.08" stroke="#F7F2EA" stroke-opacity="0.18" stroke-width="8"/>
+<path d="M390 320H530V390H390V320Z" stroke="#E86F51" stroke-width="10"/>
+<path d="M390 430H530V500H390V430Z" stroke="#E86F51" stroke-width="10"/>
+<path d="M390 540H530V610H390V540Z" stroke="#E86F51" stroke-width="10"/>
+<path d="M530 355H650V465H530" stroke="#E86F51" stroke-width="10"/>
+<path d="M530 575H650V465" stroke="#E86F51" stroke-width="10"/>
+<path d="M650 465H790V465" stroke="#E86F51" stroke-width="10"/>
+<circle cx="1120" cy="980" r="18" fill="#E86F51"/>
+<circle cx="1170" cy="980" r="18" fill="#E86F51"/>
+<circle cx="1220" cy="980" r="18" fill="#E86F51"/>
+<text x="180" y="126" fill="#E86F51" font-family="Arial, sans-serif" font-size="44" font-weight="700">Marta turnirs</text>
+<text x="180" y="1080" fill="#FFF9EF" font-family="Arial, sans-serif" font-size="72" font-weight="700">Dzinca atgriesanas</text>
+<text x="180" y="1135" fill="#BAC4CD" font-family="Arial, sans-serif" font-size="34">Analizes, profesionalitate un 3 stoses</text>
+<defs>
+<linearGradient id="paint0_linear" x1="70" y1="70" x2="1530" y2="1130" gradientUnits="userSpaceOnUse">
+<stop stop-color="#18242C"/>
+<stop offset="0.55" stop-color="#1D2329"/>
+<stop offset="1" stop-color="#2B1E23"/>
+</linearGradient>
+</defs>
+</svg>

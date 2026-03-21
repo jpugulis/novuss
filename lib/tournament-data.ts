@@ -67,12 +67,19 @@ Priekā!`,
     ],
   },
   2026: {
-    comment: `2026.gada sezona iesākās ar turnīru, kurā nav seeded spēlētāji un vairākām interesantām izspēlēm, interesantiem pavērsieniem. THE G.O.A.T. aka Repča palika 7.vietā un Dzinča nebija ieradies, tāpēc TOPS šoreiz mazāk ierasts. TomyG rādīja spēcīgu sniegumu fināla pārliecinoši sakaujot Rūdi, Ziemim arī izdevās iegūt 2 štoses šajā turnīrā un 4. vietu un Birkants arī ierindojās uz pjedestāla 3.pakāpiena! No iepriekšējo sezonu TOP spēlētājiem Pūgulis nebija ieradies un Artchy aizvadīja pagalam neveiksmīgu sezonas sākumu.
+    comment: `2026. gada sezona iesākās ar turnīru bez izsētajiem spēlētājiem un ar vairākiem negaidītiem pavērsieniem. Repča palika tikai 7. vietā, Dzinča nebija ieradies, un tops uz brīdi izskatījās pavisam citādi. TomyG finālā pārliecinoši sakāva Rūdi, Ziemis paņēma 4. vietu un 2 štoses, bet Birkants sezonu sāka ar pjedestālu.
 
-Februāra Turnīrs bija sapulcējis 15 rubakus. Vietas tika izlozētas un The G.O.A.T Repča pirmajā spēlē tikās ar Artchy, kur Artchy, labi nospēlējot (2:0) un iegūstot štosi, aizsūtīja Repču uz zaudētāju zaru. Vēlviena pieminēšanas vērta spēle uzvarētāju zarā bija Pūgulis vs TomyG, kura beidzās 3 sitienos - 3 štosēs - 1. Pūgulim, 2. Tomy un 3.spēli atkal iesāka un pabeidza Pūgulis ar Štosi aizsūtot Tomy uz zaudētāju zaru, kur tas tikās pret Ziemīti pārliecinoši to uzvarot ar štosi un tālāk jau 2 sīvākas cīņas - pirmā pret Kārli 2:1, kur tikko Kārlis ar 1 štosi bija izslēdzis Repču no zaudētāja zara 2:1 atstājot 5.-6.vietā un otrā pret Artchy pusfinālā, kur tika svinēta 2:1 uzvara. Fināla cīņā TomyG nākot no zaudētāju zara bija nepieciešamas 3 uzvaras pret Pūguli un iesāka ar ļoti jaudīgu štoses partiju, pēc kuras sekoja vēl 2 uzvaru turpinājums un pilnīga dominance - 3:0 uzvara un jau otrais mēneša čempiona tituls šogad ar pārliecinoši dominanci arī štosēs - 6! Tālāk seko Rūdža un tad 4 spēlētāji dala 3.vietu - Birkants, Ziemīc, Kārlis un Artchy!`,
+Februāra turnīrā sapulcējās 15 rubaki. Artchy ar 2:0 un štosi jau pirmajā spēlē aizsūtīja Repču uz zaudētāju zaru, bet Pūgulis pret TomyG uzspēlēja īstu trīsštošu klasiku. Finālā TomyG, nākot no zaudētāju zara, salauza Pūguli ar 3:0 un nostiprināja savu sezonas sākuma dominanci, sasniedzot jau 6 štoses.
+
+Marta posmā ieradās Dzinča no tālām zemēm, gatavs gan spēlēt, gan iesaistīties interesantāko izspēļu analīzēs. Mūsu G.O.A.T. Repčas noriets tika apspriests vēl skaļāk - viņš uzvarētāju zarā sāka jaudīgi ar 3 štosēm divās spēlēs, taču netika pāri Dzinčam, un zaudētāju zarā viņu ar 2:1 apturēja uz karstas sērijas esošais Ziemis. Ziemis pēc uzvaras pār Pūguli aizkapājās līdz finālam, pa ceļam uzvarot arī kopvērtējuma otrās vietas turētāju Rūdi.
+
+Pūgulis turnīru sāka tikpat iespaidīgi ar 3 štosēm pirmajās divās spēlēs, pēc tam saspringtā mačā piekāpās Rūdim, bet ceturtā štose pret Ziemi burtiski norāvās pēdējā vieglajā sitienā. Pa 3 štosēm martā savāca arī Dzinča un Repča. Kopvērtējuma līderis TomyG šoreiz piedzīvoja GAME1 sagrāvi pret Repču, pēc tam uzvarētāju zarā 1:2 piekāpās Pūgulim un palika 9.-12. vietu grupā.
+
+Dāvis turpina būt sezonas stabilākais spēlētājs ar jau trešo 10. vietu pēc kārtas, bet Katrīna debijā aizkapājās līdz TOP6 un uzreiz parādīja, ka te būs jāskaitās.`,
     images: [
-      { src: "/images/2026-feb-games.jpg", caption: "Februāra spēles" },
-      { src: "/images/2026-feb-final.jpg", caption: "Februāra fināla cīņa - Pūgulis vs TomyG" },
+      { src: "/images/2026-mar-group.svg", caption: "Marta turnīra kopskats" },
+      { src: "/images/2026-mar-bracket.svg", caption: "Marta turnīra zars" },
+      { src: "/images/2026-mar-dzinca.svg", caption: "Dzinča atgriešanās" },
     ],
   },
 };
@@ -141,6 +148,21 @@ function buildAllTimeBest(seasonsData: Season[]) {
 export const allTimeBest = buildAllTimeBest(seasons);
 
 export const galleryImages = [
+  {
+    src: "/images/2026-mar-group.svg",
+    caption: "Marta turnīra kopskats",
+    year: 2026,
+  },
+  {
+    src: "/images/2026-mar-bracket.svg",
+    caption: "Marta turnīra zars",
+    year: 2026,
+  },
+  {
+    src: "/images/2026-mar-dzinca.svg",
+    caption: "Dzinča atgriešanās",
+    year: 2026,
+  },
   {
     src: "/images/2026-feb-games.jpg",
     caption: "Februāra spēles",
