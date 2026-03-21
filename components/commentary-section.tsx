@@ -38,7 +38,7 @@ export function CommentarySection() {
             <span className="text-primary">KOMENTĀRS</span>
           </h2>
           <p className="text-sm text-muted-foreground mt-3">
-            Katram mēnesim ir komentārs. Pēdējais ar bildēm - Marts.
+            Katram mēnesim ir komentārs. Pēdējais komentārs - Marts.
           </p>
         </motion.div>
 
@@ -85,7 +85,7 @@ export function CommentarySection() {
               <div
                 className={cn(
                   "overflow-hidden transition-all duration-300",
-                  expandedYear === season.year ? "max-h-[2600px]" : "max-h-0"
+                  expandedYear === season.year ? "max-h-[3600px]" : "max-h-0"
                 )}
               >
                 <div className="p-5 pt-0 border-t border-border">
@@ -108,15 +108,34 @@ export function CommentarySection() {
                     </div>
                   )}
 
-                  <div className="relative bg-secondary/50 rounded-xl p-6 mt-4">
-                    <Quote className="absolute top-4 left-4 w-8 h-8 text-primary/20" />
-                    <div className="relative z-10 pl-8">
-                      <p className="text-foreground whitespace-pre-line leading-relaxed">
-                        {season.comment}
-                      </p>
+                  {season.monthlyComments && season.monthlyComments.length > 0 ? (
+                    <div className="space-y-4 mt-4">
+                      {season.monthlyComments.map((entry) => (
+                        <div key={`${season.year}-${entry.month}`} className="relative bg-secondary/50 rounded-xl p-6">
+                          <Quote className="absolute top-4 left-4 w-8 h-8 text-primary/20" />
+                          <div className="relative z-10 pl-8">
+                            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary mb-3">
+                              {entry.month}
+                            </p>
+                            <p className="text-foreground whitespace-pre-line leading-relaxed">
+                              {entry.comment}
+                            </p>
+                          </div>
+                          <Quote className="absolute bottom-4 right-4 w-8 h-8 text-primary/20 rotate-180" />
+                        </div>
+                      ))}
                     </div>
-                    <Quote className="absolute bottom-4 right-4 w-8 h-8 text-primary/20 rotate-180" />
-                  </div>
+                  ) : (
+                    <div className="relative bg-secondary/50 rounded-xl p-6 mt-4">
+                      <Quote className="absolute top-4 left-4 w-8 h-8 text-primary/20" />
+                      <div className="relative z-10 pl-8">
+                        <p className="text-foreground whitespace-pre-line leading-relaxed">
+                          {season.comment}
+                        </p>
+                      </div>
+                      <Quote className="absolute bottom-4 right-4 w-8 h-8 text-primary/20 rotate-180" />
+                    </div>
+                  )}
                 </div>
               </div>
             </motion.div>

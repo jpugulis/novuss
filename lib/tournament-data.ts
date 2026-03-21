@@ -22,17 +22,24 @@ export interface MonthlyStandings {
   results: MonthlyPlayerResult[];
 }
 
+export interface MonthlyComment {
+  month: string;
+  comment: string;
+}
+
 export interface Season {
   year: number;
   players: Player[];
   comment: string;
   images?: { src: string; caption: string }[];
   months?: MonthlyStandings[];
+  monthlyComments?: MonthlyComment[];
 }
 
 interface SeasonMeta {
   comment: string;
   images?: { src: string; caption: string }[];
+  monthlyComments?: MonthlyComment[];
 }
 
 const SEASON_META: Record<number, SeasonMeta> = {
@@ -67,19 +74,26 @@ Priekā!`,
     ],
   },
   2026: {
-    comment: `2026. gada sezona iesākās ar turnīru bez izsētajiem spēlētājiem un ar vairākiem negaidītiem pavērsieniem. Repča palika tikai 7. vietā, Dzinča nebija ieradies, un tops uz brīdi izskatījās pavisam citādi. TomyG finālā pārliecinoši sakāva Rūdi, Ziemis paņēma 4. vietu un 2 štoses, bet Birkants sezonu sāka ar pjedestālu.
+    comment: `2026. gada sezona iesākusies jaudīgi un ar katru mēnesi dod jaunu materiālu apskatnieka komentāriem.`,
+    monthlyComments: [
+      {
+        month: "Janvāris",
+        comment: `2026. gada sezona iesākās ar turnīru bez izsētajiem spēlētājiem un ar vairākiem negaidītiem pavērsieniem. Repča palika tikai 7. vietā, Dzinča nebija ieradies, un tops uz brīdi izskatījās pavisam citādi. TomyG finālā pārliecinoši sakāva Rūdi, Ziemis paņēma 4. vietu un 2 štoses, bet Birkants sezonu sāka ar pjedestālu.`,
+      },
+      {
+        month: "Februāris",
+        comment: `Februāra turnīrā sapulcējās 15 rubaki. Artchy ar 2:0 un štosi jau pirmajā spēlē aizsūtīja Repču uz zaudētāju zaru, bet Pūgulis pret TomyG uzspēlēja īstu trīsštošu klasiku. Finālā TomyG, nākot no zaudētāju zara, salauza Pūguli ar 3:0 un nostiprināja savu sezonas sākuma dominanci, sasniedzot jau 6 štoses.`,
+      },
+      {
+        month: "Marts",
+        comment: `Uz Marta turnīru bija ieradies Dzinča, no tālām zemēm nācis un augstas profesionalitātes virsotnes sasniedzis, un gatavs dalīties un iesaistīties interesantāko izspēļu analīzēs kā jau parasti. Mūsu G.O.A.T. Repčas noriets turpinās - šoreiz uzvarētāju zarā jaudīgi iesāka ar 3 štosēm 2 spēlēs, taču nevarēja tikt pāri Dzinčam un zaudētāju zarā Ziemis, uz hot streak pēc uzvaras pār Pūguli, arī paņēma uzvaru pret viņu 2:1 un aizkapājās līdz finālam uzvarot arī spēcīgo kopvērtējuma 2.vietas ieguvēju Rūdžu.
 
-Februāra turnīrā sapulcējās 15 rubaki. Artchy ar 2:0 un štosi jau pirmajā spēlē aizsūtīja Repču uz zaudētāju zaru, bet Pūgulis pret TomyG uzspēlēja īstu trīsštošu klasiku. Finālā TomyG, nākot no zaudētāju zara, salauza Pūguli ar 3:0 un nostiprināja savu sezonas sākuma dominanci, sasniedzot jau 6 štoses.
+Pūgulis parādīja ārkārtīgi spēcīgu sniegumu iesākot turnīru arī ar 3 štosēm pirmajās 2 spēlēs, tad saspringtu, zaudētu spēli pret Rūdžu, taču 4 štose burtiski norāvās vieglā pēdējā sitienā spēlē pret Ziemi zaudētāju zarā. 3 štoses arī Dzinčam un Repčam.
 
-Marta posmā ieradās Dzinča no tālām zemēm, gatavs gan spēlēt, gan iesaistīties interesantāko izspēļu analīzēs. Mūsu G.O.A.T. Repčas noriets tika apspriests vēl skaļāk - viņš uzvarētāju zarā sāka jaudīgi ar 3 štosēm divās spēlēs, taču netika pāri Dzinčam, un zaudētāju zarā viņu ar 2:1 apturēja uz karstas sērijas esošais Ziemis. Ziemis pēc uzvaras pār Pūguli aizkapājās līdz finālam, pa ceļam uzvarot arī kopvērtējuma otrās vietas turētāju Rūdi.
+Kopvērtējuma līderis TomyG šoreiz piedzīvoja GAME1 sagrāvi pret Repču un pēc uzreiz uzvarētāju zarā piekāpās līdzīgā spēlē Pūgulim 1:2 un palika 9.-12. vietu grupā.
 
-Pūgulis turnīru sāka tikpat iespaidīgi ar 3 štosēm pirmajās divās spēlēs, pēc tam saspringtā mačā piekāpās Rūdim, bet ceturtā štose pret Ziemi burtiski norāvās pēdējā vieglajā sitienā. Pa 3 štosēm martā savāca arī Dzinča un Repča. Kopvērtējuma līderis TomyG šoreiz piedzīvoja GAME1 sagrāvi pret Repču, pēc tam uzvarētāju zarā 1:2 piekāpās Pūgulim un palika 9.-12. vietu grupā.
-
-Dāvis turpina būt sezonas stabilākais spēlētājs ar jau trešo 10. vietu pēc kārtas, bet Katrīna debijā aizkapājās līdz TOP6 un uzreiz parādīja, ka te būs jāskaitās.`,
-    images: [
-      { src: "/images/2026-mar-group.svg", caption: "Marta turnīra kopskats" },
-      { src: "/images/2026-mar-bracket.svg", caption: "Marta turnīra zars" },
-      { src: "/images/2026-mar-dzinca.svg", caption: "Dzinča atgriešanās" },
+Dāvi varētu saukt par sezonas stabilāko spēlētāju - stabila 10.vieta jau trešajā turnīrā pēc kārtas. Katrīna kā jaunpienācēja parādīja ļoti spēcīgu sniegumu aizkapājoties līdz TOP6.`,
+      },
     ],
   },
 };
@@ -94,13 +108,14 @@ function buildDefaultComment(year: number): string {
   return COVID_COMMENTS[year] ?? "Dati importēti no Google Sheets.";
 }
 
-type RawSeason = Omit<Season, "comment" | "images">;
+type RawSeason = Omit<Season, "comment" | "images" | "monthlyComments">;
 
 export const seasons: Season[] = (rawSeasons as RawSeason[])
   .map((season) => ({
     ...season,
     comment: SEASON_META[season.year]?.comment ?? buildDefaultComment(season.year),
     images: SEASON_META[season.year]?.images,
+    monthlyComments: SEASON_META[season.year]?.monthlyComments,
   }))
   .sort((a, b) => b.year - a.year);
 
@@ -148,21 +163,6 @@ function buildAllTimeBest(seasonsData: Season[]) {
 export const allTimeBest = buildAllTimeBest(seasons);
 
 export const galleryImages = [
-  {
-    src: "/images/2026-mar-group.svg",
-    caption: "Marta turnīra kopskats",
-    year: 2026,
-  },
-  {
-    src: "/images/2026-mar-bracket.svg",
-    caption: "Marta turnīra zars",
-    year: 2026,
-  },
-  {
-    src: "/images/2026-mar-dzinca.svg",
-    caption: "Dzinča atgriešanās",
-    year: 2026,
-  },
   {
     src: "/images/2026-feb-games.jpg",
     caption: "Februāra spēles",
