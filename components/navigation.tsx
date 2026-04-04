@@ -2,8 +2,9 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Trophy, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 const navItems = [
   { label: "Rezultāti", href: "#results" },
@@ -38,7 +39,16 @@ export function Navigation() {
         <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
           {/* Logo */}
           <a href="#" className="flex items-center gap-2">
-            <Trophy className="w-6 h-6 text-primary" />
+            <div className="relative h-9 w-9 overflow-hidden rounded-full border border-primary/30 bg-card shadow-sm">
+              <Image
+                src="/RNT_logo.png"
+                alt="Rajona Novusa Turnīrs logo"
+                fill
+                sizes="36px"
+                className="object-cover"
+                priority
+              />
+            </div>
             <span className="font-bold text-lg text-foreground hidden sm:inline">
               Rajona Novusa Turnīrs
             </span>
