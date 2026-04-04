@@ -38,7 +38,7 @@ export function CommentarySection() {
             <span className="text-primary">KOMENTĀRS</span>
           </h2>
           <p className="text-sm text-muted-foreground mt-3">
-            Katram mēnesim ir komentārs. Pēdējais ar bildēm - Marts.
+            Katram mēnesim ir komentārs. Pēdējais ar bildēm - Aprīlis.
           </p>
         </motion.div>
 

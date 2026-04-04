@@ -76,9 +76,10 @@ Priekā!`,
   2026: {
     comment: `2026. gada sezona iesākusies jaudīgi un ar katru mēnesi dod jaunu materiālu apskatnieka komentāriem.`,
     images: [
-      { src: "/images/2026-mar-top3.jpeg", caption: "Marta TOP3 ar coach" },
-      { src: "/images/2026-mar-bracket.jpeg", caption: "Marta turnīra zars" },
-      { src: "/images/2026-mar-dzinca.jpeg", caption: "Guess who is back?" },
+      { src: "/images/Aprila TOP3.jpeg", caption: "Aprīļa TOP3" },
+      { src: "/images/Aprila Tablo.jpeg", caption: "Aprīļa tablo" },
+      { src: "/images/Aprila spele.jpeg", caption: "Aprīļa spēles" },
+      { src: "/images/Aprila Cempions Karlis.jpeg", caption: "Aprīļa čempions Kārlis" },
     ],
     monthlyComments: [
       {
@@ -98,6 +99,20 @@ Pūgulis parādīja ārkārtīgi spēcīgu sniegumu iesākot turnīru arī ar 3 
 Kopvērtējuma līderis TomyG šoreiz piedzīvoja GAME1 sagrāvi pret Repču un pēc uzreiz uzvarētāju zarā piekāpās līdzīgā spēlē Pūgulim 1:2 un palika 9.-12. vietu grupā.
 
 Dāvi varētu saukt par sezonas stabilāko spēlētāju - stabila 10.vieta jau trešajā turnīrā pēc kārtas. Katrīna kā jaunpienācēja parādīja ļoti spēcīgu sniegumu aizkapājoties līdz TOP6.`,
+      },
+      {
+        month: "Aprīlis",
+        comment: `Aprīļa turnīrs pulcēja skaisti pilnu bracket ar 16 spēlmaņiem. Šoreiz nebija ieradies ne Repča, ne Dzinča, kas radīja vēl lielāku intrigu par TOP3.
+
+Namatēvs Kārlis ar ļoti pārliecinošu sniegumu 5 spēlēs (2:0 (Š), 2:0, 2:0 (Š), 2:1, 2:0) parādīja pilnīgu dominanci. Tikai 1 zaudēta izspēle pret Tūju pusfinālā un pārliecinoša 2:0 uzvara finālā.
+
+Sezonas kopvērtējuma līderis TomyG vēljoprojām ir jūtami priekšā pārējiem zaudējot "Rising Štosing STAR" Ziemim, kurš sablieza 3 Štoses pēdējās 3 spēlēs un tāpat tas bija par maz, lai tiktu pāri Tūjam gan uzvarētāju, gan pēcāk arī zaudētāju zarā, kur ar 3:2 (3xŠ) noslēdzās cīņa par iekļūšanu finālā no zaudētāju zara.
+
+Rūdža no TOP2 ir nokrities uz 4.vietu (51p) pēc dubultzaudējuma Pūgulim un pēcāk Birkantam tādējādi noslēdzot TOP4 karavānu, kas ir krietni punktos atrāvušies no tuvākā sekotāja Pūguļa (39p).
+
+Stabilākais spēlētājs Dāvis, kuram līdz šim bija 3x10.vieta, šoreiz izkrita jau pirmajā kārtā pret Arčiju.
+
+Šomēness arī tikai 8 šoses pa turnīru salīdzinot ar 12 un 13 štosēm februārī un martā.`,
       },
     ],
   },
@@ -168,6 +183,26 @@ function buildAllTimeBest(seasonsData: Season[]) {
 export const allTimeBest = buildAllTimeBest(seasons);
 
 export const galleryImages = [
+  {
+    src: "/images/Aprila TOP3.jpeg",
+    caption: "Aprīļa TOP3",
+    year: 2026,
+  },
+  {
+    src: "/images/Aprila Tablo.jpeg",
+    caption: "Aprīļa tablo",
+    year: 2026,
+  },
+  {
+    src: "/images/Aprila spele.jpeg",
+    caption: "Aprīļa spēles",
+    year: 2026,
+  },
+  {
+    src: "/images/Aprila Cempions Karlis.jpeg",
+    caption: "Aprīļa čempions Kārlis",
+    year: 2026,
+  },
   {
     src: "/images/2026-mar-top3.jpeg",
     caption: "Marta TOP3 ar coach",

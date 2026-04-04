@@ -11320,63 +11320,73 @@
     "players": [
       {
         "name": "TomyG",
-        "top8": 56.0,
-        "stoses": 6.0,
-        "top8avg": 18.7,
-        "punktiKopa": 56.0,
-        "avg": 18.7,
-        "tournaments": 3,
+        "top8": 68.0,
+        "stoses": 8.0,
+        "top8avg": 17.0,
+        "punktiKopa": 68.0,
+        "avg": 17.0,
+        "tournaments": 4,
         "position": 1
       },
       {
-        "name": "Rūdis",
-        "top8": 45.0,
-        "stoses": 1.0,
-        "top8avg": 15.0,
-        "punktiKopa": 45.0,
-        "avg": 15.0,
-        "tournaments": 3,
+        "name": "Orļiks",
+        "top8": 59.0,
+        "stoses": 5.0,
+        "top8avg": 14.8,
+        "punktiKopa": 59.0,
+        "avg": 14.8,
+        "tournaments": 4,
         "position": 2
       },
       {
         "name": "Ziemis",
-        "top8": 42.0,
-        "stoses": 4.0,
-        "top8avg": 14.0,
-        "punktiKopa": 42.0,
-        "avg": 14.0,
-        "tournaments": 3,
+        "top8": 58.0,
+        "stoses": 7.0,
+        "top8avg": 14.5,
+        "punktiKopa": 58.0,
+        "avg": 14.5,
+        "tournaments": 4,
         "position": 3
       },
       {
-        "name": "Orļiks",
-        "top8": 34.0,
-        "stoses": 3.0,
-        "top8avg": 11.3,
-        "punktiKopa": 34.0,
-        "avg": 11.3,
-        "tournaments": 3,
+        "name": "Rūdis",
+        "top8": 51.0,
+        "stoses": 1.0,
+        "top8avg": 12.8,
+        "punktiKopa": 51.0,
+        "avg": 12.8,
+        "tournaments": 4,
         "position": 4
       },
       {
-        "name": "Artchy",
-        "top8": 31.0,
-        "stoses": 1.0,
-        "top8avg": 10.3,
-        "punktiKopa": 31.0,
-        "avg": 10.3,
+        "name": "Pūgulis",
+        "top8": 39.0,
+        "stoses": 6.0,
+        "top8avg": 13.0,
+        "punktiKopa": 39.0,
+        "avg": 13.0,
         "tournaments": 3,
         "position": 5
       },
       {
-        "name": "Pūgulis",
-        "top8": 29.0,
-        "stoses": 6.0,
-        "top8avg": 14.5,
-        "punktiKopa": 29.0,
-        "avg": 14.5,
-        "tournaments": 2,
+        "name": "Artchy",
+        "top8": 37.0,
+        "stoses": 1.0,
+        "top8avg": 9.3,
+        "punktiKopa": 37.0,
+        "avg": 9.3,
+        "tournaments": 4,
         "position": 6
+      },
+      {
+        "name": "Birkants",
+        "top8": 32.0,
+        "stoses": 1.0,
+        "top8avg": 10.7,
+        "punktiKopa": 32.0,
+        "avg": 10.7,
+        "tournaments": 3,
+        "position": 7
       },
       {
         "name": "Repča",
@@ -11386,7 +11396,17 @@
         "punktiKopa": 29.0,
         "avg": 9.7,
         "tournaments": 3,
-        "position": 7
+        "position": 8
+      },
+      {
+        "name": "Artis Jansons",
+        "top8": 27.0,
+        "stoses": 0.0,
+        "top8avg": 6.8,
+        "punktiKopa": 27.0,
+        "avg": 6.8,
+        "tournaments": 4,
+        "position": 9
       },
       {
         "name": "Dzinča",
@@ -11396,57 +11416,67 @@
         "punktiKopa": 25.0,
         "avg": 25.0,
         "tournaments": 1,
-        "position": 8
-      },
-      {
-        "name": "Birkants",
-        "top8": 22.0,
-        "stoses": 1.0,
-        "top8avg": 11.0,
-        "punktiKopa": 22.0,
-        "avg": 11.0,
-        "tournaments": 2,
-        "position": 9
-      },
-      {
-        "name": "Osīc",
-        "top8": 20.0,
-        "stoses": 0.0,
-        "top8avg": 6.7,
-        "punktiKopa": 20.0,
-        "avg": 6.7,
-        "tournaments": 3,
         "position": 10
       },
       {
-        "name": "Dāvīc",
-        "top8": 18.0,
-        "stoses": 2.0,
-        "top8avg": 6.0,
-        "punktiKopa": 18.0,
-        "avg": 6.0,
-        "tournaments": 3,
+        "name": "Osīc",
+        "top8": 25.0,
+        "stoses": 0.0,
+        "top8avg": 6.3,
+        "punktiKopa": 25.0,
+        "avg": 6.3,
+        "tournaments": 4,
         "position": 11
       },
       {
-        "name": "Artis Jansons",
-        "top8": 18.0,
-        "stoses": 0.0,
-        "top8avg": 6.0,
-        "punktiKopa": 18.0,
-        "avg": 6.0,
-        "tournaments": 3,
+        "name": "Dāvīc",
+        "top8": 23.0,
+        "stoses": 2.0,
+        "top8avg": 5.8,
+        "punktiKopa": 23.0,
+        "avg": 5.8,
+        "tournaments": 4,
         "position": 12
       },
       {
         "name": "Zane Vasermane",
-        "top8": 16.0,
+        "top8": 21.0,
         "stoses": 0.0,
         "top8avg": 5.3,
-        "punktiKopa": 16.0,
+        "punktiKopa": 21.0,
         "avg": 5.3,
-        "tournaments": 3,
+        "tournaments": 4,
         "position": 13
+      },
+      {
+        "name": "Dāvis Vanags",
+        "top8": 20.0,
+        "stoses": 1.0,
+        "top8avg": 20.0,
+        "punktiKopa": 20.0,
+        "avg": 20.0,
+        "tournaments": 1,
+        "position": 14
+      },
+      {
+        "name": "Katrīna Groza",
+        "top8": 19.0,
+        "stoses": 0.0,
+        "top8avg": 9.5,
+        "punktiKopa": 19.0,
+        "avg": 9.5,
+        "tournaments": 2,
+        "position": 15
+      },
+      {
+        "name": "Areta Puncule",
+        "top8": 11.0,
+        "stoses": 0.0,
+        "top8avg": 5.5,
+        "punktiKopa": 11.0,
+        "avg": 5.5,
+        "tournaments": 2,
+        "position": 16
       },
       {
         "name": "OG",
@@ -11456,7 +11486,7 @@
         "punktiKopa": 10.0,
         "avg": 10.0,
         "tournaments": 1,
-        "position": 14
+        "position": 17
       },
       {
         "name": "Klāvs Taube",
@@ -11466,7 +11496,7 @@
         "punktiKopa": 9.0,
         "avg": 9.0,
         "tournaments": 1,
-        "position": 15
+        "position": 18
       },
       {
         "name": "Inese Tiļļa",
@@ -11476,7 +11506,17 @@
         "punktiKopa": 6.0,
         "avg": 6.0,
         "tournaments": 1,
-        "position": 16
+        "position": 19
+      },
+      {
+        "name": "Niks Apsītis",
+        "top8": 6.0,
+        "stoses": 0.0,
+        "top8avg": 6.0,
+        "punktiKopa": 6.0,
+        "avg": 6.0,
+        "tournaments": 1,
+        "position": 20
       },
       {
         "name": "Jānis Raibarts",
@@ -11486,7 +11526,7 @@
         "punktiKopa": 5.0,
         "avg": 5.0,
         "tournaments": 1,
-        "position": 17
+        "position": 21
       },
       {
         "name": "Oskars Ineses",
@@ -11496,7 +11536,7 @@
         "punktiKopa": 5.0,
         "avg": 5.0,
         "tournaments": 1,
-        "position": 18
+        "position": 22
       },
       {
         "name": "Tuncis",
@@ -11506,17 +11546,17 @@
         "punktiKopa": 5.0,
         "avg": 5.0,
         "tournaments": 1,
-        "position": 19
+        "position": 23
       },
       {
-        "name": "Areta Puncule",
+        "name": "Toms Dreika",
         "top8": 5.0,
         "stoses": 0.0,
         "top8avg": 5.0,
         "punktiKopa": 5.0,
         "avg": 5.0,
         "tournaments": 1,
-        "position": 20
+        "position": 24
       }
     ],
     "months": [
@@ -11741,6 +11781,91 @@
           {
             "name": "Tuncis",
             "position": 15,
+            "points": 5.0
+          }
+        ]
+      },
+      {
+        "month": "Aprīlis",
+        "results": [
+          {
+            "name": "Orļiks",
+            "position": 1,
+            "points": 25.0
+          },
+          {
+            "name": "Dāvis Vanags",
+            "position": 2,
+            "points": 20.0
+          },
+          {
+            "name": "Ziemis",
+            "position": 3,
+            "points": 16.0
+          },
+          {
+            "name": "TomyG",
+            "position": 4,
+            "points": 12.0
+          },
+          {
+            "name": "Pūgulis",
+            "position": 5,
+            "points": 10.0
+          },
+          {
+            "name": "Birkants",
+            "position": 6,
+            "points": 10.0
+          },
+          {
+            "name": "Artis Jansons",
+            "position": 7,
+            "points": 9.0
+          },
+          {
+            "name": "Katrīna Groza",
+            "position": 8,
+            "points": 9.0
+          },
+          {
+            "name": "Artchy",
+            "position": 9,
+            "points": 6.0
+          },
+          {
+            "name": "Areta Puncule",
+            "position": 10,
+            "points": 6.0
+          },
+          {
+            "name": "Niks Apsītis",
+            "position": 11,
+            "points": 6.0
+          },
+          {
+            "name": "Rūdis",
+            "position": 12,
+            "points": 6.0
+          },
+          {
+            "name": "Dāvīc",
+            "position": 13,
+            "points": 5.0
+          },
+          {
+            "name": "Toms Dreika",
+            "position": 14,
+            "points": 5.0
+          },
+          {
+            "name": "Osīc",
+            "position": 15,
+            "points": 5.0
+          },
+          {
+            "name": "Zane Vasermane",
+            "position": 16,
             "points": 5.0
           }
         ]
