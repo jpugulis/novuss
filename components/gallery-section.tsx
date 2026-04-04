@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Camera, X, Play, ImageIcon } from "lucide-react";
+import { Camera, X, Play, ImageIcon, ExternalLink } from "lucide-react";
 import { galleryImages } from "@/lib/tournament-data";
 import { useState } from "react";
 import Image from "next/image";
@@ -12,9 +12,13 @@ export function GallerySection() {
   const [activeTab, setActiveTab] = useState<"photos" | "memes" | "videos">("photos");
 
   const memes = [
-    { id: 1, title: "Kad Rēpelis atkal uzvar", placeholder: true },
-    { id: 2, title: "Dzintis reakcija", placeholder: true },
-    { id: 3, title: "Novusa vakars 3am", placeholder: true },
+    {
+      id: 1,
+      title: "kad jāizšauj blue lagoon",
+      caption: "Instagram reel",
+      href: "https://www.instagram.com/reel/DWsa5-5kW5d/?igsh=MWJxeWlmcmxqZXI0dQ==",
+      embedSrc: "https://www.instagram.com/reel/DWsa5-5kW5d/embed/captioned/",
+    },
   ];
 
   return (
@@ -94,7 +98,7 @@ export function GallerySection() {
 
         {/* Memes Grid */}
         {activeTab === "memes" && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             {memes.map((meme, index) => (
               <motion.div
                 key={meme.id}
@@ -102,16 +106,37 @@ export function GallerySection() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="aspect-square rounded-xl bg-card border border-border flex flex-col items-center justify-center gap-3"
+                className="rounded-2xl bg-card border border-border overflow-hidden"
               >
-                <div className="w-16 h-16 rounded-full bg-secondary flex items-center justify-center">
-                  <span className="text-3xl">😂</span>
+                <div className="p-5 border-b border-border flex items-center justify-between gap-4">
+                  <div>
+                    <h3 className="text-lg font-semibold text-foreground">{meme.title}</h3>
+                    <p className="text-sm text-muted-foreground">{meme.caption}</p>
+                  </div>
+                  <a
+                    href={meme.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-2 text-sm font-medium text-primary transition-colors hover:bg-primary/20"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    Instagram
+                  </a>
                 </div>
-                <p className="text-sm text-muted-foreground">{meme.title}</p>
-                <span className="text-xs text-primary">Drīzumā...</span>
+
+                <div className="p-4 flex justify-center bg-secondary/20">
+                  <div className="w-full max-w-sm overflow-hidden rounded-xl border border-border bg-background shadow-sm">
+                    <iframe
+                      src={meme.embedSrc}
+                      title={meme.title}
+                      className="w-full aspect-[9/16]"
+                      allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                      allowFullScreen
+                    />
+                  </div>
+                </div>
               </motion.div>
             ))}
-
           </div>
         )}
 
