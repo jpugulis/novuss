@@ -184,6 +184,11 @@ export const allTimeBest = buildAllTimeBest(seasons);
 
 export const galleryImages = [
   {
+    src: "/images/Rajona_Muzizglitiba.jpeg",
+    caption: "Rajona Mūžizglītība",
+    year: 2026,
+  },
+  {
     src: "/images/Aprila TOP3.jpeg",
     caption: "Aprīļa TOP3",
     year: 2026,

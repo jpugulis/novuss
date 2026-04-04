@@ -14,10 +14,18 @@ export function GallerySection() {
   const memes = [
     {
       id: 1,
+      type: "instagram" as const,
       title: "kad jāizšauj blue lagoon",
       caption: "Instagram reel",
       href: "https://www.instagram.com/reel/DWsa5-5kW5d/?igsh=MWJxeWlmcmxqZXI0dQ==",
       embedSrc: "https://www.instagram.com/reel/DWsa5-5kW5d/embed/captioned/",
+    },
+    {
+      id: 2,
+      type: "image" as const,
+      title: "Rajona Mūžizglītība",
+      caption: "Meme bilde",
+      src: "/images/Rajona_Muzizglitiba.jpeg",
     },
   ];
 
@@ -113,27 +121,55 @@ export function GallerySection() {
                     <h3 className="text-lg font-semibold text-foreground">{meme.title}</h3>
                     <p className="text-sm text-muted-foreground">{meme.caption}</p>
                   </div>
-                  <a
-                    href={meme.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-2 text-sm font-medium text-primary transition-colors hover:bg-primary/20"
-                  >
-                    <ExternalLink className="w-4 h-4" />
-                    Instagram
-                  </a>
+                  {meme.type === "instagram" ? (
+                    <a
+                      href={meme.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-2 text-sm font-medium text-primary transition-colors hover:bg-primary/20"
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                      Instagram
+                    </a>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => setSelectedImage({ src: meme.src, caption: meme.title })}
+                      className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-2 text-sm font-medium text-primary transition-colors hover:bg-primary/20"
+                    >
+                      <ImageIcon className="w-4 h-4" />
+                      Atvērt
+                    </button>
+                  )}
                 </div>
 
                 <div className="p-4 flex justify-center bg-secondary/20">
-                  <div className="w-full max-w-sm overflow-hidden rounded-xl border border-border bg-background shadow-sm">
-                    <iframe
-                      src={meme.embedSrc}
-                      title={meme.title}
-                      className="w-full aspect-[9/16]"
-                      allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                      allowFullScreen
-                    />
-                  </div>
+                  {meme.type === "instagram" ? (
+                    <div className="w-full max-w-sm overflow-hidden rounded-xl border border-border bg-background shadow-sm">
+                      <iframe
+                        src={meme.embedSrc}
+                        title={meme.title}
+                        className="w-full aspect-[9/16]"
+                        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                        allowFullScreen
+                      />
+                    </div>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => setSelectedImage({ src: meme.src, caption: meme.title })}
+                      className="group relative w-full overflow-hidden rounded-xl border border-border bg-background shadow-sm"
+                    >
+                      <div className="relative aspect-video">
+                        <Image
+                          src={meme.src}
+                          alt={meme.title}
+                          fill
+                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                      </div>
+                    </button>
+                  )}
                 </div>
               </motion.div>
             ))}
