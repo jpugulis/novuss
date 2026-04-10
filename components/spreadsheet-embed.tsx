@@ -77,18 +77,11 @@ export function SpreadsheetEmbed() {
                 );
               })}
             </div>
-            <p className="mt-3 text-xs text-muted-foreground">
-              Pārskata saturs tagad darbojas kā vietējā lapas navigācija, lai paliktu šeit, nevis pārlekt uz Google Sheets.
-            </p>
           </div>
           {activeSection.id === "overview" ? (
             <div className="px-4 py-6 md:px-6 md:py-8">
               <div className="rounded-2xl border border-dashed border-border bg-background/60 p-5 md:p-6">
                 <h3 className="text-xl font-semibold text-foreground">Sezonu satura rādītājs</h3>
-                <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
-                  Google publicētajā INDEX lapā saites tiek izdotas kā `#gid=...`, un tās jaunā cilnē ieciklējas atpakaļ INDEX skatā.
-                  Šeit izmantojam tiešas lapu adreses, lai pārslēgšanās vienmēr notiktu iekš lapas.
-                </p>
                 <div className="mt-5 overflow-hidden rounded-2xl border border-border">
                   <div className="grid grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] bg-muted/50 px-4 py-3 text-left text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
                     <span>Gads / Lapa</span>
