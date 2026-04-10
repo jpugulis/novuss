@@ -5,21 +5,22 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-const EMBED_BASE_URL =
-  "https://docs.google.com/spreadsheets/d/e/2PACX-1vSVQqxoZX9HB8fbTqhFcN9LnLqyVv-vNJ8IsL4OvplVDdKnzxV7T2X8RDt3_xltKl2WtWONj_OAsRms/pubhtml?widget=true&headers=false";
+const EMBED_SHEET_URL =
+  "https://docs.google.com/spreadsheets/d/e/2PACX-1vSVQqxoZX9HB8fbTqhFcN9LnLqyVv-vNJ8IsL4OvplVDdKnzxV7T2X8RDt3_xltKl2WtWONj_OAsRms/pubhtml/sheet?headers=false&gid=";
 
 const SHEET_SECTIONS = [
-  { id: "overview", label: "Pārskats" },
-  { id: "2026", label: "2026", src: `${EMBED_BASE_URL}&gid=1659881521` },
-  { id: "2025", label: "2025", src: `${EMBED_BASE_URL}&gid=680304360` },
-  { id: "2024", label: "2024", src: `${EMBED_BASE_URL}&gid=896123171` },
-  { id: "2023", label: "2023", src: `${EMBED_BASE_URL}&gid=1273478125` },
-  { id: "2022", label: "2022", src: `${EMBED_BASE_URL}&gid=802844939` },
-  { id: "2021", label: "2021", src: `${EMBED_BASE_URL}&gid=1029121250` },
-  { id: "2020", label: "2020", src: `${EMBED_BASE_URL}&gid=290983024` },
-  { id: "2019", label: "2019", src: `${EMBED_BASE_URL}&gid=1913034709` },
-  { id: "2018", label: "2018", src: `${EMBED_BASE_URL}&gid=1555513506` },
-  { id: "2017", label: "2017", src: `${EMBED_BASE_URL}&gid=610551329` },
+  { id: "overview", label: "Pārskats", note: "Satura rādītājs visām publicētajām lapām." },
+  { id: "2026", label: "2026", note: "Gada kopsavilkums", src: `${EMBED_SHEET_URL}1659881521` },
+  { id: "2025", label: "2025", note: "Gada kopsavilkums", src: `${EMBED_SHEET_URL}680304360` },
+  { id: "2024", label: "2024", note: "Gada kopsavilkums", src: `${EMBED_SHEET_URL}896123171` },
+  { id: "2023", label: "2023", note: "Gada kopsavilkums", src: `${EMBED_SHEET_URL}1273478125` },
+  { id: "2020-21-22-c19", label: "2020-21-22 C-19", note: "Apvienotais periods ar COVID lokautiem", src: `${EMBED_SHEET_URL}2031005057` },
+  { id: "2022", label: "2022", note: "Gada kopsavilkums", src: `${EMBED_SHEET_URL}802844939` },
+  { id: "2021", label: "2021", note: "COVID (turnīri nenotika)", src: `${EMBED_SHEET_URL}1029121250` },
+  { id: "2020", label: "2020", note: "Gada kopsavilkums", src: `${EMBED_SHEET_URL}290983024` },
+  { id: "2019", label: "2019", note: "Gada kopsavilkums", src: `${EMBED_SHEET_URL}1913034709` },
+  { id: "2018", label: "2018", note: "Gada kopsavilkums", src: `${EMBED_SHEET_URL}1555513506` },
+  { id: "2017", label: "2017", note: "Gada kopsavilkums", src: `${EMBED_SHEET_URL}610551329` },
 ] as const;
 
 export function SpreadsheetEmbed() {
@@ -85,20 +86,29 @@ export function SpreadsheetEmbed() {
               <div className="rounded-2xl border border-dashed border-border bg-background/60 p-5 md:p-6">
                 <h3 className="text-xl font-semibold text-foreground">Sezonu satura rādītājs</h3>
                 <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
-                  Izvēlies sezonu, un tabula tiks atvērta tepat zem šīs sadaļas bez ārējas pāradresācijas.
+                  Google publicētajā INDEX lapā saites tiek izdotas kā `#gid=...`, un tās jaunā cilnē ieciklējas atpakaļ INDEX skatā.
+                  Šeit izmantojam tiešas lapu adreses, lai pārslēgšanās vienmēr notiktu iekš lapas.
                 </p>
-                <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="mt-5 overflow-hidden rounded-2xl border border-border">
+                  <div className="grid grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] bg-muted/50 px-4 py-3 text-left text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+                    <span>Gads / Lapa</span>
+                    <span>Piezīme</span>
+                  </div>
                   {yearSections.map((section) => (
-                    <Button
+                    <div
                       key={section.id}
-                      type="button"
-                      variant="outline"
-                      className="h-auto w-full justify-between rounded-2xl px-4 py-4 text-left"
-                      onClick={() => setActiveSectionId(section.id)}
+                      className="grid grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] items-center gap-3 border-t border-border bg-background px-4 py-3"
                     >
-                      <span className="text-base font-semibold">{section.label}. gada sezona</span>
-                      <span className="text-xs text-muted-foreground">Atvērt iekš lapas</span>
-                    </Button>
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        className="h-auto w-full justify-start rounded-xl px-3 py-3 text-left text-base font-semibold"
+                        onClick={() => setActiveSectionId(section.id)}
+                      >
+                        {section.label}
+                      </Button>
+                      <span className="text-sm text-muted-foreground">{section.note}</span>
+                    </div>
                   ))}
                 </div>
               </div>
