@@ -76,6 +76,10 @@ Priekā!`,
   2026: {
     comment: `2026. gada sezona iesākusies jaudīgi un ar katru mēnesi dod jaunu materiālu apskatnieka komentāriem.`,
     images: [
+      { src: "/images/Maija Cempions Dzintis.jpeg", caption: "Maija čempions Dzintis" },
+      { src: "/images/Maija TOP3 un treneris.jpeg", caption: "Maija TOP3 un treneris" },
+      { src: "/images/Maija Tablo.jpeg", caption: "Maija tablo" },
+      { src: "/images/kaulins-uz-mates.jpeg", caption: "Māte zem kauliņa" },
       { src: "/images/Aprila TOP3.jpeg", caption: "Aprīļa TOP3" },
       { src: "/images/Aprila Tablo.jpeg", caption: "Aprīļa tablo" },
       { src: "/images/Aprila spele.jpeg", caption: "Aprīļa spēles" },
@@ -113,6 +117,10 @@ Rūdža no TOP2 ir nokrities uz 4.vietu (51p) pēc dubultzaudējuma Pūgulim un 
 Stabilākais spēlētājs Dāvis, kuram līdz šim bija 3x10.vieta, šoreiz izkrita jau pirmajā kārtā pret Arčiju.
 
 Šomēness arī tikai 8 šoses pa turnīru salīdzinot ar 12 un 13 štosēm februārī un martā.`,
+      },
+      {
+        month: "Maijs",
+        comment: `Maija turnīrs pulcēja rekordlielu spēlētāju skaitu - 18 entuziastus. Dzinčisters ir atgriezies ar pārlicienoši uzvaru, kas arī apliecinās faktā, ka no rekordlielā turnīra štošu skaita - 15, 7 ir tieši Dzintim. Pūguļa/TomyG mačā tika piedzīvoti 2 interesanti pavērsieni - abi pēdējie dažādu krāsu kauliņi iesisti vienā, kas noveda pie pārspēles kā arī nākamajā spēlē māte pamanījās pasprukt zem kauliņa. TomyG ar Orļiku saglabā 1. un 2. vietu kopvērtējumā, kamēr 3.vietai ir pietuvojies Rūdža, kuru no Ziemja šķir vairs nu tikai 1 punkts!`,
       },
     ],
   },
@@ -183,6 +191,26 @@ function buildAllTimeBest(seasonsData: Season[]) {
 export const allTimeBest = buildAllTimeBest(seasons);
 
 export const galleryImages = [
+  {
+    src: "/images/Maija Cempions Dzintis.jpeg",
+    caption: "Maija čempions Dzintis",
+    year: 2026,
+  },
+  {
+    src: "/images/Maija TOP3 un treneris.jpeg",
+    caption: "Maija TOP3 un treneris",
+    year: 2026,
+  },
+  {
+    src: "/images/Maija Tablo.jpeg",
+    caption: "Maija tablo",
+    year: 2026,
+  },
+  {
+    src: "/images/kaulins-uz-mates.jpeg",
+    caption: "Māte zem kauliņa",
+    year: 2026,
+  },
   {
     src: "/images/Rajona_Muzizglitiba.jpeg",
     caption: "Rajona Mūžizglītība",

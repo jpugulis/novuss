@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { CalendarDays, Clock, MapPin } from "lucide-react";
 
 const GOOGLE_CALENDAR_URL =
-  "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Novusa%20turn%C4%ABrs%20-%20maijs&dates=20260529T190000/20260530T010000&ctz=Europe%2FRiga&details=No%2019%20iera%C5%A1an%C4%81s%2C%20ap%2020%20s%C4%81kam%20sp%C4%93l%C4%93t!&location=Retro%20Auto%20muzejs";
+  "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Novusa%20turn%C4%ABrs%20-%20j%C5%ABnijs&dates=20260626T190000/20260627T010000&ctz=Europe%2FRiga&details=No%2019%20iera%C5%A1an%C4%81s%2C%20ap%2020%20s%C4%81kam%20sp%C4%93l%C4%93t!&location=Retro%20Auto%20muzejs";
 
 export function NextTournament() {
   return (
@@ -21,7 +21,7 @@ export function NextTournament() {
               <CalendarDays className="w-4 h-4 text-primary" />
               <span className="text-sm font-medium text-primary">Nākamais turnīrs</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground">29. maijs, piektdiena</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground">26. jūnijs, piektdiena</h2>
             <p className="text-sm text-muted-foreground mt-2">
               Nākamais novusa vakars.
             </p>

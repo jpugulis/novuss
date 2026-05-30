@@ -7,6 +7,21 @@ import { useState } from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
+const videos = [
+  {
+    id: 1,
+    title: "Brīdis pirms fināla",
+    caption: "Maija turnīrs",
+    src: "/images/Bridis pirms finala.mp4",
+  },
+  {
+    id: 2,
+    title: "Let him cook!",
+    caption: "Maija turnīrs",
+    src: "/images/Let him cook!.mp4",
+  },
+] as const;
+
 export function GallerySection() {
   const [selectedImage, setSelectedImage] = useState<{ src: string; caption: string } | null>(null);
   const [activeTab, setActiveTab] = useState<"photos" | "memes" | "videos">("photos");
@@ -179,18 +194,30 @@ export function GallerySection() {
         {/* Videos */}
         {activeTab === "videos" && (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              className="aspect-video rounded-xl bg-card border border-border flex flex-col items-center justify-center gap-3"
-            >
-              <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center">
-                <Play className="w-8 h-8 text-primary" />
-              </div>
-              <p className="text-muted-foreground">Video drīzumā...</p>
-            </motion.div>
-
+            {videos.map((video, index) => (
+              <motion.div
+                key={video.id}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="overflow-hidden rounded-xl bg-card border border-border"
+              >
+                <div className="relative bg-background">
+                  <video
+                    src={video.src}
+                    controls
+                    preload="metadata"
+                    playsInline
+                    className="aspect-video w-full bg-background object-contain"
+                  />
+                </div>
+                <div className="p-4">
+                  <h3 className="font-semibold text-foreground">{video.title}</h3>
+                  <p className="mt-1 text-sm text-muted-foreground">{video.caption}</p>
+                </div>
+              </motion.div>
+            ))}
           </div>
         )}
 
