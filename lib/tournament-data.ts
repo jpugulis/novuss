@@ -76,6 +76,11 @@ Priekā!`,
   2026: {
     comment: `2026. gada sezona iesākusies jaudīgi un ar katru mēnesi dod jaunu materiālu apskatnieka komentāriem.`,
     images: [
+      { src: "/images/Dzintis Neparspets.jpeg", caption: "Dzintis nepārspēts" },
+      { src: "/images/Junija TOP3.jpeg", caption: "Jūnija TOP3" },
+      { src: "/images/Junija TOP3 un runner up.jpeg", caption: "Jūnija TOP3 un runner-up" },
+      { src: "/images/Junija TOP3 bauda savu veikumu.jpeg", caption: "Jūnija TOP3 bauda savu veikumu" },
+      { src: "/images/Junija Tablo.jpeg", caption: "Jūnija tablo" },
       { src: "/images/Maija Cempions Dzintis.jpeg", caption: "Maija čempions Dzintis" },
       { src: "/images/Maija TOP3 un treneris.jpeg", caption: "Maija TOP3 un treneris" },
       { src: "/images/Maija Tablo.jpeg", caption: "Maija tablo" },
@@ -121,6 +126,10 @@ Stabilākais spēlētājs Dāvis, kuram līdz šim bija 3x10.vieta, šoreiz izkr
       {
         month: "Maijs",
         comment: `Maija turnīrs pulcēja rekordlielu spēlētāju skaitu - 18 entuziastus. Dzinčisters ir atgriezies ar pārlicienoši uzvaru, kas arī apliecinās faktā, ka no rekordlielā turnīra štošu skaita - 15, 7 ir tieši Dzintim. Pūguļa/TomyG mačā tika piedzīvoti 2 interesanti pavērsieni - abi pēdējie dažādu krāsu kauliņi iesisti vienā, kas noveda pie pārspēles kā arī nākamajā spēlē māte pamanījās pasprukt zem kauliņa. TomyG ar Orļiku saglabā 1. un 2. vietu kopvērtējumā, kamēr 3.vietai ir pietuvojies Rūdža, kuru no Ziemja šķir vairs nu tikai 1 punkts!`,
+      },
+      {
+        month: "Jūnijs",
+        comment: `Jūnija pēcsvētku turnīrs piektdienā, kad sestdiena pusei valsts skaitās kā officiālā "pārceltā" darba diena, neliedza uz to ierasties prāvam skaitam spēlēt gribētāju - pulcējot 19 spēlētājus tas kļuva par sezonas apmeklētāko turnīru! Laikapstākļi bija lieliski. Brackets tika papildināts un ielozējās, ka 11/12 zars tika aizpildīts pilnībā - Kārlis vs TomyG un Raibīc vs Pūgulis. Bija āra galds, kur notika vairākas interesantas izspēles, galvenokārt tā iemesla dēļ, ka slīdamība bija nevienmērīga un līdz ar to spēles kļuva neparedzamākas. Neskatoties uz prāvo apmeklētāju skaitu, štoses bija maz - Dzintis dabūja 3 stabili aizvadot turnīru uzvarētāju zarā un kļūstot par stabilu čempionu, kamēr Tomy saglabāja kopvērtējuma līdera pozīciju paliekot 2.vietā un iegūstot arī 2 štoses. Kārlim, Tūjam un Pūgulim pa vienai. Kā sezonas atgriešanās bija Patrīcijas, Katrīnas un Ginta ierašanās!`,
       },
     ],
   },
@@ -191,6 +200,31 @@ function buildAllTimeBest(seasonsData: Season[]) {
 export const allTimeBest = buildAllTimeBest(seasons);
 
 export const galleryImages = [
+  {
+    src: "/images/Dzintis Neparspets.jpeg",
+    caption: "Dzintis nepārspēts",
+    year: 2026,
+  },
+  {
+    src: "/images/Junija TOP3.jpeg",
+    caption: "Jūnija TOP3",
+    year: 2026,
+  },
+  {
+    src: "/images/Junija TOP3 un runner up.jpeg",
+    caption: "Jūnija TOP3 un runner-up",
+    year: 2026,
+  },
+  {
+    src: "/images/Junija TOP3 bauda savu veikumu.jpeg",
+    caption: "Jūnija TOP3 bauda savu veikumu",
+    year: 2026,
+  },
+  {
+    src: "/images/Junija Tablo.jpeg",
+    caption: "Jūnija tablo",
+    year: 2026,
+  },
   {
     src: "/images/Maija Cempions Dzintis.jpeg",
     caption: "Maija čempions Dzintis",

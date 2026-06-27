@@ -11320,83 +11320,103 @@
     "players": [
       {
         "name": "TomyG",
-        "top8": 88,
-        "stoses": 10,
-        "top8avg": 17.6,
-        "punktiKopa": 88,
-        "avg": 17.6,
-        "tournaments": 5,
+        "top8": 108,
+        "stoses": 12,
+        "top8avg": 18,
+        "punktiKopa": 108,
+        "avg": 18,
+        "tournaments": 6,
         "position": 1
       },
       {
         "name": "Orļiks",
-        "top8": 75,
-        "stoses": 6,
-        "top8avg": 15,
-        "punktiKopa": 75,
-        "avg": 15,
-        "tournaments": 5,
+        "top8": 84,
+        "stoses": 7,
+        "top8avg": 14,
+        "punktiKopa": 84,
+        "avg": 14,
+        "tournaments": 6,
         "position": 2
       },
       {
-        "name": "Ziemis",
-        "top8": 58,
-        "stoses": 7,
-        "top8avg": 14.5,
-        "punktiKopa": 58,
-        "avg": 14.5,
-        "tournaments": 4,
+        "name": "Dzinča",
+        "top8": 75,
+        "stoses": 13,
+        "top8avg": 25,
+        "punktiKopa": 75,
+        "avg": 25,
+        "tournaments": 3,
         "position": 3
       },
       {
-        "name": "Rūdis",
-        "top8": 57,
-        "stoses": 2,
-        "top8avg": 11.4,
-        "punktiKopa": 57,
-        "avg": 11.4,
+        "name": "Ziemis",
+        "top8": 68,
+        "stoses": 7,
+        "top8avg": 13.6,
+        "punktiKopa": 68,
+        "avg": 13.6,
         "tournaments": 5,
         "position": 4
       },
       {
-        "name": "Pūgulis",
-        "top8": 51,
-        "stoses": 8,
-        "top8avg": 12.8,
-        "punktiKopa": 51,
-        "avg": 12.8,
-        "tournaments": 4,
+        "name": "Rūdis",
+        "top8": 67,
+        "stoses": 2,
+        "top8avg": 11.2,
+        "punktiKopa": 67,
+        "avg": 11.2,
+        "tournaments": 6,
         "position": 5
       },
       {
-        "name": "Dzinča",
-        "top8": 50,
-        "stoses": 10,
-        "top8avg": 25,
-        "punktiKopa": 50,
-        "avg": 25,
-        "tournaments": 2,
+        "name": "Artchy",
+        "top8": 59,
+        "stoses": 1,
+        "top8avg": 9.8,
+        "punktiKopa": 59,
+        "avg": 9.8,
+        "tournaments": 6,
         "position": 6
       },
       {
-        "name": "Artchy",
-        "top8": 47,
-        "stoses": 1,
-        "top8avg": 9.4,
-        "punktiKopa": 47,
-        "avg": 9.4,
+        "name": "Pūgulis",
+        "top8": 57,
+        "stoses": 9,
+        "top8avg": 11.4,
+        "punktiKopa": 57,
+        "avg": 11.4,
         "tournaments": 5,
         "position": 7
       },
       {
         "name": "Birkants",
-        "top8": 41,
+        "top8": 57,
         "stoses": 1,
-        "top8avg": 10.3,
-        "punktiKopa": 41,
-        "avg": 10.3,
-        "tournaments": 4,
+        "top8avg": 11.4,
+        "punktiKopa": 57,
+        "avg": 11.4,
+        "tournaments": 5,
         "position": 8
+      },
+      {
+        "name": "Dāvis Vanags",
+        "top8": 39,
+        "stoses": 4,
+        "top8avg": 13,
+        "punktiKopa": 39,
+        "avg": 13,
+        "tournaments": 3,
+        "position": 9
+      },
+      {
+        "name": "Osīc",
+        "top8": 36,
+        "stoses": 0,
+        "top8avg": 6,
+        "punktiKopa": 36,
+        "avg": 6,
+        "tournaments": 6,
+        "position": 10
       },
       {
         "name": "Artis Jansons",
@@ -11406,27 +11426,17 @@
         "punktiKopa": 33,
         "avg": 6.6,
         "tournaments": 5,
-        "position": 9
+        "position": 11
       },
       {
-        "name": "Osīc",
+        "name": "Zane Vasermane",
         "top8": 31,
         "stoses": 0,
-        "top8avg": 6.2,
+        "top8avg": 5.2,
         "punktiKopa": 31,
-        "avg": 6.2,
-        "tournaments": 5,
-        "position": 10
-      },
-      {
-        "name": "Dāvis Vanags",
-        "top8": 30,
-        "stoses": 3,
-        "top8avg": 15,
-        "punktiKopa": 30,
-        "avg": 15,
-        "tournaments": 2,
-        "position": 11
+        "avg": 5.2,
+        "tournaments": 6,
+        "position": 12
       },
       {
         "name": "Repča",
@@ -11436,7 +11446,7 @@
         "punktiKopa": 29,
         "avg": 9.7,
         "tournaments": 3,
-        "position": 12
+        "position": 13
       },
       {
         "name": "Dāvīc",
@@ -11446,17 +11456,17 @@
         "punktiKopa": 26,
         "avg": 5.2,
         "tournaments": 5,
-        "position": 13
+        "position": 14
       },
       {
-        "name": "Zane Vasermane",
-        "top8": 26,
+        "name": "Areta Puncule",
+        "top8": 20,
         "stoses": 0,
-        "top8avg": 5.2,
-        "punktiKopa": 26,
-        "avg": 5.2,
-        "tournaments": 5,
-        "position": 14
+        "top8avg": 5,
+        "punktiKopa": 20,
+        "avg": 5,
+        "tournaments": 4,
+        "position": 15
       },
       {
         "name": "Katrīna Groza",
@@ -11466,7 +11476,17 @@
         "punktiKopa": 19,
         "avg": 9.5,
         "tournaments": 2,
-        "position": 15
+        "position": 16
+      },
+      {
+        "name": "Tuncis",
+        "top8": 19,
+        "stoses": 0,
+        "top8avg": 6.3,
+        "punktiKopa": 19,
+        "avg": 6.3,
+        "tournaments": 3,
+        "position": 17
       },
       {
         "name": "OG",
@@ -11475,26 +11495,6 @@
         "top8avg": 7.5,
         "punktiKopa": 15,
         "avg": 7.5,
-        "tournaments": 2,
-        "position": 16
-      },
-      {
-        "name": "Areta Puncule",
-        "top8": 14,
-        "stoses": 0,
-        "top8avg": 4.7,
-        "punktiKopa": 14,
-        "avg": 4.7,
-        "tournaments": 3,
-        "position": 17
-      },
-      {
-        "name": "Tuncis",
-        "top8": 14,
-        "stoses": 0,
-        "top8avg": 7,
-        "punktiKopa": 14,
-        "avg": 7,
         "tournaments": 2,
         "position": 18
       },
@@ -11519,17 +11519,17 @@
         "position": 20
       },
       {
-        "name": "Inese Tiļļa",
-        "top8": 6,
+        "name": "Jānis Raibarts",
+        "top8": 8,
         "stoses": 0,
-        "top8avg": 6,
-        "punktiKopa": 6,
-        "avg": 6,
-        "tournaments": 1,
+        "top8avg": 4,
+        "punktiKopa": 8,
+        "avg": 4,
+        "tournaments": 2,
         "position": 21
       },
       {
-        "name": "Niks Apsītis",
+        "name": "Inese Tiļļa",
         "top8": 6,
         "stoses": 0,
         "top8avg": 6,
@@ -11539,7 +11539,7 @@
         "position": 22
       },
       {
-        "name": "Laima",
+        "name": "Niks Apsītis",
         "top8": 6,
         "stoses": 0,
         "top8avg": 6,
@@ -11549,14 +11549,34 @@
         "position": 23
       },
       {
-        "name": "Jānis Raibarts",
-        "top8": 5,
+        "name": "Laima",
+        "top8": 6,
         "stoses": 0,
-        "top8avg": 5,
-        "punktiKopa": 5,
-        "avg": 5,
+        "top8avg": 6,
+        "punktiKopa": 6,
+        "avg": 6,
         "tournaments": 1,
         "position": 24
+      },
+      {
+        "name": "Gints Leilands",
+        "top8": 6,
+        "stoses": 0,
+        "top8avg": 6,
+        "punktiKopa": 6,
+        "avg": 6,
+        "tournaments": 1,
+        "position": 25
+      },
+      {
+        "name": "Auce",
+        "top8": 6,
+        "stoses": 0,
+        "top8avg": 6,
+        "punktiKopa": 6,
+        "avg": 6,
+        "tournaments": 1,
+        "position": 26
       },
       {
         "name": "Oskars Ineses",
@@ -11566,7 +11586,7 @@
         "punktiKopa": 5,
         "avg": 5,
         "tournaments": 1,
-        "position": 25
+        "position": 27
       },
       {
         "name": "Niks Leilands",
@@ -11576,7 +11596,27 @@
         "punktiKopa": 5,
         "avg": 5,
         "tournaments": 1,
-        "position": 26
+        "position": 28
+      },
+      {
+        "name": "Katrīna Deja Mārtinsone",
+        "top8": 5,
+        "stoses": 0,
+        "top8avg": 5,
+        "punktiKopa": 5,
+        "avg": 5,
+        "tournaments": 1,
+        "position": 29
+      },
+      {
+        "name": "Patrīcija Raibarte",
+        "top8": 3,
+        "stoses": 0,
+        "top8avg": 3,
+        "punktiKopa": 3,
+        "avg": 3,
+        "tournaments": 1,
+        "position": 30
       }
     ],
     "months": [
@@ -11986,6 +12026,101 @@
           {
             "name": "Areta Puncule",
             "position": 18,
+            "points": 3
+          }
+        ]
+      },
+      {
+        "month": "Jūnijs",
+        "results": [
+          {
+            "name": "Dzinča",
+            "position": 1,
+            "points": 25
+          },
+          {
+            "name": "TomyG",
+            "position": 2,
+            "points": 20
+          },
+          {
+            "name": "Birkants",
+            "position": 3,
+            "points": 16
+          },
+          {
+            "name": "Artchy",
+            "position": 4,
+            "points": 12
+          },
+          {
+            "name": "Rūdis",
+            "position": 5,
+            "points": 10
+          },
+          {
+            "name": "Ziemis",
+            "position": 6,
+            "points": 10
+          },
+          {
+            "name": "Dāvis Vanags",
+            "position": 7,
+            "points": 9
+          },
+          {
+            "name": "Orļiks",
+            "position": 8,
+            "points": 9
+          },
+          {
+            "name": "Auce",
+            "position": 9,
+            "points": 6
+          },
+          {
+            "name": "Pūgulis",
+            "position": 10,
+            "points": 6
+          },
+          {
+            "name": "Gints Leilands",
+            "position": 11,
+            "points": 6
+          },
+          {
+            "name": "Areta Puncule",
+            "position": 12,
+            "points": 6
+          },
+          {
+            "name": "Osīc",
+            "position": 13,
+            "points": 5
+          },
+          {
+            "name": "Zane Vasermane",
+            "position": 14,
+            "points": 5
+          },
+          {
+            "name": "Katrīna Deja Mārtinsone",
+            "position": 15,
+            "points": 5
+          },
+          {
+            "name": "Tuncis",
+            "position": 16,
+            "points": 5
+          },
+          {
+            "name": "Patrīcija Raibarte",
+            "position": 17,
+            "points": 3
+          },
+          {
+            "name": "Jānis Raibarts",
+            "position": 19,
             "points": 3
           }
         ]
