@@ -76,6 +76,8 @@ Priekā!`,
   2026: {
     comment: `2026. gada sezona iesākusies jaudīgi un ar katru mēnesi dod jaunu materiālu apskatnieka komentāriem.`,
     images: [
+      { src: "/images/Reinis-julija-cempions.jpeg", caption: "Jūlija čempions - debitants Reinis!" },
+      { src: "/images/julija-2026-tablo.jpeg", caption: "Jūlija tablo - Rūdis pārsvītrots, kauns mūžīgs" },
       { src: "/images/Dzintis Neparspets.jpeg", caption: "Dzintis nepārspēts" },
       { src: "/images/Junija TOP3.jpeg", caption: "Jūnija TOP3" },
       { src: "/images/Junija TOP3 un runner up.jpeg", caption: "Jūnija TOP3 un runner-up" },
@@ -130,6 +132,16 @@ Stabilākais spēlētājs Dāvis, kuram līdz šim bija 3x10.vieta, šoreiz izkr
       {
         month: "Jūnijs",
         comment: `Jūnija pēcsvētku turnīrs piektdienā, kad sestdiena pusei valsts skaitās kā officiālā "pārceltā" darba diena, neliedza uz to ierasties prāvam skaitam spēlēt gribētāju - pulcējot 19 spēlētājus tas kļuva par sezonas apmeklētāko turnīru! Laikapstākļi bija lieliski. Brackets tika papildināts un ielozējās, ka 11/12 zars tika aizpildīts pilnībā - Kārlis vs TomyG un Raibīc vs Pūgulis. Bija āra galds, kur notika vairākas interesantas izspēles, galvenokārt tā iemesla dēļ, ka slīdamība bija nevienmērīga un līdz ar to spēles kļuva neparedzamākas. Neskatoties uz prāvo apmeklētāju skaitu, štoses bija maz - Dzintis dabūja 3 stabili aizvadot turnīru uzvarētāju zarā un kļūstot par stabilu čempionu, kamēr Tomy saglabāja kopvērtējuma līdera pozīciju paliekot 2.vietā un iegūstot arī 2 štoses. Kārlim, Tūjam un Pūgulim pa vienai. Kā sezonas atgriešanās bija Patrīcijas, Katrīnas un Ginta ierašanās!`,
+      },
+      {
+        month: "Jūlijs",
+        comment: `Jūlija turnīrs pārspēja visus apmeklējuma rekordus - 26 dalībnieki! - un uzdāvināja sezonas skandalozāko stāstu. Debitants Reinis no pirmās reizes izgāja cauri visam zaram un finālā ar 2:0 pieveica Raimi, kurš pēc zaudējuma pusfinālā bija izcīnījis garu ceļu cauri zaudētāju zaram. Kronis uzzīmēts, čempions jauns - kas to būtu domājis!
+
+Bet tagad par galveno. Rūdis pusfinālā ar 2:1 nolika TomyG, ceļš uz uzvarētāju zara finālu vaļā... un tad vienkārši pameta turnīru, jo Vecrīgā Tallinas kvartālā gaidīja ballīte ar čomiem. Tablo viņa vārds palicis pārsvītrots abās vietās kā mūžīgs pieminekls izvēlei "štose vai šots". Trešā vieta pēc zara - bet kauna traips uz visu sezonu, Rūdi!
+
+Štošu frontē jūlijs bija ražīgs - Pūgulim, Dzinčam un Ziemim katram pa 3! Dzinča ar 16 štosēm sezonā aizbēg no vajātājiem, kamēr Pūgulis ar 12 panāk TomyG. Kopvērtējumā TomyG (118) joprojām drošs līderis, Orļiks (87) otrais, bet dezertieris Rūdis (83) pakāpjas uz trešo vietu - punktus zars tomēr nepiedod tikai sirdsapziņai.
+
+Sveicam pulkā arī Rūda darba biedrus Mieru un Kasparu, kā arī Emīlu - un Endija atgriešanos pie galda!`,
       },
     ],
   },

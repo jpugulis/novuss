@@ -20,6 +20,12 @@ const videos = [
     caption: "Maija turnīrs",
     src: "/images/Let him cook!.mp4",
   },
+  {
+    id: 3,
+    title: "Rūdi, nu būs sūdi!",
+    caption: "Jūlija turnīrs",
+    src: "/images/Rudi-nu-bus-sudi!.mp4",
+  },
 ] as const;
 
 export function GallerySection() {
