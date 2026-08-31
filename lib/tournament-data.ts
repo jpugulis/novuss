@@ -76,6 +76,10 @@ Priekā!`,
   2026: {
     comment: `2026. gada sezona iesākusies jaudīgi un ar katru mēnesi dod jaunu materiālu apskatnieka komentāriem.`,
     images: [
+      { src: "/images/Augusts-Cempions-2026.jpeg", caption: "Augusta čempions Kārlis" },
+      { src: "/images/Augusta-top3-2026.gif", caption: "Augusta TOP3" },
+      { src: "/images/Augusts-2026-tablo.jpeg", caption: "Augusta tablo" },
+      { src: "/images/Saimnieks-cempions-augusts.gif", caption: "Saimnieks svin līdzi" },
       { src: "/images/Reinis-julija-cempions.jpeg", caption: "Jūlija čempions - debitants Reinis!" },
       { src: "/images/julija-2026-tablo.jpeg", caption: "Jūlija tablo - Rūdis pārsvītrots, kauns mūžīgs" },
       { src: "/images/Dzintis Neparspets.jpeg", caption: "Dzintis nepārspēts" },
@@ -142,6 +146,16 @@ Bet tagad par galveno. Rūdis pusfinālā ar 2:1 nolika TomyG, ceļš uz uzvarē
 Štošu frontē jūlijs bija ražīgs - Pūgulim, Dzinčam un Ziemim katram pa 3! Dzinča ar 16 štosēm sezonā aizbēg no vajātājiem, kamēr Pūgulis ar 12 panāk TomyG. Kopvērtējumā TomyG (118) joprojām drošs līderis, Orļiks (87) otrais, bet dezertieris Rūdis (83) pakāpjas uz trešo vietu - punktus zars tomēr nepiedod tikai sirdsapziņai.
 
 Sveicam pulkā arī Rūda darba biedrus Mieru un Kasparu, kā arī Emīlu - un Endija atgriešanos pie galda!`,
+      },
+      {
+        month: "Augusts",
+        comment: `Augusta turnīrā namatēvs Kārlis nospēlēja gluži perfektu turnīru - neviena zaudēta spēle visa vakara garumā, finālā ar pārliecinošu 3:0 pār Dzinču. Karaliskais gājiens!
+
+Dzinčam savukārt bija jauns personīgais rekords - 7 štoses vienā turnīrā! Tik ražīgu vakaru viņam sen nav bijis, un finālā zaudējot tas bija vājš mierinājums, taču kopvērtējumā tas viņu pacēla uz 3.vietu.
+
+Sezonas skandalozākais stāsts gan pieder Tūjam - pēc zaudējuma jau 2.kārtā TomyG viņš pa zaudētāju zaru izcīnīja ceļu atpakaļ līdz bronzas spēlei un tur pārspēja jaunpienācēju Artūru, nozogot 3.vietu no tā, kurš uzvarētāju zarā bija ticis līdz pusfinālam! Artūram debija ar 4.vietu ir tomēr ļoti spēcīgs sākums.
+
+Jauniem sejām turnīrā netrūka - sveicam pulkā Robertu, Krišjāni un Andreju Buli, kurš savā pirmajā turnīrā uzreiz nopelnīja arī štosi!`,
       },
     ],
   },
