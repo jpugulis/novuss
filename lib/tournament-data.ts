@@ -149,13 +149,15 @@ Sveicam pulkā arī Rūda darba biedrus Mieru un Kasparu, kā arī Emīlu - un E
       },
       {
         month: "Augusts",
-        comment: `Augusta turnīrā namatēvs Kārlis nospēlēja gluži perfektu turnīru - neviena zaudēta spēle visa vakara garumā, finālā ar pārliecinošu 3:0 pār Dzinču. Karaliskais gājiens!
+        comment: `Augusta turnīrs pulcēja prāvu pulku rubaku - 24!
 
-Dzinčam savukārt bija jauns personīgais rekords - 7 štoses vienā turnīrā! Tik ražīgu vakaru viņam sen nav bijis, un finālā zaudējot tas bija vājš mierinājums, taču kopvērtējumā tas viņu pacēla uz 3.vietu.
+Namatēvs Kārlis nospēlēja gandrīz perfektu turnīru - viena zaudēta spēle visa vakara garumā pret Dzinču pusfinālā, taču finālā ar pārliecinošu 3:0 un 2 štosēm uzvara pār viņu. Karaliskais gājiens!
 
-Sezonas skandalozākais stāsts gan pieder Tūjam - pēc zaudējuma jau 2.kārtā TomyG viņš pa zaudētāju zaru izcīnīja ceļu atpakaļ līdz bronzas spēlei un tur pārspēja jaunpienācēju Artūru, nozogot 3.vietu no tā, kurš uzvarētāju zarā bija ticis līdz pusfinālam! Artūram debija ar 4.vietu ir tomēr ļoti spēcīgs sākums.
+Dzinčam savukārt bija jauns personīgais rekords - 7 štoses vienā turnīrā! Tik ražīgu vakaru viņam sen nav bijis, un finālā zaudējot tikko uzvarētajam Kārlim tas bija visai pavājš mierinājums, taču kopvērtējumā tas viņu pacēla uz 3.vietu.
 
-Jauniem sejām turnīrā netrūka - sveicam pulkā Robertu, Krišjāni un Andreju Buli, kurš savā pirmajā turnīrā uzreiz nopelnīja arī štosi!`,
+Diezgan skandalozs stāsts pieder Tūjam - pēc zaudējuma jau 2.kārtā pret TomyG (1:2) viņš pa zaudētāju zaru izcīnīja ceļu atpakaļ līdz bronzas spēlei un tur pārspēja jaunpienācēju Artūru, nopelnot vēl vienu štosi un nozogot 3.vietu no tā, kurš uzvarētāju zarā bija ticis līdz pusfinālam! Artūram debija ar 4.vietu tomēr ir ļoti spēcīgs sākums.
+
+Jaunas sejas turnīrā netrūka - sveicam Artūru un Buli!`,
       },
     ],
   },
