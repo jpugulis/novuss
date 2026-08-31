@@ -227,6 +227,36 @@ export const allTimeBest = buildAllTimeBest(seasons);
 
 export const galleryImages = [
   {
+    src: "/images/Augusts-Cempions-2026.jpeg",
+    caption: "Augusta čempions Kārlis",
+    year: 2026,
+  },
+  {
+    src: "/images/Augusta-top3-2026.gif",
+    caption: "Augusta TOP3",
+    year: 2026,
+  },
+  {
+    src: "/images/Augusts-2026-tablo.jpeg",
+    caption: "Augusta tablo",
+    year: 2026,
+  },
+  {
+    src: "/images/Saimnieks-cempions-augusts.gif",
+    caption: "Saimnieks svin līdzi",
+    year: 2026,
+  },
+  {
+    src: "/images/Reinis-julija-cempions.jpeg",
+    caption: "Jūlija čempions - debitants Reinis!",
+    year: 2026,
+  },
+  {
+    src: "/images/julija-2026-tablo.jpeg",
+    caption: "Jūlija tablo - Rūdis pārsvītrots, kauns mūžīgs",
+    year: 2026,
+  },
+  {
     src: "/images/Dzintis Neparspets.jpeg",
     caption: "Dzintis nepārspēts",
     year: 2026,
