@@ -176,8 +176,8 @@ function buildDefaultComment(year: number): string {
 function sortedByScore(players: Player[]): Player[] {
   return [...players]
     .sort((a, b) => {
-      if (b.punktiKopa !== a.punktiKopa) return b.punktiKopa - a.punktiKopa;
       if (b.top8 !== a.top8) return b.top8 - a.top8;
+      if (b.punktiKopa !== a.punktiKopa) return b.punktiKopa - a.punktiKopa;
       if (b.stoses !== a.stoses) return b.stoses - a.stoses;
       return a.name.localeCompare(b.name, "lv");
     })

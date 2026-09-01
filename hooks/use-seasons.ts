@@ -193,17 +193,15 @@ function buildOldSeason(rows: string[][], year: number, baseSeason: Season | und
   const filteredRows = rowsParsed.filter((row): row is NonNullable<typeof row> => Boolean(row));
   if (filteredRows.length === 0) return null;
 
-  if (filteredRows.some((row) => row.position === null)) {
-    filteredRows
-      .sort((a, b) => {
-        if (b.total !== a.total) return b.total - a.total;
-        if (b.top8 !== a.top8) return b.top8 - a.top8;
-        return a.name.localeCompare(b.name, "lv");
-      })
-      .forEach((row, index) => {
-        row.position = index + 1;
-      });
-  }
+  filteredRows
+    .sort((a, b) => {
+      if (b.top8 !== a.top8) return b.top8 - a.top8;
+      if (b.total !== a.total) return b.total - a.total;
+      return a.name.localeCompare(b.name, "lv");
+    })
+    .forEach((row, index) => {
+      row.position = index + 1;
+    });
 
   const months: MonthlyStandings[] = monthHeaders
     .map((month, monthIndex) => {
@@ -320,7 +318,16 @@ function buildModernSeason(rows: string[][], year: number, baseSeason: Season | 
       };
     })
     .filter((player): player is NonNullable<typeof player> => Boolean(player))
-    .sort((a, b) => a.position - b.position);
+    .sort((a, b) => {
+      if (b.top8 !== a.top8) return b.top8 - a.top8;
+      if (b.punktiKopa !== a.punktiKopa) return b.punktiKopa - a.punktiKopa;
+      if (b.stoses !== a.stoses) return b.stoses - a.stoses;
+      return a.name.localeCompare(b.name, "lv");
+    });
+
+  players.forEach((player, index) => {
+    player.position = index + 1;
+  });
 
   if (players.length === 0) return null;
 
