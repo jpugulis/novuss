@@ -173,11 +173,23 @@ function buildDefaultComment(year: number): string {
   return COVID_COMMENTS[year] ?? "Dati importēti no Google Sheets.";
 }
 
+function sortedByScore(players: Player[]): Player[] {
+  return [...players]
+    .sort((a, b) => {
+      if (b.punktiKopa !== a.punktiKopa) return b.punktiKopa - a.punktiKopa;
+      if (b.top8 !== a.top8) return b.top8 - a.top8;
+      if (b.stoses !== a.stoses) return b.stoses - a.stoses;
+      return a.name.localeCompare(b.name, "lv");
+    })
+    .map((player, index) => ({ ...player, position: index + 1 }));
+}
+
 type RawSeason = Omit<Season, "comment" | "images" | "monthlyComments">;
 
 export const seasons: Season[] = (rawSeasons as RawSeason[])
   .map((season) => ({
     ...season,
+    players: sortedByScore(season.players),
     comment: SEASON_META[season.year]?.comment ?? buildDefaultComment(season.year),
     images: SEASON_META[season.year]?.images,
     monthlyComments: SEASON_META[season.year]?.monthlyComments,
