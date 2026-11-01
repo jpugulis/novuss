@@ -180,7 +180,7 @@ Sveicam pulkā Lieni - debijā uzreiz 2:0 uzvara pirmajā spēlē un vieta TOP8!
       },
       {
         month: "Oktobris",
-        comment: `Oktobra turnīrs pulcēja 19 rubakus un kļuva par sezonas štošīgāko vakaru - 22 štoses! Iepriekšējais rekords bija 15 maijā.
+        comment: `Oktobra turnīrs pulcēja 19 rubakus un kļuva par sezonas štošīgāko vakaru - 22 štoses! Iepriekšējais rekords bija 17 augustā.
 
 Lauvas tiesu paņēma Dzinča - 9 štoses vienā turnīrā, pārspējot pašam savu 7 štošu rekordu no maija un augusta. Uzvarētāju zarā neviena zaudēta spēle: Silga 2:0, Katrīna G 2:1, Pūgulis 2:0, Rūdis 2:0 un finālā 2:1 pret Ziemi. Ceturtā Dzinčas uzvara šosezon, un kopvērtējumā viņš pakāpjas uz 2.vietu, apsteidzot Orļiku.
 
