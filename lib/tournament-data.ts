@@ -76,6 +76,13 @@ Priekā!`,
   2026: {
     comment: `2026. gada sezona iesākusies jaudīgi un ar katru mēnesi dod jaunu materiālu apskatnieka komentāriem.`,
     images: [
+      { src: "/images/2026-okt-cempions-dzintis!.jpeg", caption: "Oktobra čempions Dzintis - 9 štoses, jauns sezonas rekords!" },
+      { src: "/images/2026-okt-top3.jpeg", caption: "Oktobra TOP3 - Dzintis, Ziemis un Rūdis" },
+      { src: "/images/2026-okt-top3-ar-treneri.jpeg", caption: "Oktobra TOP3 un treneris" },
+      { src: "/images/2026-okt-bracket.jpeg", caption: "Oktobra tablo - 19 spēlētāji un 22 štoses" },
+      { src: "/images/2026-Septembra_cempions_repelis.jpeg", caption: "Septembra čempions Repča - G.O.A.T. atgriežas!" },
+      { src: "/images/2026-Septembra_top3.jpeg", caption: "Septembra TOP3 - Repča, TomyG un Tūja" },
+      { src: "/images/2026-Septembris_tablo.jpeg", caption: "Septembra tablo - kronis Rēpelim, 5 štoses" },
       { src: "/images/Augusts-Cempions-2026.jpeg", caption: "Augusta čempions Kārlis" },
       { src: "/images/Augusta-top3-2026.gif", caption: "Augusta TOP3" },
       { src: "/images/Augusts-2026-tablo.jpeg", caption: "Augusta tablo" },
@@ -159,6 +166,30 @@ Diezgan skandalozs stāsts pieder Tūjam - pēc zaudējuma jau 2.kārtā pret To
 
 Jaunas sejas turnīrā netrūka - sveicam Artūru un Buli!`,
       },
+      {
+        month: "Septembris",
+        comment: `Septembra turnīrā pie galda sēdās 13 rubaki, un G.O.A.T. ir atpakaļ! Repčas noriets, ko apspriedām martā, izrādījās pāragrs secinājums - pirmā 2026. gada uzvara un vakara štošu karalis ar 5 štosēm, no kurām divas jau pirmajā spēlē pret Pūguli.
+
+Ceļš uz kroni gan nebija taisns. Uzvarētāju zara pusfinālā TomyG nolika Repču ar 2:1, taču zaudētāju zarā sekoja Orļiks (2:1), Robo un Tūja (2:1), un lielajā finālā Repča atspēlējās TomyG ar 3:1.
+
+TomyG uzvarētāju zarā bija nepārspējams - 2:0 pret Orļiku, Lieni un Tūju, 2:1 pret Repču - un ar 3 štosēm un 2.vietu kopvērtējuma pārsvaru pār Orļiku palielināja līdz 23 TOP8 punktiem.
+
+Tūja otro mēnesi pēc kārtas 3.vietā, Robo 4.vietā zaudētāju zarā ar 2:1 apturēja Ziemi. Ziemim gan arī 3 štoses un kopvērtējumā pakāpiens uz 4.vietu, apsteidzot šoreiz neieradušos Rūdi - un līdz Dzinčam uz 3.vietu vairs tikai 5 punkti!
+
+Sveicam pulkā Lieni - debijā uzreiz 2:0 uzvara pirmajā spēlē un vieta TOP8!`,
+      },
+      {
+        month: "Oktobris",
+        comment: `Oktobra turnīrs pulcēja 19 rubakus un kļuva par sezonas štošīgāko vakaru - 22 štoses! Iepriekšējais rekords bija 15 maijā.
+
+Lauvas tiesu paņēma Dzinča - 9 štoses vienā turnīrā, pārspējot pašam savu 7 štošu rekordu no maija un augusta. Uzvarētāju zarā neviena zaudēta spēle: Silga 2:0, Katrīna G 2:1, Pūgulis 2:0, Rūdis 2:0 un finālā 2:1 pret Ziemi. Ceturtā Dzinčas uzvara šosezon, un kopvērtējumā viņš pakāpjas uz 2.vietu, apsteidzot Orļiku.
+
+Ziemis savukārt nospēlēja īstu maratonu - pēc zaudējuma Robo jau pirmajā kārtā viņš pa zaudētāju zaru noguldīja Dāvi, Katrīnu, Kārli, Edgaru, Pūguli un Rūdi, un tikai finālā piekāpās Dzinčam. Kopvērtējumā Ziemis nostiprinās 4.vietā.
+
+Rūdis ar 3.vietu atkal pjedestālā - un šoreiz turnīru nospēlēja līdz galam! Pūgulis ar 3 štosēm - 4.vietā. TomyG šoreiz tikai 6. vieta, taču kopvērtējuma līderis joprojām ir viņš (142 pret Dzinčas 126).
+
+Sveicam pulkā Silgu - debijā uzreiz 2 štoses! - un Root!`,
+      },
     ],
   },
 };
@@ -240,6 +271,41 @@ function buildAllTimeBest(seasonsData: Season[]) {
 export const allTimeBest = buildAllTimeBest(seasons);
 
 export const galleryImages = [
+  {
+    src: "/images/2026-okt-cempions-dzintis!.jpeg",
+    caption: "Oktobra čempions Dzintis - 9 štoses, jauns sezonas rekords!",
+    year: 2026,
+  },
+  {
+    src: "/images/2026-okt-top3.jpeg",
+    caption: "Oktobra TOP3 - Dzintis, Ziemis un Rūdis",
+    year: 2026,
+  },
+  {
+    src: "/images/2026-okt-top3-ar-treneri.jpeg",
+    caption: "Oktobra TOP3 un treneris",
+    year: 2026,
+  },
+  {
+    src: "/images/2026-okt-bracket.jpeg",
+    caption: "Oktobra tablo - 19 spēlētāji un 22 štoses",
+    year: 2026,
+  },
+  {
+    src: "/images/2026-Septembra_cempions_repelis.jpeg",
+    caption: "Septembra čempions Repča - G.O.A.T. atgriežas!",
+    year: 2026,
+  },
+  {
+    src: "/images/2026-Septembra_top3.jpeg",
+    caption: "Septembra TOP3 - Repča, TomyG un Tūja",
+    year: 2026,
+  },
+  {
+    src: "/images/2026-Septembris_tablo.jpeg",
+    caption: "Septembra tablo - kronis Rēpelim, 5 štoses",
+    year: 2026,
+  },
   {
     src: "/images/Augusts-Cempions-2026.jpeg",
     caption: "Augusta čempions Kārlis",

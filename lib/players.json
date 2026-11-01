@@ -17,10 +17,10 @@
     { "fullName": "Jānis Pūgulis", "nickname": "Pūgulis", "aliases": [] },
     { "fullName": "Pēteris Birkants", "nickname": "Birkants", "aliases": ["Pēteris"] },
     { "fullName": "Dāvis Vanags", "nickname": "Dāvis Vanags", "aliases": ["Vanags", "Tūja"] },
-    { "fullName": "Oskars Kasņikovskis", "nickname": "Osīc", "aliases": ["Kasņikovskis", "Oskars K"] },
+    { "fullName": "Oskars Kasņikovskis", "nickname": "Osīc", "aliases": ["Kasņikovskis", "Oskars K", "OC"] },
     { "fullName": "Artis Jansons", "nickname": "Artis Jansons", "aliases": ["Jansons", "Antis"] },
     { "fullName": "Zane Vasermane", "nickname": "Zane Vasermane", "aliases": ["Zane"] },
-    { "fullName": "Kārlis Rēpelis", "nickname": "Repča", "aliases": ["Rēpelis"] },
+    { "fullName": "Kārlis Rēpelis", "nickname": "Repča", "aliases": ["Rēpelis", "Kārlis R"] },
     { "fullName": "Dāvis Dreika", "nickname": "Dāvīc", "aliases": ["D. Dreika", "Dāvis D"] },
     { "fullName": "Areta Puncule", "nickname": "Areta Puncule", "aliases": ["Areta"] },
     { "fullName": "Katrīna Groza", "nickname": "Katrīna Groza", "aliases": ["Groza", "Katrīna G"] },
@@ -81,6 +81,9 @@
     { "fullName": "Roberta", "nickname": "Roberta", "aliases": [] },
     { "fullName": "Krišjānis", "nickname": "Krišjānis", "aliases": [] },
     { "fullName": "Andrejs Bulis", "nickname": "Bulis", "aliases": ["Andrejs"] },
-    { "fullName": "Rādis", "nickname": "Rādis", "aliases": [] }
+    { "fullName": "Rādis", "nickname": "Rādis", "aliases": [] },
+    { "fullName": "Liene", "nickname": "Liene", "aliases": [] },
+    { "fullName": "Silga", "nickname": "Silga", "aliases": [] },
+    { "fullName": "Root", "nickname": "Root", "aliases": [] }
   ]
 }
