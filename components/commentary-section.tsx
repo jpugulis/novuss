@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { MessageSquare, Quote, ChevronDown } from "lucide-react";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
-import Image from "next/image";
 import { useSeasons } from "@/hooks/use-seasons";
 
 export function CommentarySection() {
@@ -38,7 +37,7 @@ export function CommentarySection() {
             <span className="text-primary">KOMENTĀRS</span>
           </h2>
           <p className="text-sm text-muted-foreground mt-3">
-            Katram mēnesim ir komentārs. Pēdējais ar bildēm - Oktobris.
+            Katram mēnesim ir komentārs. Jaunākais augšā, bildes - galerijā.
           </p>
         </motion.div>
 
@@ -90,28 +89,9 @@ export function CommentarySection() {
               >
                 <div className="min-h-0 overflow-hidden">
                 <div className="p-5 pt-0 border-t border-border">
-                  {/* Season images if available */}
-                  {season.images && season.images.length > 0 && (
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 mb-6">
-                      {season.images.map((img, imgIndex) => (
-                        <div key={imgIndex} className="relative aspect-[4/3] rounded-xl overflow-hidden border border-border">
-                          <Image
-                            src={img.src || "/placeholder.svg"}
-                            alt={img.caption}
-                            fill
-                            className="object-cover"
-                          />
-                          <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-background/90 to-transparent">
-                            <p className="text-sm text-foreground font-medium">{img.caption}</p>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-
                   {season.monthlyComments && season.monthlyComments.length > 0 ? (
                     <div className="space-y-4 mt-4">
-                      {season.monthlyComments.map((entry) => (
+                      {[...season.monthlyComments].reverse().map((entry) => (
                         <div key={`${season.year}-${entry.month}`} className="relative bg-secondary/50 rounded-xl p-6">
                           <Quote className="absolute top-4 left-4 w-8 h-8 text-primary/20" />
                           <div className="relative z-10 pl-8">

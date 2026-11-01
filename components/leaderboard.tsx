@@ -103,7 +103,7 @@ export function Leaderboard() {
       return;
     }
     if (!selectedMonth || !months.some((month) => month.month === selectedMonth)) {
-      setSelectedMonth(months[0].month);
+      setSelectedMonth(months[months.length - 1].month);
     }
   }, [hasMonthlyData, months, selectedMonth]);
 
@@ -184,7 +184,7 @@ export function Leaderboard() {
 
   const activeMonth = useMemo(() => {
     if (!hasMonthlyData) return null;
-    return months.find((month) => month.month === selectedMonth) ?? months[0];
+    return months.find((month) => month.month === selectedMonth) ?? months[months.length - 1];
   }, [hasMonthlyData, months, selectedMonth]);
   const playerSeason = useMemo(() => {
     if (!playerSeasonYear) return null;
