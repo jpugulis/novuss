@@ -38,7 +38,7 @@ export function CommentarySection() {
             <span className="text-primary">KOMENTĀRS</span>
           </h2>
           <p className="text-sm text-muted-foreground mt-3">
-            Katram mēnesim ir komentārs. Pēdējais ar bildēm - Jūnijs.
+            Katram mēnesim ir komentārs. Pēdējais ar bildēm - Oktobris.
           </p>
         </motion.div>
 
@@ -84,10 +84,11 @@ export function CommentarySection() {
 
               <div
                 className={cn(
-                  "overflow-hidden transition-all duration-300",
-                  expandedYear === season.year ? "max-h-[7600px]" : "max-h-0"
+                  "grid transition-[grid-template-rows] duration-300",
+                  expandedYear === season.year ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
                 )}
               >
+                <div className="min-h-0 overflow-hidden">
                 <div className="p-5 pt-0 border-t border-border">
                   {/* Season images if available */}
                   {season.images && season.images.length > 0 && (
@@ -136,6 +137,7 @@ export function CommentarySection() {
                       <Quote className="absolute bottom-4 right-4 w-8 h-8 text-primary/20 rotate-180" />
                     </div>
                   )}
+                </div>
                 </div>
               </div>
             </motion.div>
