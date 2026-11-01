@@ -31,14 +31,12 @@ export interface Season {
   year: number;
   players: Player[];
   comment: string;
-  images?: { src: string; caption: string }[];
   months?: MonthlyStandings[];
   monthlyComments?: MonthlyComment[];
 }
 
 interface SeasonMeta {
   comment: string;
-  images?: { src: string; caption: string }[];
   monthlyComments?: MonthlyComment[];
 }
 
@@ -68,41 +66,9 @@ Paldies visiem par ierašanos, Krista Rozenberga-Rudzīte par eglītes aktivitā
 Tiekamies jau drīz Retro auto muzejs viesmīlīgajās telpās uz jaunā gada sagaidīšanas pasākumu!
 
 Priekā!`,
-    images: [
-      { src: "/images/2024-final-group.png", caption: "2024. gada decembra fināls - kopbilde" },
-      { src: "/images/2024-final-bracket.png", caption: "Turnīra zars - TomyG čempions!" },
-    ],
   },
   2026: {
     comment: `2026. gada sezona iesākusies jaudīgi un ar katru mēnesi dod jaunu materiālu apskatnieka komentāriem.`,
-    images: [
-      { src: "/images/2026-okt-cempions-dzintis!.jpeg", caption: "Oktobra čempions Dzintis - 9 štoses, jauns sezonas rekords!" },
-      { src: "/images/2026-okt-top3.jpeg", caption: "Oktobra TOP3 - Dzintis, Ziemis un Rūdis" },
-      { src: "/images/2026-okt-top3-ar-treneri.jpeg", caption: "Oktobra TOP3 un treneris" },
-      { src: "/images/2026-okt-bracket.jpeg", caption: "Oktobra tablo - 19 spēlētāji un 22 štoses" },
-      { src: "/images/2026-Septembra_cempions_repelis.jpeg", caption: "Septembra čempions Repča - G.O.A.T. atgriežas!" },
-      { src: "/images/2026-Septembra_top3.jpeg", caption: "Septembra TOP3 - Repča, TomyG un Tūja" },
-      { src: "/images/2026-Septembris_tablo.jpeg", caption: "Septembra tablo - kronis Rēpelim, 5 štoses" },
-      { src: "/images/Augusts-Cempions-2026.jpeg", caption: "Augusta čempions Kārlis" },
-      { src: "/images/Augusta-top3-2026.gif", caption: "Augusta TOP3" },
-      { src: "/images/Augusts-2026-tablo.jpeg", caption: "Augusta tablo" },
-      { src: "/images/Saimnieks-cempions-augusts.gif", caption: "Saimnieks svin līdzi" },
-      { src: "/images/Reinis-julija-cempions.jpeg", caption: "Jūlija čempions - debitants Reinis!" },
-      { src: "/images/julija-2026-tablo.jpeg", caption: "Jūlija tablo - Rūdis pārsvītrots, kauns mūžīgs" },
-      { src: "/images/Dzintis Neparspets.jpeg", caption: "Dzintis nepārspēts" },
-      { src: "/images/Junija TOP3.jpeg", caption: "Jūnija TOP3" },
-      { src: "/images/Junija TOP3 un runner up.jpeg", caption: "Jūnija TOP3 un runner-up" },
-      { src: "/images/Junija TOP3 bauda savu veikumu.jpeg", caption: "Jūnija TOP3 bauda savu veikumu" },
-      { src: "/images/Junija Tablo.jpeg", caption: "Jūnija tablo" },
-      { src: "/images/Maija Cempions Dzintis.jpeg", caption: "Maija čempions Dzintis" },
-      { src: "/images/Maija TOP3 un treneris.jpeg", caption: "Maija TOP3 un treneris" },
-      { src: "/images/Maija Tablo.jpeg", caption: "Maija tablo" },
-      { src: "/images/kaulins-uz-mates.jpeg", caption: "Māte zem kauliņa" },
-      { src: "/images/Aprila TOP3.jpeg", caption: "Aprīļa TOP3" },
-      { src: "/images/Aprila Tablo.jpeg", caption: "Aprīļa tablo" },
-      { src: "/images/Aprila spele.jpeg", caption: "Aprīļa spēles" },
-      { src: "/images/Aprila Cempions Karlis.jpeg", caption: "Aprīļa čempions Kārlis" },
-    ],
     monthlyComments: [
       {
         month: "Janvāris",
@@ -215,60 +181,16 @@ function sortedByScore(players: Player[]): Player[] {
     .map((player, index) => ({ ...player, position: index + 1 }));
 }
 
-type RawSeason = Omit<Season, "comment" | "images" | "monthlyComments">;
+type RawSeason = Omit<Season, "comment" | "monthlyComments">;
 
 export const seasons: Season[] = (rawSeasons as RawSeason[])
   .map((season) => ({
     ...season,
     players: sortedByScore(season.players),
     comment: SEASON_META[season.year]?.comment ?? buildDefaultComment(season.year),
-    images: SEASON_META[season.year]?.images,
     monthlyComments: SEASON_META[season.year]?.monthlyComments,
   }))
   .sort((a, b) => b.year - a.year);
-
-function buildAllTimeBest(seasonsData: Season[]) {
-  const totals = new Map<string, { totalPoints: number; totalStoses: number; seasons: number; wins: number }>();
-
-  seasonsData.forEach((season) => {
-    if (season.players.length === 0) return;
-
-    season.players.forEach((player) => {
-      const entry = totals.get(player.name) ?? {
-        totalPoints: 0,
-        totalStoses: 0,
-        seasons: 0,
-        wins: 0,
-      };
-      entry.totalPoints += player.punktiKopa;
-      entry.totalStoses += player.stoses;
-      entry.seasons += 1;
-      totals.set(player.name, entry);
-    });
-
-    const winner = season.players[0];
-    const winnerEntry = totals.get(winner.name);
-    if (winnerEntry) winnerEntry.wins += 1;
-  });
-
-  return Array.from(totals.entries())
-    .map(([name, stats]) => ({
-      name,
-      totalPoints: Math.round(stats.totalPoints * 10) / 10,
-      totalStoses: Math.round(stats.totalStoses),
-      seasons: stats.seasons,
-      wins: stats.wins,
-    }))
-    .sort((a, b) => {
-      if (b.totalPoints !== a.totalPoints) return b.totalPoints - a.totalPoints;
-      if (b.wins !== a.wins) return b.wins - a.wins;
-      if (b.totalStoses !== a.totalStoses) return b.totalStoses - a.totalStoses;
-      return a.name.localeCompare(b.name, "lv");
-    })
-    .slice(0, 5);
-}
-
-export const allTimeBest = buildAllTimeBest(seasons);
 
 export const galleryImages = [
   {
@@ -312,7 +234,7 @@ export const galleryImages = [
     year: 2026,
   },
   {
-    src: "/images/Augusta-top3-2026.gif",
+    src: "/images/Augusta-top3-2026.webp",
     caption: "Augusta TOP3",
     year: 2026,
   },
@@ -322,7 +244,7 @@ export const galleryImages = [
     year: 2026,
   },
   {
-    src: "/images/Saimnieks-cempions-augusts.gif",
+    src: "/images/Saimnieks-cempions-augusts.webp",
     caption: "Saimnieks svin līdzi",
     year: 2026,
   },

@@ -2,28 +2,42 @@
 
 import { motion } from "framer-motion";
 import { Trophy, Star, Zap } from "lucide-react";
+import Image from "next/image";
+
+// Fixed positions so the server and browser render the same markup.
+const FLOATING_DOTS = [
+  { x: "12%", duration: 5.2 },
+  { x: "31%", duration: 6.4 },
+  { x: "47%", duration: 4.6 },
+  { x: "63%", duration: 5.8 },
+  { x: "78%", duration: 4.3 },
+  { x: "91%", duration: 6.9 },
+];
 
 export function HeroSection() {
   return (
     <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
       {/* Background Image */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url('/images/gallery-2.jpeg')`,
-        }}
-      >
+      <div className="absolute inset-0">
+        <Image
+          src="/images/gallery-2.jpeg"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
         <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/70 to-background" />
       </div>
 
       {/* Floating elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(6)].map((_, i) => (
+        {FLOATING_DOTS.map(({ x, duration }, i) => (
           <motion.div
             key={i}
             className="absolute w-2 h-2 bg-primary/30 rounded-full"
             initial={{ 
-              x: Math.random() * 100 + "%", 
+              x, 
               y: "100%",
               opacity: 0 
             }}
@@ -32,7 +46,7 @@ export function HeroSection() {
               opacity: [0, 1, 0]
             }}
             transition={{
-              duration: 4 + Math.random() * 3,
+              duration,
               repeat: Infinity,
               delay: i * 0.8,
               ease: "linear"

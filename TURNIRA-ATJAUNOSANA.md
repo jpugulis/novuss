@@ -25,9 +25,13 @@
    Tas pārrēķina `players[]` (punkti, TOP8, AVG, štoses, vietas) no mēnešu datiem.
    **Skriptu darbina tikai tekošajai sezonai** — vecāko gadu (2017–2025) `players[]` ir
    autoritatīvi no Google Sheet un mēnešu dati tos precīzi neatjauno.
-5. Pievieno bildes `public/images/` un ierakstus `SEASON_META` galerijā (`lib/tournament-data.ts`).
+5. Pievieno bildes `public/images/` un ierakstus `galleryImages` (`lib/tournament-data.ts`).
+   Animētas bildes saglabā kā `.webp` (`gif2webp -lossy -q 70 -m 6 in.gif -o out.webp`), nevis GIF.
 6. Uzmet mēneša komentāra melnrakstu (`monthlyComments`) — Jānis rediģē/apstiprina.
 7. Sagatavo **ielīmēšanas bloku Google Sheet** — vietas un punkti pilnajos vārdos tabulas secībā.
+
+Lapa rāda tikai repo datus (`seasons.generated.json` + `tournament-data.ts`); Google Sheet tiek
+rādīts tikai sadaļā "Pilnā tabula" kā iframe un rezultātus lapā nemaina.
 
 ## Ko Jānis izdara pēc tam
 

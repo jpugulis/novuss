@@ -2,24 +2,16 @@
 
 import { motion } from "framer-motion";
 import { Flame } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { useSeasons } from "@/hooks/use-seasons";
+import { seasons } from "@/lib/tournament-data";
+
+const seasonsWithStoses = seasons.filter((season) =>
+  season.players.some((player) => player.stoses > 0)
+);
 
 export function StoseCounter() {
-  const seasons = useSeasons();
-  const seasonsWithStoses = seasons.filter((season) =>
-    season.players.some((player) => player.stoses > 0)
-  );
   const [selectedYear, setSelectedYear] = useState(() => seasonsWithStoses[0]?.year ?? 2025);
-  const [hasUserSelected, setHasUserSelected] = useState(false);
-
-  useEffect(() => {
-    if (hasUserSelected || seasonsWithStoses.length === 0) return;
-    if (selectedYear !== seasonsWithStoses[0].year) {
-      setSelectedYear(seasonsWithStoses[0].year);
-    }
-  }, [hasUserSelected, seasonsWithStoses, selectedYear]);
 
   const currentSeason = seasonsWithStoses.find((s) => s.year === selectedYear);
   
@@ -60,7 +52,6 @@ export function StoseCounter() {
                     key={season.year}
                     onClick={() => {
                       setSelectedYear(season.year);
-                      setHasUserSelected(true);
                     }}
                     className={cn(
                       "px-4 py-2 rounded-full text-sm font-medium transition-all",

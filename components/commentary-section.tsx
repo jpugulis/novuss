@@ -2,21 +2,12 @@
 
 import { motion } from "framer-motion";
 import { MessageSquare, Quote, ChevronDown } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { useSeasons } from "@/hooks/use-seasons";
+import { seasons } from "@/lib/tournament-data";
 
 export function CommentarySection() {
-  const seasons = useSeasons();
   const [expandedYear, setExpandedYear] = useState<number | null>(seasons[0]?.year ?? 2025);
-  const [hasUserSelected, setHasUserSelected] = useState(false);
-
-  useEffect(() => {
-    if (hasUserSelected || seasons.length === 0) return;
-    if (expandedYear !== seasons[0].year) {
-      setExpandedYear(seasons[0].year);
-    }
-  }, [expandedYear, hasUserSelected, seasons]);
 
   return (
     <section id="commentary" className="py-20 px-4 bg-secondary/30">
@@ -54,7 +45,6 @@ export function CommentarySection() {
               <button
                 onClick={() => {
                   setExpandedYear(expandedYear === season.year ? null : season.year);
-                  setHasUserSelected(true);
                 }}
                 className="w-full p-5 flex items-center justify-between hover:bg-secondary/50 transition-colors"
               >

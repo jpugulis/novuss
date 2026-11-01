@@ -12,10 +12,9 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
-import { rulebookUrl } from "@/lib/tournament-data";
+import { rulebookUrl, seasons } from "@/lib/tournament-data";
 import { useEffect, useMemo, useState } from "react";
 import { cn } from "@/lib/utils";
-import { useSeasons } from "@/hooks/use-seasons";
 import {
   Dialog,
   DialogContent,
@@ -32,9 +31,7 @@ const positionStyles: Record<number, { icon: typeof Trophy | null; emoji: string
 };
 
 export function Leaderboard() {
-  const seasons = useSeasons();
   const [selectedYear, setSelectedYear] = useState(() => seasons[0]?.year ?? 2025);
-  const [hasUserSelected, setHasUserSelected] = useState(false);
   const [showAllPlayers, setShowAllPlayers] = useState(false);
   const [selectedMonth, setSelectedMonth] = useState<string | null>(null);
   const [selectedPlayerName, setSelectedPlayerName] = useState<string | null>(null);
@@ -44,12 +41,6 @@ export function Leaderboard() {
   const [sortPlayerMonthsByPoints, setSortPlayerMonthsByPoints] = useState(false);
   const isActiveSeason = selectedYear === 2026;
 
-  useEffect(() => {
-    if (hasUserSelected || seasons.length === 0) return;
-    if (selectedYear !== seasons[0].year) {
-      setSelectedYear(seasons[0].year);
-    }
-  }, [hasUserSelected, seasons, selectedYear]);
 
   const currentSeason = seasons.find((s) => s.year === selectedYear);
   const months = useMemo(
@@ -66,7 +57,7 @@ export function Leaderboard() {
     return seasons.filter((season) =>
       season.players.some((player) => player.name === selectedPlayerName)
     );
-  }, [seasons, selectedPlayerName]);
+  }, [selectedPlayerName]);
   const playerSeasonYears = useMemo(() => playerSeasons.map((season) => season.year), [playerSeasons]);
   const playerSeasonIndex = playerSeasonYear ? playerSeasonYears.indexOf(playerSeasonYear) : -1;
 
@@ -118,12 +109,11 @@ export function Leaderboard() {
 
     if (!Number.isNaN(yearParam) && seasons.some((season) => season.year === yearParam)) {
       setSelectedYear(yearParam);
-      setHasUserSelected(true);
     }
 
     setPendingMonthParam(monthParam);
     setPendingPlayerParam(playerParam);
-  }, [seasons]);
+  }, []);
 
   useEffect(() => {
     if (!pendingMonthParam || !hasMonthlyData) return;
@@ -321,7 +311,6 @@ export function Leaderboard() {
               value={selectedYear}
               onChange={(event) => {
                 setSelectedYear(Number(event.target.value));
-                setHasUserSelected(true);
               }}
               className="w-full max-w-xs rounded-full border border-border bg-secondary px-4 py-3 text-sm font-semibold text-foreground shadow-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
             >
@@ -337,7 +326,6 @@ export function Leaderboard() {
                   key={`mobile-${season.year}`}
                   onClick={() => {
                     setSelectedYear(season.year);
-                    setHasUserSelected(true);
                   }}
                   className={cn(
                     "flex-shrink-0 px-4 py-2 rounded-full text-xs font-semibold transition-all duration-200",
@@ -357,7 +345,6 @@ export function Leaderboard() {
                 key={season.year}
                 onClick={() => {
                   setSelectedYear(season.year);
-                  setHasUserSelected(true);
                 }}
                 className={cn(
                   "px-6 py-3 rounded-full font-semibold transition-all duration-300",
@@ -562,7 +549,6 @@ export function Leaderboard() {
                   value={selectedYear}
                   onChange={(event) => {
                     setSelectedYear(Number(event.target.value));
-                    setHasUserSelected(true);
                   }}
                   className="w-full max-w-xs rounded-full border border-border bg-secondary px-4 py-2.5 text-sm font-semibold text-foreground shadow-sm focus:outline-none focus:ring-2 focus:ring-primary/40"
                 >

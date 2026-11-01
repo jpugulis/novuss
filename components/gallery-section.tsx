@@ -105,14 +105,15 @@ export function GallerySection() {
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
+                transition={{ delay: (index % 3) * 0.1 }}
                 className="group relative aspect-[4/3] rounded-xl overflow-hidden cursor-pointer border border-border"
                 onClick={() => setSelectedImage(image)}
               >
                 <Image
-                  src={image.src || "/placeholder.svg"}
+                  src={image.src}
                   alt={image.caption}
                   fill
+                  sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
@@ -186,6 +187,7 @@ export function GallerySection() {
                           src={meme.src}
                           alt={meme.title}
                           fill
+                          sizes="(min-width: 768px) 448px, 100vw"
                           className="object-cover transition-transform duration-500 group-hover:scale-105"
                         />
                       </div>
@@ -245,10 +247,11 @@ export function GallerySection() {
               </button>
               
               <Image
-                src={selectedImage.src || "/placeholder.svg"}
+                src={selectedImage.src}
                 alt={selectedImage.caption}
                 width={1200}
                 height={800}
+                sizes="(min-width: 896px) 896px, 100vw"
                 className="w-full object-contain rounded-xl"
               />
               
