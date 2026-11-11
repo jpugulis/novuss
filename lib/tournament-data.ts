@@ -156,6 +156,22 @@ Rūdis ar 3.vietu atkal pjedestālā - un šoreiz turnīru nospēlēja līdz gal
 
 Sveicam pulkā Silgu - debijā uzreiz 2 štoses! - un Root!`,
       },
+      {
+        month: "Novembris",
+        comment: `Novembra turnīrs bija īpašs ar vairākām lietām - pirmkārt jau pirmo reizi tas notika pirmdienā! Pulcējās 17 rubaki, tāpēc vienā vietā Dāvīc un Robo vispirms izspēlēja priekšspēli, no kuras ceļu uzvarētāju zarā turpināja Dāvīc. Štošu skaits atkal 22, tieši tikpat, cik oktobra rekordā!
+
+Nespējām atminēties arī partiju, kurā būtu 5 štoses, kāda bija Rūdžam pret Dzinču jau pirmajā kārtā - Rūdim 2, Dzinčam 3!
+
+Dzinča uzvar arī pirmdienā! Uzvarētāju zarā neviena zaudēta spēle: Rūdis, Edgars 2:1, TomyG 2:0, Tūja 2:1 un finālā atkal 2:0 pret Tūju. 7 štoses un piektā uzvara šosezon - un pats galvenais, kopvērtējumā Dzinča pirmo reizi šosezon apsteidz TomyG: 151 pret 142 TOP8 punktiem!
+
+Tūja nospēlēja savu sezonas labāko turnīru - 2:0 pret Pūguli, Silgu un Laimu, zaudējums Dzinčam tikai 1:2 uzvarētāju zara finālā, bet zaudētāju zara finālā 2:0 pret Silgu. 5 štoses un 2.vieta pēc divām bronzām augustā un septembrī.
+
+Vakara atklājums - Silga! Tikai otrajā turnīrā un uzreiz pjedestāls: pēc zaudējuma Tūjam viņa pa zaudētāju zaru pārspēja Arti D., Zani, TomyG un Laimu. Laimai sezonas labākais rezultāts - 4.vieta. Dāmu ceturtdaļfināls nozīmēja tikai vienu - uz pjedestāla beidzot kāps arī kāda dāma! Un tā arī notika - divas dāmas TOP4!
+
+TomyG šoreiz 5.-6. vietā un kopvērtējuma līdera krēsls jāatdod. Pūgulim 2 štoses un 7.-8. vieta. Sveicam pulkā Arti D. - debijā 2:0 pret Rūdi un 2 štoses!
+
+Decembrī - sezonas noslēguma Ziemassvētku turnīrs, kurā izšķirsies, vai Dzinča nosargās kroni!`,
+      },
     ],
   },
 };
@@ -193,6 +209,51 @@ export const seasons: Season[] = (rawSeasons as RawSeason[])
   .sort((a, b) => b.year - a.year);
 
 export const galleryImages = [
+  {
+    src: "/images/2026-dzintis_uzvar_ari_pirmdiena.jpeg",
+    caption: "Novembra čempions Dzintis - uzvar arī pirmdienā!",
+    year: 2026,
+  },
+  {
+    src: "/images/2026-novembris-top3.jpeg",
+    caption: "Novembra TOP3 - Dzintis, Tūja un Silga",
+    year: 2026,
+  },
+  {
+    src: "/images/2026-novmebris-finals-dintis-pret-tuju.jpeg",
+    caption: "Novembra fināls - Dzintis pret Tūju",
+    year: 2026,
+  },
+  {
+    src: "/images/2026-tablo_novembris.jpeg",
+    caption: "Novembra tablo - 17 spēlētāji un 22 štoses",
+    year: 2026,
+  },
+  {
+    src: "/images/2026-novuss.webp",
+    caption: "Dāmu ceturtdaļfināls",
+    year: 2026,
+  },
+  {
+    src: "/images/2026-novuss2.webp",
+    caption: "Dāmu ceturtdaļfināls",
+    year: 2026,
+  },
+  {
+    src: "/images/2026-novuss3.webp",
+    caption: "Dāmu ceturtdaļfināls",
+    year: 2026,
+  },
+  {
+    src: "/images/2026-novuss4.webp",
+    caption: "Dāmu ceturtdaļfināls",
+    year: 2026,
+  },
+  {
+    src: "/images/2026-novuss5.webp",
+    caption: "Dāmu ceturtdaļfināls",
+    year: 2026,
+  },
   {
     src: "/images/2026-okt-cempions-dzintis!.jpeg",
     caption: "Oktobra čempions Dzintis - 9 štoses, jauns sezonas rekords!",

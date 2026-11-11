@@ -1,6 +1,6 @@
 const isDev = process.env.NODE_ENV !== "production"
 
-// Only Google Sheets (full table) and Instagram (memes) are embedded; Vercel Analytics
+// Only Google Sheets (full table), Instagram (memes) and Bunny Stream (videos) are embedded; Vercel Analytics
 // loads from /_vercel on production and from va.vercel-scripts.com in dev.
 const contentSecurityPolicy = [
   "default-src 'self'",
@@ -10,7 +10,7 @@ const contentSecurityPolicy = [
   "font-src 'self'",
   "media-src 'self'",
   `connect-src 'self' https://va.vercel-scripts.com${isDev ? " ws:" : ""}`,
-  "frame-src https://docs.google.com https://www.instagram.com",
+  "frame-src https://docs.google.com https://www.instagram.com https://iframe.mediadelivery.net",
   "frame-ancestors 'none'",
   "object-src 'none'",
   "base-uri 'self'",

@@ -84,6 +84,7 @@
     { "fullName": "Rādis", "nickname": "Rādis", "aliases": [] },
     { "fullName": "Liene", "nickname": "Liene", "aliases": [] },
     { "fullName": "Silga", "nickname": "Silga", "aliases": [] },
-    { "fullName": "Root", "nickname": "Root", "aliases": [] }
+    { "fullName": "Root", "nickname": "Root", "aliases": [] },
+    { "fullName": "Artis D. (uzvārds nezināms)", "nickname": "Artis D.", "aliases": ["Artis D"] }
   ]
 }

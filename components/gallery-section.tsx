@@ -7,7 +7,27 @@ import { useState } from "react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
-const videos = [
+// Bunny Stream videos: add { bunny: { libraryId, videoId } } instead of src.
+// IDs are in the Bunny embed link: iframe.mediadelivery.net/embed/<libraryId>/<videoId>
+type Video = {
+  id: number;
+  title: string;
+  caption: string;
+} & ({ src: string; bunny?: never } | { bunny: { libraryId: string; videoId: string }; src?: never });
+
+const videos: Video[] = [
+  {
+    id: 5,
+    title: "Dāmu ceturtdaļfināls",
+    caption: "Novembra turnīrs",
+    bunny: { libraryId: "806033", videoId: "935014b2-a7eb-4769-b168-d9cba7f34baf" },
+  },
+  {
+    id: 4,
+    title: "Dāmu ceturtdaļfināls II",
+    caption: "Novembra turnīrs",
+    bunny: { libraryId: "806033", videoId: "c6543a81-6f41-4f8e-951d-dfbff449f0fe" },
+  },
   {
     id: 1,
     title: "Brīdis pirms fināla",
@@ -26,7 +46,7 @@ const videos = [
     caption: "Jūlija turnīrs",
     src: "/images/Rudi-nu-bus-sudi!.mp4",
   },
-] as const;
+];
 
 export function GallerySection() {
   const [selectedImage, setSelectedImage] = useState<{ src: string; caption: string } | null>(null);
@@ -212,13 +232,24 @@ export function GallerySection() {
                 className="overflow-hidden rounded-xl bg-card border border-border"
               >
                 <div className="relative bg-background">
-                  <video
-                    src={video.src}
-                    controls
-                    preload="metadata"
-                    playsInline
-                    className="aspect-video w-full bg-background object-contain"
-                  />
+                  {video.bunny ? (
+                    <iframe
+                      src={`https://iframe.mediadelivery.net/embed/${video.bunny.libraryId}/${video.bunny.videoId}?autoplay=false&loop=false&muted=false&preload=false&responsive=true`}
+                      title={video.title}
+                      loading="lazy"
+                      className="aspect-video w-full border-0 bg-background"
+                      allow="accelerometer; gyroscope; encrypted-media; picture-in-picture; fullscreen"
+                      allowFullScreen
+                    />
+                  ) : (
+                    <video
+                      src={video.src}
+                      controls
+                      preload="metadata"
+                      playsInline
+                      className="aspect-video w-full bg-background object-contain"
+                    />
+                  )}
                 </div>
                 <div className="p-4">
                   <h3 className="font-semibold text-foreground">{video.title}</h3>
